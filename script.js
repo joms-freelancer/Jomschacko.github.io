@@ -37,9 +37,10 @@ const content = {
     }
 };
 
-function changeLang(lang) {
-    // Get all keys from the selected language
+// ഫംഗ്ഷൻ ഗ്ലോബൽ ആയി ഡിക്ലയർ ചെയ്യുന്നു
+window.changeLang = function(lang) {
     const langData = content[lang];
+    if (!langData) return;
     
     // Loop through each key and update the corresponding HTML element
     for (let id in langData) {
