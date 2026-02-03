@@ -8,8 +8,6 @@
     <style>
         .fade-in { animation: fadeIn 0.8s ease-out; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-        #chat-messages::-webkit-scrollbar { width: 5px; }
-        #chat-messages::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
     </style>
 </head>
 <body class="bg-slate-900 min-h-screen text-white font-sans overflow-x-hidden relative">
@@ -17,20 +15,18 @@
     <nav class="backdrop-blur-md bg-white/10 sticky top-0 z-50 border-b border-white/10 p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-2xl tracking-tight">JOMS</h1>
-            <div class="flex space-x-2">
-                <button class="px-3 py-1 bg-white/20 hover:bg-white/30 transition rounded-full text-xs" onclick="changeLang('en')">English</button> 
-                <button class="px-3 py-1 bg-white/20 hover:bg-white/30 transition rounded-full text-xs" onclick="changeLang('ml')">മലയാളം</button>
+            <div class="flex space-x-2 text-xs">
+                <button class="px-3 py-1 bg-white/20 rounded-full" onclick="changeLang('en')">English</button> 
+                <button class="px-3 py-1 bg-white/20 rounded-full" onclick="changeLang('ml')">മലയാളം</button>
             </div>
         </div>
     </nav>
 
-    <header class="relative max-w-4xl mx-auto text-center py-16 px-6 fade-in">
+    <header class="relative max-w-4xl mx-auto text-center py-16 px-6 fade-in text-white">
         <div class="mb-6 flex justify-center">
-            <img alt="Joms Profile" 
-                 class="w-44 h-44 rounded-full border-4 border-white/20 shadow-2xl object-cover" 
-                 src="Photo from jomon13051983 copy.jpg">
+            <img alt="Joms Profile" class="w-44 h-44 rounded-full border-4 border-white/20 shadow-2xl object-cover" src="Photo from jomon13051983 copy.jpg">
         </div>
-        <h2 class="text-5xl font-extrabold text-white mb-4" id="hero-title">Welcome</h2>
+        <h2 class="text-5xl font-extrabold mb-4" id="hero-title">Welcome</h2>
         <p class="text-lg text-slate-300" id="hero-desc">Data Entry Expert & AI/ML Enthusiast</p>
     </header>
 
@@ -55,38 +51,40 @@
         </div>
     </main>
 
-    <button class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 transition" onclick="toggleChat()">
-        <svg class="h-6 w-6" viewbox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
-    </button>
+    <button class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center z-50" onclick="toggleChat()">💬</button>
 
     <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-96 backdrop-blur-xl bg-gray-900/95 border border-white/20 rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden">
         <div class="bg-blue-600 p-4 text-white font-bold flex justify-between items-center">
             <span>Joms AI Bot</span>
             <button onclick="toggleChat()" class="text-xl">✕</button>
         </div>
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white h-64">
-            <div class="bg-white/10 p-2 rounded-lg">Hi! Ask Joms's AI anything!</div>
-        </div>
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white h-64"></div>
         <div class="p-3 bg-black/40 border-t border-white/10 flex">
-            <input id="chat-input" type="text" class="bg-transparent border-none outline-none text-white w-full text-sm" placeholder="Ask AI..." autocomplete="off">
+            <input id="chat-input" type="text" class="bg-transparent border-none outline-none text-white w-full text-sm" placeholder="Ask AI...">
             <button onclick="sendMessage()" class="text-blue-400 font-bold ml-2">Send</button>
         </div>
     </div>
 
     <script>
         const API_KEY = "AIzaSyAxbOwy6aA_QrL7FjZ_c4Tf4kKjJzyAflo";
-        
-        const content = {
-            'en': { 'hero-title': 'Hi, I am Joms', 'hero-desc': 'Data Entry Expert & AI/ML Enthusiast', 'col-1-title': 'About Me', 'col-1-desc': 'Specialized in precision data management and AI.', 'col-2-title': 'Services', 'col-2-desc': 'Data Entry, Python scripting, and Web Research.', 'col-3-title': 'Skills', 'col-3-desc': 'Expertise in Excel, Python, and Data Cleaning.', 'col-4-title': 'Contact', 'col-4-desc': 'Email: jomonc60@gmail.com' },
-            'ml': { 'hero-title': 'ഹലോ, ഞാൻ ജോംസ്', 'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്', 'col-1-title': 'എന്നെക്കുറിച്ച്', 'col-1-desc': 'ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.', 'col-2-title': 'സേവനങ്ങൾ', 'col-2-desc': 'ഡാറ്റാ എൻട്രി, പൈത്തൺ ഓട്ടോമേഷൻ എന്നിവ നൽകുന്നു.', 'col-3-title': 'കഴിവുകൾ', 'col-3-desc': 'പൈത്തൺ, എക്സൽ എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.', 'col-4-title': 'ബന്ധപ്പെടുക', 'col-4-desc': 'ഇമെയിൽ: jomonc60@gmail.com' }
-        };
-
-        window.changeLang = (lang) => {
-            const data = content[lang];
-            for (let id in data) { if(document.getElementById(id)) document.getElementById(id).innerText = data[id]; }
-        };
-
         window.toggleChat = () => document.getElementById('chat-window').classList.toggle('hidden');
-
         window.sendMessage = async () => {
-            const input = document.getElementById('chat-input
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            if (!input.value.trim()) return;
+            messages.innerHTML += `<div class="text-right text-blue-300 mb-2">You: ${input.value}</div>`;
+            const userText = input.value;
+            input.value = "";
+            try {
+                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+                    method: "POST", headers: { "Content-Type": "application/json" },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }] })
+                });
+                const data = await res.json();
+                messages.innerHTML += `<div class="text-left text-gray-300 mb-2">AI: ${data.candidates[0].content.parts[0].text}</div>`;
+            } catch (e) { messages.innerHTML += `<div class="text-red-400">Wait for HTTPS to activate.</div>`; }
+            messages.scrollTop = messages.scrollHeight;
+        };
+    </script>
+</body>
+</html>
