@@ -1,143 +1,120 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joms Portfolio | Home</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
-        #chat-messages::-webkit-scrollbar { width: 4px; }
-        #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-    </style>
+	<meta charset="UTF-8">
+	<meta content="width=device-width, initial-scale=1.0" name="viewport">
+	<title>Joms Portfolio | Home</title>
+	<script src="https://cdn.tailwindcss.com">
+	</script>
+	<style>
+	       .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+	       #chat-messages::-webkit-scrollbar { width: 4px; }
+	       #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+	</style>
 </head>
 <body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500 overflow-x-hidden">
-    
-    <nav class="glass sticky top-0 z-50 p-4">
-        <div class="max-w-6xl mx-auto flex justify-between items-center">
-            <h1 class="font-bold text-2xl text-blue-400 tracking-tighter">JOMS</h1>
-            <div class="flex space-x-2">
-                <button class="px-4 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('en')">English</button> 
-                <button class="px-4 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('ml')">മലയാളം</button>
-            </div>
-        </div>
-    </nav>
+	<nav class="glass sticky top-0 z-50 p-4">
+		<div class="max-w-6xl mx-auto flex justify-between items-center">
+			<h1 class="font-bold text-2xl text-blue-400 tracking-tighter">JOMS</h1>
+			<div class="flex space-x-2">
+				<button class="px-4 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('en')">English</button> <button class="px-4 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('ml')">മലയാളം</button>
+			</div>
+		</div>
+	</nav>
+	<header class="max-w-4xl mx-auto text-center py-16 px-6">
+		<div class="mb-6 flex justify-center"><img alt="Joms Profile" class="w-44 h-44 rounded-full border-4 border-blue-500 object-cover shadow-2xl" id="profile-img" onerror="this.src='https://ui-avatars.com/api/?name=Joms&background=0D8ABC&color=fff&size=200'" src="Photo%20from%20jomon13051983%20copy.jpg"></div>
+		<h2 class="text-5xl font-extrabold mb-4 tracking-tight" id="hero-title">Welcome</h2>
+		<p class="text-lg text-slate-400 italic" id="hero-desc">Data Solutions Specialist & AI/ML Enthusiast</p>
+	</header>
+	<main class="max-w-6xl mx-auto pb-24 px-6">
+		<div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+			<a class="block group" href="about.html" onclick="window.location.href='about.html'; return false;">
+			<div class="glass p-8 rounded-3xl group-hover:border-blue-500 transition-all duration-300 shadow-lg h-full">
+				<h3 class="font-bold text-blue-400 mb-3" id="box1-title">About Me</h3>
+				<p class="text-xs text-slate-400" id="box1-desc">Experience & Professional Vision</p>
+			</div></a>
+			<div class="glass p-8 rounded-3xl hover:border-green-500 transition shadow-lg h-full">
+				<h3 class="font-bold text-green-400 mb-3" id="box2-title">Services</h3>
+				<p class="text-xs text-slate-400" id="box2-desc">Automation & Project Demos</p>
+			</div>
+			<div class="glass p-8 rounded-3xl hover:border-purple-500 transition shadow-lg h-full">
+				<h3 class="font-bold text-purple-400 mb-3" id="box3-title">Skills</h3>
+				<p class="text-xs text-slate-400" id="box3-desc">Python, AI & Web Tools</p>
+			</div><a class="block group" href="https://wa.me/917907311445" target="_blank">
+			<div class="glass p-8 rounded-3xl group-hover:border-emerald-500 transition-all duration-300 shadow-lg h-full">
+				<h3 class="font-bold text-emerald-400 mb-3" id="box4-title">WhatsApp</h3>
+				<p class="text-xs text-slate-400" id="box4-desc">Direct Message / Consultations</p>
+			</div></a>
+		</div>
+	</main><button class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl hover:scale-110 active:scale-95 transition" onclick="toggleChat()">💬</button>
+	<div class="fixed bottom-24 right-6 w-80 h-[450px] glass rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden border border-white/20 bg-slate-900/95" id="chat-window">
+		<div class="bg-blue-600 p-4 font-bold flex justify-between items-center shadow-md">
+			<span class="text-sm">Joms AI Bot</span> <button class="hover:text-red-400" onclick="toggleChat()">✕</button>
+		</div>
+		<div class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent" id="chat-messages">
+			<div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5">
+				Hi! I'm Joms's AI assistant. How can I help you today?
+			</div>
+		</div>
+		<div class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
+			<input class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 focus:ring-1 focus:ring-blue-500" id="chat-input" placeholder="Ask AI something..." type="text"> <button class="bg-blue-600 p-2 rounded-xl hover:bg-blue-700 transition" onclick="sendMessage()">➤</button>
+		</div>
+	</div>
+	<script>
+	       // API Key (Note: Ensure this is active in Google AI Studio)
+	       const API_KEY = "AIzaSyC0BrAbFI_x81iaYl_zzGgj5z1wqbkg4OM"; 
 
-    <header class="max-w-4xl mx-auto text-center py-16 px-6">
-        <div class="mb-6 flex justify-center">
-            <img id="profile-img" alt="Joms Profile" class="w-44 h-44 rounded-full border-4 border-blue-500 object-cover shadow-2xl" 
-                 src="Photo from jomon13051983 copy.jpg" 
-                 onerror="this.src='https://ui-avatars.com/api/?name=Joms&background=0D8ABC&color=fff&size=200'">
-        </div>
-        <h2 class="text-5xl font-extrabold mb-4 tracking-tight" id="hero-title">Welcome</h2>
-        <p class="text-lg text-slate-400 italic" id="hero-desc">Data Solutions Specialist & AI/ML Enthusiast</p>
-    </header>
+	       function toggleChat() { 
+	           const win = document.getElementById('chat-window');
+	           win.classList.toggle('hidden');
+	       }
 
-    <main class="max-w-6xl mx-auto pb-24 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            
-            <a href="about.html" class="block group">
-                <div class="glass p-8 rounded-3xl group-hover:border-blue-500 transition-all duration-300 shadow-lg h-full">
-                    <h3 class="font-bold text-blue-400 mb-3" id="box1-title">About Me</h3>
-                    <p class="text-xs text-slate-400" id="box1-desc">Experience & Professional Vision</p>
-                </div>
-            </a>
+	       async function sendMessage() {
+	           const input = document.getElementById('chat-input');
+	           const messages = document.getElementById('chat-messages');
+	           const userText = input.value.trim();
+	           if (!userText) return;
 
-            <div class="glass p-8 rounded-3xl hover:border-green-500 transition shadow-lg h-full">
-                <h3 class="font-bold text-green-400 mb-3" id="box2-title">Services</h3>
-                <p class="text-xs text-slate-400" id="box2-desc">Automation & Project Demos</p>
-            </div>
+	           // User Message
+	           messages.innerHTML += `<div class="flex justify-end"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%] shadow-md">${userText}<\/div><\/div>`;
+	           input.value = "";
+	           messages.scrollTop = messages.scrollHeight;
 
-            <div class="glass p-8 rounded-3xl hover:border-purple-500 transition shadow-lg h-full">
-                <h3 class="font-bold text-purple-400 mb-3" id="box3-title">Skills</h3>
-                <p class="text-xs text-slate-400" id="box3-desc">Python, AI & Web Tools</p>
-            </div>
+	           // Thinking Message
+	           const loadingId = "load-" + Date.now();
+	           messages.innerHTML += `<div id="${loadingId}" class="text-[10px] italic text-slate-500 ml-2">AI is thinking...<\/div>`;
 
-            <a href="https://wa.me/917907311445" target="_blank" class="block group">
-                <div class="glass p-8 rounded-3xl group-hover:border-emerald-500 transition-all duration-300 shadow-lg h-full">
-                    <h3 class="font-bold text-emerald-400 mb-3" id="box4-title">WhatsApp</h3>
-                    <p class="text-xs text-slate-400" id="box4-desc">Direct Message / Consultations</p>
-                </div>
-            </a>
+	           try {
+	               const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
+	                   method: "POST",
+	                   headers: { "Content-Type": "application/json" },
+	                   body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }] })
+	               });
+	               const data = await res.json();
+	               document.getElementById(loadingId).remove();
 
-        </div>
-    </main>
+	               if (data.candidates && data.candidates[0].content) {
+	                   const aiText = data.candidates[0].content.parts[0].text;
+	                   messages.innerHTML += `<div class="flex justify-start"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5 shadow-sm">${aiText}<\/div><\/div>`;
+	               } else {
+	                   messages.innerHTML += `<div class="text-amber-400 text-[10px] text-center italic">AI currently busy. Please contact via WhatsApp!<\/div>`;
+	               }
+	           } catch (e) {
+	               if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
+	               messages.innerHTML += `<div class="text-red-400 text-[10px] text-center">Connection error. Please check your internet.<\/div>`;
+	           }
+	           messages.scrollTop = messages.scrollHeight;
+	       }
 
-    <button class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl hover:scale-110 active:scale-95 transition" onclick="toggleChat()">💬</button>
-
-    <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-[450px] glass rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden border border-white/20 bg-slate-900/95">
-        <div class="bg-blue-600 p-4 font-bold flex justify-between items-center shadow-md">
-            <span class="text-sm">Joms AI Bot</span>
-            <button onclick="toggleChat()" class="hover:text-red-400">✕</button>
-        </div>
-        
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent">
-            <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5">
-                Hi! I'm Joms's AI assistant. How can I help you today?
-            </div>
-        </div>
-
-        <div class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
-            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 focus:ring-1 focus:ring-blue-500" placeholder="Ask AI something...">
-            <button onclick="sendMessage()" class="bg-blue-600 p-2 rounded-xl hover:bg-blue-700 transition">➤</button>
-        </div>
-    </div>
-
-    <script>
-        // API Key (Note: Ensure this is active in Google AI Studio)
-        const API_KEY = "AIzaSyC0BrAbFI_x81iaYl_zzGgj5z1wqbkg4OM"; 
-
-        function toggleChat() { 
-            const win = document.getElementById('chat-window');
-            win.classList.toggle('hidden');
-        }
-
-        async function sendMessage() {
-            const input = document.getElementById('chat-input');
-            const messages = document.getElementById('chat-messages');
-            const userText = input.value.trim();
-            if (!userText) return;
-
-            // User Message
-            messages.innerHTML += `<div class="flex justify-end"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%] shadow-md">${userText}</div></div>`;
-            input.value = "";
-            messages.scrollTop = messages.scrollHeight;
-
-            // Thinking Message
-            const loadingId = "load-" + Date.now();
-            messages.innerHTML += `<div id="${loadingId}" class="text-[10px] italic text-slate-500 ml-2">AI is thinking...</div>`;
-
-            try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: userText }] }] })
-                });
-                const data = await res.json();
-                document.getElementById(loadingId).remove();
-
-                if (data.candidates && data.candidates[0].content) {
-                    const aiText = data.candidates[0].content.parts[0].text;
-                    messages.innerHTML += `<div class="flex justify-start"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5 shadow-sm">${aiText}</div></div>`;
-                } else {
-                    messages.innerHTML += `<div class="text-amber-400 text-[10px] text-center italic">AI currently busy. Please contact via WhatsApp!</div>`;
-                }
-            } catch (e) {
-                if(document.getElementById(loadingId)) document.getElementById(loadingId).remove();
-                messages.innerHTML += `<div class="text-red-400 text-[10px] text-center">Connection error. Please check your internet.</div>`;
-            }
-            messages.scrollTop = messages.scrollHeight;
-        }
-
-        const trans = {
-            'en': { 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast' },
-            'ml': { 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്' }
-        };
-        function changeLang(l) {
-            document.getElementById('hero-title').innerText = trans[l]['hero-title'];
-            document.getElementById('hero-desc').innerText = trans[l]['hero-desc'];
-        }
-        document.getElementById('chat-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
-    </script>
+	       const trans = {
+	           'en': { 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast' },
+	           'ml': { 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്' }
+	       };
+	       function changeLang(l) {
+	           document.getElementById('hero-title').innerText = trans[l]['hero-title'];
+	           document.getElementById('hero-desc').innerText = trans[l]['hero-desc'];
+	       }
+	       document.getElementById('chat-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendMessage(); });
+	</script>
 </body>
 </html>
