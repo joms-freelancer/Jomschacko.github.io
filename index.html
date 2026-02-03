@@ -6,19 +6,19 @@
     <title>Joms Portfolio | AI Assistant</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.1); border: 1px solid rgba(255, 255, 255, 0.2); }
+        .glass { backdrop-filter: blur(10px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
         #chat-messages::-webkit-scrollbar { width: 4px; }
         #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
     </style>
 </head>
-<body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500">
+<body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500 overflow-x-hidden">
     
     <nav class="glass sticky top-0 z-50 p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-2xl text-blue-400">JOMS</h1>
             <div class="flex space-x-2">
-                <button class="px-3 py-1 bg-white/10 rounded-full text-xs" onclick="changeLang('en')">English</button> 
-                <button class="px-3 py-1 bg-white/10 rounded-full text-xs" onclick="changeLang('ml')">മലയാളം</button>
+                <button class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('en')">English</button> 
+                <button class="px-3 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('ml')">മലയാളം</button>
             </div>
         </div>
     </nav>
@@ -30,48 +30,59 @@
                  onerror="this.src='https://ui-avatars.com/api/?name=Joms&background=0D8ABC&color=fff&size=200'">
         </div>
         <h2 class="text-5xl font-extrabold mb-4" id="hero-title">Welcome</h2>
-        <p class="text-lg text-slate-300" id="hero-desc">Data Entry Expert & AI/ML Enthusiast</p>
+        <p class="text-lg text-slate-300 italic" id="hero-desc">Data Entry Expert & AI/ML Enthusiast</p>
     </header>
 
     <main class="max-w-6xl mx-auto pb-20 px-6">
         <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <div class="glass p-6 rounded-3xl"><h3 class="font-bold text-blue-400 mb-2">About Me</h3><p class="text-xs">Data Expert</p></div>
-            <div class="glass p-6 rounded-3xl"><h3 class="font-bold text-green-400 mb-2">Services</h3><p class="text-xs">Python & Transcription</p></div>
-            <div class="glass p-6 rounded-3xl"><h3 class="font-bold text-purple-400 mb-2">Skills</h3><p class="text-xs">Excel, SQL, Python</p></div>
-            <div class="glass p-6 rounded-3xl"><h3 class="font-bold text-red-400 mb-2">Contact</h3><p class="text-xs">jomonc60@gmail.com</p></div>
+            <div class="glass p-6 rounded-3xl hover:border-blue-500 transition"><h3 class="font-bold text-blue-400 mb-2">About Me</h3><p class="text-xs text-slate-400">Specialized in precision data management.</p></div>
+            <div class="glass p-6 rounded-3xl hover:border-green-500 transition"><h3 class="font-bold text-green-400 mb-2">Services</h3><p class="text-xs text-slate-400">Python Scripting & Transcription.</p></div>
+            <div class="glass p-6 rounded-3xl hover:border-purple-500 transition"><h3 class="font-bold text-purple-400 mb-2">Skills</h3><p class="text-xs text-slate-400">Excel, SQL, Python Expert.</p></div>
+            <div class="glass p-6 rounded-3xl hover:border-red-500 transition"><h3 class="font-bold text-red-400 mb-2">Contact</h3><p class="text-xs text-slate-400">jomonc60@gmail.com</p></div>
         </div>
     </main>
 
-    <button class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl hover:scale-110 transition" onclick="toggleChat()">💬</button>
+    <button class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl hover:scale-110 active:scale-95 transition" onclick="toggleChat()">💬</button>
 
-    <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-96 glass rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden">
-        <div class="bg-blue-600 p-4 font-bold flex justify-between"><span>Joms AI Bot</span><button onclick="toggleChat()">✕</button></div>
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm">
-            <div class="bg-white/10 p-2 rounded-lg">Hi! How can I help you today?</div>
+    <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-[450px] glass rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden border border-white/20 bg-slate-900/90">
+        <div class="bg-blue-600 p-4 font-bold flex justify-between items-center">
+            <span>Joms AI Assistant</span>
+            <button onclick="toggleChat()" class="hover:bg-blue-700 px-2 rounded">✕</button>
         </div>
-        <div class="p-3 bg-black/20 border-t border-white/10 flex gap-2">
-            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full p-2 rounded-lg text-white" placeholder="Ask something...">
-            <button onclick="sendMessage()" class="bg-blue-600 px-3 py-1 rounded-lg">Send</button>
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent">
+            <div class="bg-white/10 p-2 rounded-lg rounded-tl-none mr-8">Hi! How can I help you today?</div>
+        </div>
+        <div class="p-3 bg-black/40 border-t border-white/10 flex gap-2">
+            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full p-2 rounded-lg text-white text-sm" placeholder="Ask me something...">
+            <button onclick="sendMessage()" class="bg-blue-600 p-2 rounded-lg hover:bg-blue-700 transition">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+            </button>
         </div>
     </div>
 
     <script>
+        // നിങ്ങൾ നൽകിയ പുതിയ API Key
         const API_KEY = "AIzaSyC0BrAbFI_x81iaYl_zzGgj5z1wqbkg4OM"; 
 
-        function toggleChat() { document.getElementById('chat-window').classList.toggle('hidden'); }
+        function toggleChat() { 
+            const win = document.getElementById('chat-window');
+            win.classList.toggle('hidden');
+        }
 
         async function sendMessage() {
             const input = document.getElementById('chat-input');
             const messages = document.getElementById('chat-messages');
             const userText = input.value.trim();
+            
             if (!userText) return;
 
-            messages.innerHTML += `<div class="text-right text-blue-300 font-bold">You: ${userText}</div>`;
+            // User message
+            messages.innerHTML += `<div class="text-right ml-8"><span class="bg-blue-600 p-2 rounded-lg rounded-tr-none inline-block">${userText}</span></div>`;
             input.value = "";
             messages.scrollTop = messages.scrollHeight;
 
             const loadingId = "loading-" + Date.now();
-            messages.innerHTML += `<div id="${loadingId}" class="text-slate-400 italic">Thinking...</div>`;
+            messages.innerHTML += `<div id="${loadingId}" class="text-slate-400 italic text-xs">AI is thinking...</div>`;
 
             try {
                 const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
@@ -82,16 +93,17 @@
 
                 const data = await response.json();
                 const loadingElement = document.getElementById(loadingId);
+                if(loadingElement) loadingElement.remove();
                 
-                if (data.candidates && data.candidates[0].content.parts[0].text) {
-                    if(loadingElement) loadingElement.remove();
-                    messages.innerHTML += `<div class="text-left text-gray-200">AI: ${data.candidates[0].content.parts[0].text}</div>`;
-                } else {
-                    if(loadingElement) loadingElement.innerText = "Error: API response issue.";
+                if (data.candidates && data.candidates[0].content) {
+                    const aiText = data.candidates[0].content.parts[0].text;
+                    messages.innerHTML += `<div class="text-left mr-8"><span class="bg-white/10 p-2 rounded-lg rounded-tl-none inline-block border border-white/5">${aiText}</span></div>`;
+                } else if (data.error) {
+                    messages.innerHTML += `<div class="text-red-400 text-xs italic">API Error: ${data.error.message}</div>`;
                 }
             } catch (e) {
                 const loadingElement = document.getElementById(loadingId);
-                if(loadingElement) loadingElement.innerText = "Connection Error!";
+                if(loadingElement) loadingElement.innerText = "Connection Error! Check HTTPS.";
             }
             messages.scrollTop = messages.scrollHeight;
         }
