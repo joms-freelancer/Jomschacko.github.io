@@ -1,81 +1,69 @@
-
-
 const content = {
-	'en': {
-		'hero-title': 'Hi, I am Joms',
-		'hero-desc': 'Data Entry Expert & AI/ML Enthusiast',
-		'col-1-title': 'About Me',
-		'col-1-desc': 'A dedicated freelancer specialized in precision data management and exploring the world of Artificial Intelligence.',
-		'col-2-title': 'Services',
-		'col-2-desc': 'Offering professional Data Entry, Web Research, Python scripting, and basic Machine Learning models.',
-		'col-3-title': 'Skills',
-		'col-3-desc': 'Expertise in Microsoft Excel, Python, SQL, Data Cleaning, and Predictive Analytics.',
-		'col-4-title': 'Contact',
-		'col-4-desc': 'Available for freelance projects. Email: jomschacko@example.com (Replace with yours)'
-	},
-	'ml': {
-		'hero-title': 'ഹലോ, ഞാൻ ജോംസ്',
-		'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്',
-		'col-1-title': 'എന്നെക്കുറിച്ച്',
-		'col-1-desc': 'കൃത്യതയാർന്ന ഡാറ്റാ മാനേജ്‌മെന്റിലും ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസിലും താല്പര്യമുള്ള ഒരു ഫ്രീലാൻസറാണ് ഞാൻ.',
-		'col-2-title': 'സേവനങ്ങൾ',
-		'col-2-desc': 'ഡാറ്റാ എൻട്രി, വെബ് റിസർച്ച്, പൈത്തൺ ഓട്ടോമേഷൻ, മെഷീൻ ലേണിംഗ് എന്നിവ ചെയ്തു നൽകുന്നു.',
-		'col-3-title': 'കഴിവുകൾ',
-		'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ്, മെഷീൻ ലേണിംഗ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.',
-		'col-4-title': 'ബന്ധപ്പെടുക',
-		'col-4-desc': 'പ്രോജക്റ്റുകൾക്കായി എന്നെ ബന്ധപ്പെടാം. ഇമെയിൽ: jomschacko@example.com'
-	},
-	'hi': {
-		'hero-title': 'नमस्ते, मैं जोम्स हूँ',
-		'hero-desc': 'डेटा एंट्री विशेषज्ञ और AI/ML उत्साही',
-		'col-1-title': 'मेरे बारे में',
-		'col-1-desc': 'मैं डेटा प्रबंधन और आर्टिफिशियल इंटेलिजेंस की दुनिया में काम करने वाला एक फ्रीलांसर हूं।',
-		'col-2-title': 'सेवाएं',
-		'col-2-desc': 'डेटा एंट्री, वेब रिसर्च और पायथन ऑटोमेशन सेवाएं उपलब्ध हैं।',
-		'col-3-title': 'कौशल',
-		'col-3-desc': 'पायथन, एक्सेल, डेटा विश्लेषण और मशीन लर्निंग में निपुण।',
-		'col-4-title': 'संपर्क',
-		'col-4-desc': 'परियोजनाओं के लिए संपर्क करें: jomschacko@example.com'
-	},
-	'ta': {
-		'hero-title': 'வணக்கம், நான் ஜோம்ஸ்',
-		'hero-desc': 'தரவு உள்ளீடு நிபுணர் மற்றும் AI/ML ஆர்வலர்',
-		'col-1-title': 'என்னை பற்றி',
-		'col-1-desc': 'துல்லியமான தரவு மேலாண்மை மற்றும் செயற்கை நுண்ணறிவு துறையில் ஆர்வமுள்ள ஒரு ஃப்ரீலான்ஸர்.',
-		'col-2-title': 'சேவைகள்',
-		'col-2-desc': 'தரவு உள்ளீடு, வலை ஆராய்ச்சி மற்றும் பைதான் ஆட்டோமேஷன் சேவைகளை வழங்குகிறேன்.',
-		'col-3-title': 'திறன்கள்',
-		'col-3-desc': 'பைதான், எக்செல் மற்றும் தரவு பகுப்பாய்வு ஆகியவற்றில் நிபுணத்துவம் பெற்றவர்.',
-		'col-4-title': 'தொடர்பு',
-		'col-4-desc': 'திட்டங்களுக்கு என்னை தொடர்பு கொள்ளவும்: jomschacko@example.com'
-	}
+    'en': {
+        'hero-title': 'Hi, I am Joms',
+        'hero-desc': 'Data Entry Expert & AI/ML Enthusiast',
+        'col-1-title': 'About Me',
+        'col-1-desc': 'A dedicated freelancer specialized in precision data management and exploring the world of Artificial Intelligence.',
+        'col-2-title': 'Services',
+        'col-2-desc': 'Offering professional Data Entry, Web Research, Python scripting, and basic Machine Learning models.',
+        'col-3-title': 'Skills',
+        'col-3-desc': 'Expertise in Microsoft Excel, Python, SQL, Data Cleaning, and Predictive Analytics.',
+        'col-4-title': 'Contact',
+        'col-4-desc': 'Available for freelance projects. Email: jomschacko@gmail.com' // നിങ്ങളുടെ മെയിൽ ഇവിടെ നൽകി
+    },
+    'ml': {
+        'hero-title': 'ഹലോ, ഞാൻ ജോംസ്',
+        'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്',
+        'col-1-title': 'എന്നെക്കുറിച്ച്',
+        'col-1-desc': 'കൃത്യതയാർന്ന ഡാറ്റാ മാനേജ്‌മെന്റിലും ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസിലും താല്പര്യമുള്ള ഒരു ഫ്രീലാൻസറാണ് ഞാൻ.',
+        'col-2-title': 'സേവനങ്ങൾ',
+        'col-2-desc': 'ഡാറ്റാ എൻട്രി, വെബ് റിസർച്ച്, പൈത്തൺ ഓട്ടോമേഷൻ, മെഷീൻ ലേണിംഗ് എന്നിവ ചെയ്തു നൽകുന്നു.',
+        'col-3-title': 'കഴിവുകൾ',
+        'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ്, മെഷീൻ ലേണിംഗ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.',
+        'col-4-title': 'ബന്ധപ്പെടുക',
+        'col-4-desc': 'പ്രോജക്റ്റുകൾക്കായി എന്നെ ബന്ധപ്പെടാം. ഇമെയിൽ: jomschacko@gmail.com'
+    }
 };
-window.changeLang = function(lang) {
-	const langData = content[lang];
-	if (langData) {
-		for (let id in langData) {
-			const element = document.getElementById(id);
-			if (element) {
-				element.classList.add('fade-in'); // അനിമേഷൻ ആഡ് ചെയ്യുന്നു
-				element.innerText = langData[id];
-				// അനിമേഷൻ കഴിഞ്ഞാൽ ക്ലാസ് മാറ്റുന്നു
-				setTimeout(() => element.classList.remove('fade-in'), 500);
-			}
-		}
-	}
-	localStorage.setItem('preferredLang', lang);
-};
-// പേജ് ലോഡ് ആകുമ്പോൾ
-document.addEventListener('DOMContentLoaded', () => {
-	const savedLang = localStorage.getItem('preferredLang') || 'en';
-	window.changeLang(savedLang);
-});
-// Chatbot Functions
-function toggleChat() {
-	const chat = document.getElementById('chat-window');
-	chat.classList.toggle('hidden');
-}
 
+// ഭാഷ മാറ്റാനുള്ള ഫങ്ക്ഷൻ
+window.changeLang = function(lang) {
+    const langData = content[lang];
+    if (langData) {
+        for (let id in langData) {
+            const element = document.getElementById(id);
+            if (element) {
+                element.classList.add('fade-in');
+                element.innerText = langData[id];
+                setTimeout(() => element.classList.remove('fade-in'), 500);
+            }
+        }
+    }
+    localStorage.setItem('preferredLang', lang);
+};
+
+// പേജ് ലോഡ് ആകുമ്പോൾ മുൻഗണന നൽകിയ ഭാഷ സെറ്റ് ചെയ്യുന്നു
+document.addEventListener('DOMContentLoaded', () => {
+    const savedLang = localStorage.getItem('preferredLang') || 'en';
+    window.changeLang(savedLang);
+
+    // Enter കീ പ്രസ് ചെയ്യുമ്പോൾ മെസ്സേജ് അയക്കാൻ
+    const chatInput = document.getElementById('chat-input');
+    if (chatInput) {
+        chatInput.addEventListener('keypress', function (e) {
+            if (e.key === 'Enter') {
+                window.sendMessage();
+            }
+        });
+    }
+});
+
+// ചാറ്റ് വിൻഡോ കാണിക്കാനും മറയ്ക്കാനും
+window.toggleChat = function() {
+    const chat = document.getElementById('chat-window');
+    if (chat) chat.classList.toggle('hidden');
+};
+
+// മെസ്സേജ് അയക്കാനുള്ള ഫങ്ക്ഷൻ
 window.sendMessage = function() {
     const input = document.getElementById('chat-input');
     const messages = document.getElementById('chat-messages');
@@ -83,30 +71,32 @@ window.sendMessage = function() {
     if (!input || !messages || input.value.trim() === "") return;
 
     const userText = input.value.trim();
-    messages.innerHTML += `<div class="bg-blue-500/30 p-2 rounded-lg text-right ml-10 mb-2">${userText}</div>`;
+    messages.innerHTML += `<div class="bg-blue-500/30 p-2 rounded-lg text-right ml-10 mb-2 text-white">${userText}</div>`;
     
-    // മലയാളം വാക്കുകൾക്ക് lowerCase ആവശ്യമില്ലെങ്കിലും ഇംഗ്ലീഷിന് ഇത് വേണം
     const lowerText = userText.toLowerCase();
     input.value = "";
 
+    // ബോട്ട് മറുപടി നൽകുന്നു
     setTimeout(() => {
-        let reply = "I'm still learning! / എനിക്ക് ഇതിനെക്കുറിച്ച് കൂടുതൽ അറിയില്ല. ജോംസിനെ ബന്ധപ്പെടുക.";
+        let reply = "I'm still learning! Contact Joms at jomschacko@gmail.com / എനിക്ക് ഇതിനെക്കുറിച്ച് കൂടുതൽ അറിയില്ല. ജോംസിനെ ബന്ധപ്പെടുക.";
 
-        // മലയാളം വാക്കുകൾ നേരിട്ട് ഇവിടെ നൽകുന്നു
         if (lowerText.includes("ഹലോ") || lowerText.includes("നമസ്കാരം") || lowerText.includes("hi") || lowerText.includes("hello")) {
             reply = "നമസ്കാരം! എനിക്ക് എങ്ങനെ സഹായിക്കാനാകും? / Hi, how can I help you?";
         } 
-        else if (lowerText.includes("സേവനം") || lowerText.includes("services") || lowerText.includes("ജോലി")) {
-            reply = "ഡാറ്റാ എൻട്രി, വെബ് റിസർച്ച്, പൈത്തൺ പ്രോഗ്രാമിംഗ് എന്നിവ ജോംസ് ചെയ്തു നൽകുന്നു.";
+        else if (lowerText.includes("സേവനം") || lowerText.includes("services") || lowerText.includes("work")) {
+            reply = "Data Entry, Web Research, and Python automation എന്നിവ ജോംസ് ചെയ്തു നൽകുന്നു.";
         } 
-        else if (lowerText.includes("വിദ്യാഭ്യാസം") || lowerText.includes("പഠനം") || lowerText.includes("skills")) {
-            reply = "പൈത്തൺ, മെഷീൻ ലേണിംഗ്, എക്സൽ എന്നിവയിൽ ജോംസ് വിദഗ്ധനാണ്.";
+        else if (lowerText.includes("skills") || lowerText.includes("കഴിവുകൾ") || lowerText.includes("python")) {
+            reply = "Python, Machine Learning, Excel, and SQL എന്നിവയിൽ ജോംസിന് നല്ല അറിവുണ്ട്.";
         }
-        else if (lowerText.includes("നന്ദി") || lowerText.includes("thanks")) {
-            reply = "നന്ദി! വീണ്ടും കാണാം.";
+        else if (lowerText.includes("contact") || lowerText.includes("email") || lowerText.includes("ഫോൺ")) {
+            reply = "You can email Joms at jomschacko@gmail.com";
+        }
+        else if (lowerText.includes("thanks") || lowerText.includes("നന്ദി")) {
+            reply = "You're welcome! / സ്വാഗതം!";
         }
 
-        messages.innerHTML += `<div class="bg-white/10 p-2 rounded-lg mr-10 mb-2 border border-white/5">${reply}</div>`;
+        messages.innerHTML += `<div class="bg-white/10 p-2 rounded-lg mr-10 mb-2 border border-white/5 text-white">${reply}</div>`;
         messages.scrollTop = messages.scrollHeight;
     }, 600);
 };
