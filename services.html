@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Projects & Services | Jomon</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+        body { background-color: #0f172a; color: white; }
+    </style>
+</head>
+<body class="min-h-screen p-6 md:p-12">
+    <div class="max-w-5xl mx-auto">
+        <a href="index.html" class="inline-block mb-8 text-blue-400 hover:text-blue-300 transition">← Back to Home</a>
+
+        <h1 class="text-4xl font-bold text-green-400 mb-8">Services & Projects</h1>
+
+        <div class="glass p-6 rounded-2xl mb-12">
+            <h2 class="text-xl font-bold mb-4">What I Offer</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm text-slate-300">
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                    <h4 class="font-bold text-blue-300 mb-2">Web Components</h4>
+                    <p>Building interactive UI elements like the 3D Magic Boxes using HTML, CSS, and JS.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                    <h4 class="font-bold text-green-300 mb-2">Automation</h4>
+                    <p>Automating data workflows using Python scripts for business efficiency.</p>
+                </div>
+                <div class="p-4 bg-white/5 rounded-xl border border-white/10">
+                    <h4 class="font-bold text-purple-300 mb-2">Data Solutions</h4>
+                    <p>Precise data entry, mining, and management with a focus on accuracy.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2 class="text-2xl font-bold mb-6">Interactive Project Demos (50+ Projects)</h2>
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+            
+            <div class="glass p-4 rounded-2xl hover:border-blue-500 transition group">
+                <div class="h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-xl mb-4 flex items-center justify-center">
+                    <span class="text-4xl">🎩</span>
+                </div>
+                <h3 class="font-bold text-lg mb-1">3D Magic Boxes</h3>
+                <p class="text-xs text-slate-400 mb-4">Interactive background grid with CSS transform and JS toggle.</p>
+                <a href="projects/magic-boxes/index.html" target="_blank" class="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white text-sm py-2 rounded-lg transition">View Live Demo</a>
+            </div>
+
+            <div class="glass p-4 rounded-2xl border-dashed border-white/10 flex flex-col items-center justify-center text-slate-500">
+                <p class="text-sm">More Projects Uploading...</p>
+            </div>
+
+        </div>
+    </div>
+</body>
+</html>
