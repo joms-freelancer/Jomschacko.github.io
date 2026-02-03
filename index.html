@@ -1,118 +1,146 @@
-< !DOCTYPE html > < html lang = "en" > < head > < meta charset = "UTF-8" > < meta content = "width=device-width, initial-scale=1.0"
-name = "viewport" > < title > Joms Portfolio < /title> < script src = "https://cdn.tailwindcss.com" > < /script> < style >
-	/* Smooth transition for language changes */
-	.fade - in {
-		animation: fadeIn 0.5 s ease - in ;
-	}
-@keyframes fadeIn {
-	from {
-		opacity: 0;transform: translateY(10 px);
-	}
-	to {
-		opacity: 1;transform: translateY(0);
-	}
-} < /style> < /head> < body class = "bg-slate-900 min-h-screen text-white font-sans overflow-x-hidden relative" > < div class = "absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" > < /div> < div class = "absolute bottom-20 right-10 w-80 h-80 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse" > < /div> < nav class = "backdrop-blur-md bg-white/10 sticky top-0 z-50 border-b border-white/10 p-4" > < div class = "max-w-6xl mx-auto flex justify-between items-center" > < h1 class = "font-bold text-2xl text-white tracking-tight" > JOMS < /h1> < div class = "flex space-x-2" > < button class = "px-3 py-1 bg-white/20 hover:bg-white/30 transition rounded-full text-xs"
-onclick = "changeLang('en')" > English < /button> <button class="px-3 py-1 bg-white/
-20 hover: bg - white / 30 transition rounded - full text - xs " onclick="
-changeLang('ml')
-">മലയാളം</button> < /div> < /div> < /nav> < header class = "relative max-w-4xl mx-auto text-center py-16 px-6 fade-in" > < div class = "mb-6 flex justify-center" > < img alt = "Profile"
-class = "w-32 h-32 rounded-full border-4 border-white/20 shadow-2xl backdrop-blur-sm"
-src = "https://api.dicebear.com/7.x/avataaars/svg?seed=Joms" > < /div> < h2 class = "text-5xl font-extrabold text-white mb-4"
-id = "hero-title" > Welcome < /h2> < p class = "text-lg text-slate-300"
-id = "hero-desc" > Loading... < /p> < /header> < main class = "relative max-w-6xl mx-auto pb-20 px-6" > < div class = "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6" > < div class = "backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300" > < h3 class = "text-xl font-bold mb-3 text-blue-400"
-id = "col-1-title" > About Me < /h3> < p class = "text-slate-200 text-sm leading-relaxed"
-id = "col-1-desc" > Loading... < /p> < /div> < div class = "backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300" > < h3 class = "text-xl font-bold mb-3 text-green-400"
-id = "col-2-title" > Services < /h3> < p class = "text-slate-200 text-sm leading-relaxed"
-id = "col-2-desc" > Loading... < /p> < /div> < div class = "backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300" > < h3 class = "text-xl font-bold mb-3 text-purple-400"
-id = "col-3-title" > Skills < /h3> < p class = "text-slate-200 text-sm leading-relaxed"
-id = "col-3-desc" > Loading... < /p> < /div> < div class = "backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300" > < h3 class = "text-xl font-bold mb-3 text-red-400"
-id = "col-4-title" > Contact < /h3> < p class = "text-slate-200 text-sm leading-relaxed"
-id = "col-4-desc" > Loading... < /p> < /div> < /div> < /main> < script >
-	const content = {
-		'en': {
-			'hero-title': 'Hi, I am Joms',
-			'hero-desc': 'Data Entry Expert & AI/ML Enthusiast',
-			'col-1-title': 'About Me',
-			'col-1-desc': 'A dedicated freelancer specialized in precision data management and exploring the world of Artificial Intelligence.',
-			'col-2-title': 'Services',
-			'col-2-desc': 'Offering professional Data Entry, Web Research, Python scripting, and basic Machine Learning models.',
-			'col-3-title': 'Skills',
-			'col-3-desc': 'Expertise in Microsoft Excel, Python, SQL, Data Cleaning, and Predictive Analytics.',
-			'col-4-title': 'Contact',
-			'col-4-desc': 'Available for freelance projects. Email: jomschacko@gmail.com'
-		},
-		'ml': {
-			'hero-title': 'ഹലോ, ഞാൻ ജോംസ്',
-			'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്',
-			'col-1-title': 'എന്നെക്കുറിച്ച്',
-			'col-1-desc': 'കൃത്യതയാർന്ന ഡാറ്റാ മാനേജ്‌മെന്റിലും ആർട്ടിഫിഷ്യൽ ഇന്റലിജൻസിലും താല്പര്യമുള്ള ഒരു ഫ്രീലാൻസറാണ് ഞാൻ.',
-			'col-2-title': 'സേവനങ്ങൾ',
-			'col-2-desc': 'ഡാറ്റാ എൻട്രി, വെബ് റിസർച്ച്, പൈത്തൺ ഓട്ടോമേഷൻ, മെഷീൻ ലേണിംഗ് എന്നിവ ചെയ്തു നൽകുന്നു.',
-			'col-3-title': 'കഴിവുകൾ',
-			'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ്, മെഷീൻ ലേണിംഗ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.',
-			'col-4-title': 'ബന്ധപ്പെടുക',
-			'col-4-desc': 'പ്രോജക്റ്റുകൾക്കായി എന്നെ ബന്ധപ്പെടാം. ഇമെയിൽ: jomschacko@gmail.com'
-		}
-	};
-window.changeLang = function(lang) {
-	const langData = content[lang];
-	if (langData) {
-		for (let id in langData) {
-			const element = document.getElementById(id);
-			if (element) {
-				element.classList.add('fade-in');
-				element.innerText = langData[id];
-				setTimeout(() => element.classList.remove('fade-in'), 500);
-			}
-		}
-	}
-	localStorage.setItem('preferredLang', lang);
-};
-window.toggleChat = function() {
-	const chat = document.getElementById('chat-window');
-	chat.classList.toggle('hidden');
-};
-window.sendMessage = function() {
-	const input = document.getElementById('chat-input');
-	const messages = document.getElementById('chat-messages');
-	if (!input || !messages || input.value.trim() === "") return;
-	const userText = input.value.trim();
-	// യൂസർ മെസ്സേജ് ആഡ് ചെയ്യുന്നു
-	messages.innerHTML += `<div class="bg-blue-500/30 p-2 rounded-lg text-right ml-10 mb-2">${userText}</div>`;
-	input.value = "";
-	// താഴേക്ക് ഓട്ടോമാറ്റിക്കായി സ്ക്രോൾ ചെയ്യുന്നു
-	messages.scrollTop = messages.scrollHeight;
-	setTimeout(() => {
-		let reply = "I'm still learning! Contact Joms at jomschacko@gmail.com";
-		if (lowerText.includes("hello") || lowerText.includes("hi") || lowerText.includes("ഹലോ")) {
-			reply = "Hi! How can I help you?";
-		}
-		// ... (മറ്റുള്ള കണ്ടീഷനുകൾ) ...
-		// ബോട്ട് മറുപടി ആഡ് ചെയ്യുന്നു
-		messages.innerHTML += `<div class="bg-white/10 p-2 rounded-lg mr-10 mb-2 border border-white/5">${reply}</div>`;
-		// ബോട്ട് മറുപടി വന്ന ശേഷവും താഴേക്ക് സ്ക്രോൾ ചെയ്യുന്നു
-		messages.scrollTop = messages.scrollHeight;
-	}, 600);
-};
-document.addEventListener('DOMContentLoaded', () => {
-	const savedLang = localStorage.getItem('preferredLang') || 'en';
-	window.changeLang(savedLang);
-	// Enter കീ പ്രസ് ചെയ്താൽ മെസ്സേജ് പോകാൻ
-	document.getElementById('chat-input').addEventListener('keypress', function(e) {
-		if (e.key === 'Enter') {
-			window.sendMessage();
-		}
-	});
-}); < /script> < button class = "fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 transition"
-onclick = "toggleChat()" > < svg class = "h-6 w-6"
-viewbox = "0 0 24 24"
-xmlns = "http://www.w3.org/2000/svg" > < path d = "M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"
-stroke - linecap = "round"
-stroke - linejoin = "round"
-stroke - width = "2" > < /path></svg > < /button> < div class = "fixed bottom-24 right-6 w-80 h-96 backdrop-blur-xl bg-white/20 border border-white/30 rounded-3xl shadow-2xl z-50 hidden flex-col overflow-hidden"
-id = "chat-window" > < div class = "bg-blue-600/50 p-4 text-white font-bold flex justify-between" > < span > Joms AI Assistant < /span> <button onclick="toggleChat()">✕</button > < /div> < div class = "flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white"
-id = "chat-messages" > < div class = "bg-white/10 p-2 rounded-lg" > Hello!How can I help you today ? < /div> < /div> < div class = "p-3 bg-white/10 border-t border-white/20 flex" > < input class = "bg-transparent border-none outline-none text-white w-full placeholder-white/50 text-xs"
-id = "chat-input"
-placeholder = "Type a message..."
-type = "text" > < button class = "text-blue-400 font-bold ml-2"
-onclick = "sendMessage()" > Send < /button> < /div> < /div> < /body> < /html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Joms Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .fade-in { animation: fadeIn 0.5s ease-in; }
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        /* സ്ക്രോൾ ബാർ സ്റ്റൈൽ */
+        #chat-messages::-webkit-scrollbar { width: 4px; }
+        #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
+    </style>
+</head>
+<body class="bg-slate-900 min-h-screen text-white font-sans overflow-x-hidden relative">
+    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+    <div class="absolute bottom-20 right-10 w-80 h-80 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
+    
+    <nav class="backdrop-blur-md bg-white/10 sticky top-0 z-50 border-b border-white/10 p-4">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="font-bold text-2xl text-white tracking-tight">JOMS</h1>
+            <div class="flex space-x-2">
+                <button class="px-3 py-1 bg-white/20 hover:bg-white/30 transition rounded-full text-xs" onclick="changeLang('en')">English</button> 
+                <button class="px-3 py-1 bg-white/20 hover:bg-white/30 transition rounded-full text-xs" onclick="changeLang('ml')">മലയാളം</button>
+            </div>
+        </div>
+    </nav>
+
+    <header class="relative max-w-4xl mx-auto text-center py-16 px-6 fade-in">
+        <div class="mb-6 flex justify-center">
+            <img alt="Profile" class="w-32 h-32 rounded-full border-4 border-white/20 shadow-2xl backdrop-blur-sm" src="https://api.dicebear.com/7.x/avataaars/svg?seed=Joms">
+        </div>
+        <h2 class="text-5xl font-extrabold text-white mb-4" id="hero-title">Welcome</h2>
+        <p class="text-lg text-slate-300" id="hero-desc">Loading...</p>
+    </header>
+
+    <main class="relative max-w-6xl mx-auto pb-20 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+                <h3 class="text-xl font-bold mb-3 text-blue-400" id="col-1-title">About Me</h3>
+                <p class="text-slate-200 text-sm leading-relaxed" id="col-1-desc">Loading...</p>
+            </div>
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+                <h3 class="text-xl font-bold mb-3 text-green-400" id="col-2-title">Services</h3>
+                <p class="text-slate-200 text-sm leading-relaxed" id="col-2-desc">Loading...</p>
+            </div>
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+                <h3 class="text-xl font-bold mb-3 text-purple-400" id="col-3-title">Skills</h3>
+                <p class="text-slate-200 text-sm leading-relaxed" id="col-3-desc">Loading...</p>
+            </div>
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+                <h3 class="text-xl font-bold mb-3 text-red-400" id="col-4-title">Contact</h3>
+                <p class="text-slate-200 text-sm leading-relaxed" id="col-4-desc">Loading...</p>
+            </div>
+        </div>
+    </main>
+
+    <button class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 transition" onclick="toggleChat()">
+        <svg class="h-6 w-6" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+    </button>
+
+    <div class="fixed bottom-24 right-6 w-80 h-96 backdrop-blur-xl bg-white/10 border border-white/30 rounded-3xl shadow-2xl z-50 hidden flex-col overflow-hidden" id="chat-window">
+        <div class="bg-blue-600/50 p-4 text-white font-bold flex justify-between">
+            <span>Joms AI Assistant</span> <button onclick="toggleChat()">✕</button>
+        </div>
+        <div class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white" id="chat-messages">
+            <div class="bg-white/20 p-2 rounded-lg">Hello! How can I help you today?</div>
+        </div>
+        <div class="p-3 bg-black/20 border-t border-white/20 flex">
+            <input class="bg-transparent border-none outline-none text-white w-full placeholder-white/50 text-xs" id="chat-input" placeholder="Type a message..." type="text">
+            <button class="text-blue-400 font-bold ml-2" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <script>
+        const content = {
+            'en': {
+                'hero-title': 'Hi, I am Joms',
+                'hero-desc': 'Data Entry Expert & AI/ML Enthusiast',
+                'col-1-title': 'About Me',
+                'col-1-desc': 'A dedicated freelancer specialized in precision data management and AI.',
+                'col-2-title': 'Services',
+                'col-2-desc': 'Professional Data Entry, Python scripting, and Web Research.',
+                'col-3-title': 'Skills',
+                'col-3-desc': 'Expertise in Excel, Python, SQL, and Data Cleaning.',
+                'col-4-title': 'Contact',
+                'col-4-desc': 'Email: jomschacko@gmail.com'
+            },
+            'ml': {
+                'hero-title': 'ഹലോ, ഞാൻ ജോംസ്',
+                'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്',
+                'col-1-title': 'എന്നെക്കുറിച്ച്',
+                'col-1-desc': 'കൃത്യതയാർന്ന ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.',
+                'col-2-title': 'സേവനങ്ങൾ',
+                'col-2-desc': 'ഡാറ്റാ എൻട്രി, പൈത്തൺ ഓട്ടോമേഷൻ എന്നിവ ചെയ്തു നൽകുന്നു.',
+                'col-3-title': 'കഴിവുകൾ',
+                'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.',
+                'col-4-title': 'ബന്ധപ്പെടുക',
+                'col-4-desc': 'ഇമെയിൽ: jomschacko@gmail.com'
+            }
+        };
+
+        window.changeLang = function(lang) {
+            const langData = content[lang];
+            if (langData) {
+                for (let id in langData) {
+                    const el = document.getElementById(id);
+                    if (el) { el.innerText = langData[id]; el.classList.add('fade-in'); setTimeout(() => el.classList.remove('fade-in'), 500); }
+                }
+            }
+            localStorage.setItem('preferredLang', lang);
+        };
+
+        window.toggleChat = function() { document.getElementById('chat-window').classList.toggle('hidden'); };
+
+        window.sendMessage = function() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            if (!input.value.trim()) return;
+
+            messages.innerHTML += `<div class="bg-blue-500/30 p-2 rounded-lg text-right ml-10">${input.value}</div>`;
+            const txt = input.value.toLowerCase();
+            input.value = "";
+            messages.scrollTop = messages.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "Contact Joms at jomschacko@gmail.com for more info!";
+                if (txt.includes("hi") || txt.includes("hello") || txt.includes("ഹലോ")) reply = "Hi! How can I help you?";
+                else if (txt.includes("service") || txt.includes("സേവനം")) reply = "I offer Data Entry and Python services.";
+                
+                messages.innerHTML += `<div class="bg-white/10 p-2 rounded-lg mr-10 border border-white/5">${reply}</div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 600);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.changeLang(localStorage.getItem('preferredLang') || 'en');
+            document.getElementById('chat-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+        });
+    </script>
+</body>
+</html>
