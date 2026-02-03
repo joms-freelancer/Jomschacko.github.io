@@ -13,12 +13,10 @@
         }
         /* സ്ക്രോൾ ബാർ ഡിസൈൻ */
         #chat-messages::-webkit-scrollbar { width: 5px; }
-        #chat-messages::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
+        #chat-messages::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.3); border-radius: 10px; }
     </style>
 </head>
 <body class="bg-slate-900 min-h-screen text-white font-sans overflow-x-hidden relative">
-    <div class="absolute top-20 left-10 w-72 h-72 bg-blue-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
-    <div class="absolute bottom-20 right-10 w-80 h-80 bg-purple-600 rounded-full mix-blend-multiply filter blur-3xl opacity-30 animate-pulse"></div>
     
     <nav class="backdrop-blur-md bg-white/10 sticky top-0 z-50 border-b border-white/10 p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -40,19 +38,19 @@
 
     <main class="relative max-w-6xl mx-auto pb-20 px-6">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl" id="about-card">
                 <h3 class="text-xl font-bold mb-3 text-blue-400" id="col-1-title">About Me</h3>
                 <p class="text-slate-200 text-sm leading-relaxed" id="col-1-desc">Loading...</p>
             </div>
-            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl" id="services-card">
                 <h3 class="text-xl font-bold mb-3 text-green-400" id="col-2-title">Services</h3>
                 <p class="text-slate-200 text-sm leading-relaxed" id="col-2-desc">Loading...</p>
             </div>
-            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl" id="skills-card">
                 <h3 class="text-xl font-bold mb-3 text-purple-400" id="col-3-title">Skills</h3>
                 <p class="text-slate-200 text-sm leading-relaxed" id="col-3-desc">Loading...</p>
             </div>
-            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl hover:bg-white/20 transition-all duration-300">
+            <div class="backdrop-blur-lg bg-white/10 p-6 rounded-3xl border border-white/20 shadow-xl" id="contact-card">
                 <h3 class="text-xl font-bold mb-3 text-red-400" id="col-4-title">Contact</h3>
                 <p class="text-slate-200 text-sm leading-relaxed" id="col-4-desc">Loading...</p>
             </div>
@@ -60,22 +58,22 @@
     </main>
 
     <button class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 text-white rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 transition" onclick="toggleChat()">
-        <svg class="h-6 w-6" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+        <svg class="h-6 w-6" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z"></path></svg>
     </button>
 
-    <div class="fixed bottom-24 right-6 w-80 h-96 backdrop-blur-xl bg-gray-900/90 border border-white/20 rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden" id="chat-window">
+    <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-96 backdrop-blur-xl bg-gray-900/90 border border-white/20 rounded-2xl shadow-2xl z-50 hidden flex-col overflow-hidden">
         <div class="bg-blue-600 p-4 text-white font-bold flex justify-between items-center">
-            <span>Joms Assistant</span>
-            <button onclick="toggleChat()" class="text-xl leading-none">✕</button>
+            <span>Joms AI Assistant</span>
+            <button onclick="toggleChat()" class="text-xl">✕</button>
         </div>
         
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white" style="max-height: 280px;">
-            <div class="bg-white/10 p-3 rounded-lg border border-white/5">Hello! How can I help you today?</div>
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white h-64">
+            <div class="bg-white/10 p-2 rounded-lg">Hello! How can I help you today?</div>
         </div>
 
-        <div class="p-3 bg-black/40 border-t border-white/10 flex items-center mt-auto">
-            <input class="bg-transparent border-none outline-none text-white w-full placeholder-white/40 text-sm" id="chat-input" placeholder="Type a message..." type="text" autocomplete="off">
-            <button class="text-blue-400 font-bold ml-2" onclick="sendMessage()">Send</button>
+        <div class="p-3 bg-black/40 border-t border-white/10 flex">
+            <input id="chat-input" type="text" class="bg-transparent border-none outline-none text-white w-full placeholder-white/40 text-sm" placeholder="Type a message..." autocomplete="off">
+            <button onclick="sendMessage()" class="text-blue-400 font-bold ml-2">Send</button>
         </div>
     </div>
 
@@ -84,13 +82,66 @@
             'en': {
                 'hero-title': 'Hi, I am Joms',
                 'hero-desc': 'Data Entry Expert & AI/ML Enthusiast',
-                'col-1-title': 'About Me', 'col-1-desc': 'A dedicated freelancer specialized in precision data management and AI.',
-                'col-2-title': 'Services', 'col-2-desc': 'Professional Data Entry, Python scripting, and Web Research.',
+                'col-1-title': 'About Me', 'col-1-desc': 'Specialized in precision data management and AI.',
+                'col-2-title': 'Services', 'col-2-desc': 'Data Entry, Python scripting, and Web Research.',
                 'col-3-title': 'Skills', 'col-3-desc': 'Expertise in Excel, Python, SQL, and Data Cleaning.',
                 'col-4-title': 'Contact', 'col-4-desc': 'Email: jomschacko@gmail.com'
             },
             'ml': {
                 'hero-title': 'ഹലോ, ഞാൻ ജോംസ്',
                 'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്',
-                'col-1-title': 'എന്നെക്കുറിച്ച്', 'col-1-desc': 'കൃത്യതയാർന്ന ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.',
-                'col-2-title': 'സേവനങ്ങൾ', 'col-2-
+                'col-1-title': 'എന്നെക്കുറിച്ച്', 'col-1-desc': 'ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.',
+                'col-2-title': 'സേവനങ്ങൾ', 'col-2-desc': 'ഡാറ്റാ എൻട്രി, പൈത്തൺ ഓട്ടോമേഷൻ എന്നിവ നൽകുന്നു.',
+                'col-3-title': 'കഴിവുകൾ', 'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.',
+                'col-4-title': 'ബന്ധപ്പെടുക', 'col-4-desc': 'ഇമെയിൽ: jomschacko@gmail.com'
+            }
+        };
+
+        window.changeLang = function(lang) {
+            const langData = content[lang];
+            if (langData) {
+                for (let id in langData) {
+                    const el = document.getElementById(id);
+                    if (el) { el.innerText = langData[id]; el.classList.add('fade-in'); setTimeout(() => el.classList.remove('fade-in'), 500); }
+                }
+            }
+            localStorage.setItem('preferredLang', lang);
+        };
+
+        window.toggleChat = function() { document.getElementById('chat-window').classList.toggle('hidden'); };
+
+        window.sendMessage = function() {
+            const input = document.getElementById('chat-input');
+            const messages = document.getElementById('chat-messages');
+            if (!input.value.trim()) return;
+
+            const userText = input.value;
+            messages.innerHTML += `<div class="bg-blue-600/40 p-2 rounded-lg text-right ml-10 mb-2">${userText}</div>`;
+            
+            const lowerText = userText.toLowerCase();
+            input.value = "";
+            messages.scrollTop = messages.scrollHeight;
+
+            setTimeout(() => {
+                let reply = "I'm still learning! Contact Joms at jomschacko@gmail.com";
+                
+                if (lowerText.includes("hi") || lowerText.includes("hello") || lowerText.includes("ഹലോ")) {
+                    reply = "Hi! How can I help you? / നമസ്കാരം, എങ്ങനെ സഹായിക്കണം?";
+                } else if (lowerText.includes("service") || lowerText.includes("സേവനം")) {
+                    reply = "Joms specializes in Data Entry and Python Automation.";
+                } else if (lowerText.includes("skill") || lowerText.includes("കഴിവുകൾ")) {
+                    reply = "Joms is an expert in Python, SQL, and Microsoft Excel.";
+                }
+
+                messages.innerHTML += `<div class="bg-white/10 p-2 rounded-lg mr-10 mb-2 border border-white/5">${reply}</div>`;
+                messages.scrollTop = messages.scrollHeight; // ഓട്ടോ സ്ക്രോൾ
+            }, 600);
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            window.changeLang(localStorage.getItem('preferredLang') || 'en');
+            document.getElementById('chat-input').addEventListener('keypress', (e) => { if (e.key === 'Enter') sendMessage(); });
+        });
+    </script>
+</body>
+</html>
