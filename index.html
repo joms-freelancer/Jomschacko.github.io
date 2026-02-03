@@ -27,7 +27,7 @@
     <header class="relative max-w-4xl mx-auto text-center py-16 px-6 fade-in">
         <div class="mb-6 flex justify-center">
             <img alt="Joms Profile" 
-                 class="w-40 h-40 rounded-full border-4 border-blue-500 shadow-2xl object-cover" 
+                 class="w-44 h-44 rounded-full border-4 border-white/20 shadow-2xl object-cover" 
                  src="Photo from jomon13051983 copy.jpg">
         </div>
         <h2 class="text-5xl font-extrabold text-white mb-4" id="hero-title">Welcome</h2>
@@ -75,6 +75,7 @@
 
     <script>
         const API_KEY = "AIzaSyAxbOwy6aA_QrL7FjZ_c4Tf4kKjJzyAflo";
+        
         const content = {
             'en': { 'hero-title': 'Hi, I am Joms', 'hero-desc': 'Data Entry Expert & AI/ML Enthusiast', 'col-1-title': 'About Me', 'col-1-desc': 'Specialized in precision data management and AI.', 'col-2-title': 'Services', 'col-2-desc': 'Data Entry, Python scripting, and Web Research.', 'col-3-title': 'Skills', 'col-3-desc': 'Expertise in Excel, Python, and Data Cleaning.', 'col-4-title': 'Contact', 'col-4-desc': 'Email: jomonc60@gmail.com' },
             'ml': { 'hero-title': 'ഹലോ, ഞാൻ ജോംസ്', 'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്', 'col-1-title': 'എന്നെക്കുറിച്ച്', 'col-1-desc': 'ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.', 'col-2-title': 'സേവനങ്ങൾ', 'col-2-desc': 'ഡാറ്റാ എൻട്രി, പൈത്തൺ ഓട്ടോമേഷൻ എന്നിവ നൽകുന്നു.', 'col-3-title': 'കഴിവുകൾ', 'col-3-desc': 'പൈത്തൺ, എക്സൽ എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.', 'col-4-title': 'ബന്ധപ്പെടുക', 'col-4-desc': 'ഇമെയിൽ: jomonc60@gmail.com' }
@@ -88,29 +89,4 @@
         window.toggleChat = () => document.getElementById('chat-window').classList.toggle('hidden');
 
         window.sendMessage = async () => {
-            const input = document.getElementById('chat-input');
-            const messages = document.getElementById('chat-messages');
-            const prompt = input.value.trim();
-            if (!prompt) return;
-
-            messages.innerHTML += `<div class="bg-blue-600/40 p-2 rounded-lg text-right ml-10 mb-2">${prompt}</div>`;
-            input.value = "";
-            messages.scrollTop = messages.scrollHeight;
-
-            const loadingId = "loading-" + Date.now();
-            messages.innerHTML += `<div id="${loadingId}" class="bg-white/10 p-2 rounded-lg mr-10 mb-2 italic">Thinking...</div>`;
-            
-            try {
-                const res = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${API_KEY}`, {
-                    method: "POST", headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({ contents: [{ parts: [{ text: `User: ${prompt}` }] }] })
-                });
-                const data = await res.json();
-                document.getElementById(loadingId).remove();
-                messages.innerHTML += `<div class="bg-white/20 p-2 rounded-lg mr-10 mb-2 border border-white/10">${data.candidates[0].content.parts[0].text}</div>`;
-            } catch (e) { document.getElementById(loadingId).innerText = "Enable HTTPS for AI."; }
-            messages.scrollTop = messages.scrollHeight;
-        };
-    </script>
-</body>
-</html>
+            const input = document.getElementById('chat-input
