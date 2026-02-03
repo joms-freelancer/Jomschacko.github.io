@@ -3,160 +3,233 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joms Portfolio</title>
+    <title>Joms Portfolio | Interactive</title>
     <style>
+        /* Base Styles */
         body {
             background-color: #0f172a;
             color: white;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
             margin: 0;
             display: flex;
             flex-direction: column;
             align-items: center;
+            min-height: 100vh;
+            overflow-x: hidden;
         }
 
-        header { text-align: center; padding: 40px 20px; }
-        
+        /* Glass Effect */
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+        }
+
+        /* Header Area */
+        header { text-align: center; padding: 60px 20px 40px; }
+        .profile-wrapper { position: relative; display: inline-block; margin-bottom: 20px; }
         .profile-img {
-            width: 140px; height: 140px;
+            width: 160px; height: 160px;
             border-radius: 50%;
             border: 4px solid #3b82f6;
             object-fit: cover;
-            margin-bottom: 15px;
+            box-shadow: 0 0 30px rgba(59, 130, 246, 0.3);
         }
 
-        /* ഗ്രിഡ് ലേഔട്ട് */
+        h1 { font-size: 3rem; margin: 10px 0; letter-spacing: -1px; }
+        .subtitle { color: #94a3b8; font-style: italic; font-size: 1.1rem; }
+
+        /* Grid Layout */
         .container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
             width: 90%;
-            max-width: 900px;
+            max-width: 1100px;
+            padding: 20px 0 60px;
         }
 
         .box {
-            background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 25px;
+            padding: 40px 20px;
             text-align: center;
             cursor: pointer;
-            transition: 0.3s;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
         }
 
         .box:hover {
-            background: rgba(59, 130, 246, 0.1);
-            border-color: #3b82f6;
-            transform: translateY(-5px);
+            transform: translateY(-10px);
+            background: rgba(255, 255, 255, 0.07);
+            border-color: rgba(59, 130, 246, 0.5);
+            box-shadow: 0 15px 30px rgba(0,0,0,0.3);
         }
 
-        /* പോപ്പ് അപ്പ് സ്റ്റൈൽ */
+        .box h3 { margin-bottom: 10px; font-size: 1.4rem; }
+        .box p { font-size: 0.85rem; color: #94a3b8; margin: 0; }
+
+        /* Modal / Popup Styles */
         .modal-overlay {
-            display: none; /* തുടക്കത്തിൽ കാണില്ല */
+            display: none;
             position: fixed;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
+            inset: 0;
             background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(8px);
             z-index: 1000;
             justify-content: center;
             align-items: center;
+            padding: 20px;
         }
 
         .modal-content {
             background: #1e293b;
-            padding: 30px;
-            border-radius: 25px;
-            width: 85%;
-            max-width: 500px;
-            border: 1px solid #3b82f6;
+            padding: 40px;
+            border-radius: 30px;
+            max-width: 600px;
+            width: 100%;
             position: relative;
+            border: 1px solid rgba(59, 130, 246, 0.3);
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+            animation: modalFade 0.3s ease-out;
+        }
+
+        @keyframes modalFade {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         .close-btn {
             position: absolute;
-            top: 15px; right: 20px;
-            font-size: 30px;
-            color: #94a3b8;
+            top: 20px; right: 25px;
+            font-size: 28px;
+            color: #64748b;
             cursor: pointer;
+            transition: color 0.2s;
+        }
+        .close-btn:hover { color: white; }
+
+        /* Content inside Modal */
+        .modal-header { color: #3b82f6; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.1); padding-bottom: 10px; }
+        .modal-body { line-height: 1.7; color: #cbd5e1; font-size: 0.95rem; }
+        .highlight { color: #60a5fa; font-weight: 600; }
+        
+        .services-list { list-style: none; padding: 0; }
+        .services-list li { 
+            background: rgba(255,255,255,0.03); 
+            margin-bottom: 10px; 
+            padding: 12px 15px; 
+            border-radius: 12px;
+            border-left: 4px solid #10b981;
         }
 
-        .btn-wa {
-            display: block;
-            width: 100%;
+        .demo-box {
+            margin-top: 20px;
+            padding: 15px;
+            border-radius: 15px;
+            background: rgba(249, 115, 22, 0.1);
+            border: 1px dashed rgba(249, 115, 22, 0.3);
+        }
+
+        .wa-link {
+            display: inline-block;
+            margin-top: 25px;
             background: #22c55e;
             color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
             text-decoration: none;
-            padding: 12px;
-            border-radius: 12px;
-            text-align: center;
             font-weight: bold;
-            margin-top: 20px;
+            transition: 0.3s;
         }
+        .wa-link:hover { background: #16a34a; transform: scale(1.05); }
 
-        h2 { margin-top: 0; color: #3b82f6; }
-        p { line-height: 1.6; color: #cbd5e1; }
     </style>
 </head>
 <body>
 
     <header>
-        <img class="profile-img" src="Photo from jomon13051983 copy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Joms'">
+        <div class="profile-wrapper">
+            <img class="profile-img" src="Photo from jomon13051983 copy.jpg" onerror="this.src='https://ui-avatars.com/api/?name=Joms&size=200'">
+        </div>
         <h1>Welcome</h1>
-        <p>Data Entry Expert & AI/ML Enthusiast</p>
+        <p class="subtitle">Data Entry Expert & AI/ML Enthusiast</p>
     </header>
 
     <div class="container">
-        <div class="box" onclick="showModal('about')">
+        <div class="glass box" onclick="openModal('about-modal')">
             <h3 style="color: #60a5fa;">About Me</h3>
-            <p style="font-size: 11px;">Experience & Journey</p>
+            <p>Experience & Professional Journey</p>
         </div>
 
-        <div class="box" onclick="showModal('services')">
+        <div class="glass box" onclick="openModal('services-modal')">
             <h3 style="color: #4ade80;">Services</h3>
-            <p style="font-size: 11px;">Works & Demos</p>
+            <p>Works, Projects & Live Demos</p>
         </div>
 
-        <div class="box" onclick="window.open('https://wa.me/917907311445')">
+        <div class="glass box" onclick="alert('Skills section is being curated. Stay tuned!')">
+            <h3 style="color: #c084fc;">Skills</h3>
+            <p>Tools & Technologies I use</p>
+        </div>
+
+        <div class="glass box" onclick="window.open('https://wa.me/917907311445?text=Hi Joms, I saw your portfolio and would like to connect!')">
             <h3 style="color: #fb7185;">WhatsApp</h3>
-            <p style="font-size: 11px;">Direct Chat</p>
+            <p>Direct Message / Quick Chat</p>
         </div>
     </div>
 
-    <div id="modal-about" class="modal-overlay" onclick="hideModal('about')">
+    <div id="about-modal" class="modal-overlay" onclick="closeModal('about-modal')">
         <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="hideModal('about')">&times;</span>
-            <h2>About Me</h2>
-            <p>I am Jomon, an expert in precision Data Entry and AI solutions. With a strong background in Excel and Python, I help automate complex tasks.</p>
-            <p>Currently, I am building AI-driven web solutions to make data management more efficient.</p>
-        </div>
-    </div>
-
-    <div id="modal-services" class="modal-overlay" onclick="hideModal('services')">
-        <div class="modal-content" onclick="event.stopPropagation()">
-            <span class="close-btn" onclick="hideModal('services')">&times;</span>
-            <h2>Services</h2>
-            <p>• Advanced Data Entry<br>
-               • Python Automation Scripts<br>
-               • Web Front-end Development</p>
-            <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px;">
-                <h4 style="color: #fb923c; margin-top: 0;">My Project Demos</h4>
-                <p style="font-size: 13px;">Coming Soon: My Udemy Course Projects will be listed here.</p>
+            <span class="close-btn" onclick="closeModal('about-modal')">&times;</span>
+            <h2 class="modal-header">About Me</h2>
+            <div class="modal-body">
+                <p>Hello! I am <span class="highlight">Jomon</span>, a dedicated Data Entry Expert with a passion for precision and efficiency. With years of experience in managing complex data sets, I bridge the gap between traditional data management and modern AI solutions.</p>
+                <p>I am a <span class="highlight">Udemy Certified Web Developer</span>, which allows me to build custom tools and front-end interfaces to showcase data effectively. My goal is to leverage Python and AI to automate repetitive tasks and provide smarter business insights.</p>
             </div>
-            <a href="https://wa.me/917907311445" class="btn-wa">Contact for Projects</a>
+        </div>
+    </div>
+
+    <div id="services-modal" class="modal-overlay" onclick="closeModal('services-modal')">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-btn" onclick="closeModal('services-modal')">&times;</span>
+            <h2 class="modal-header" style="color: #4ade80;">My Services</h2>
+            <div class="modal-body">
+                <ul class="services-list">
+                    <li><strong>Precision Data Entry:</strong> High-speed and accurate data processing.</li>
+                    <li><strong>AI & Python Scripting:</strong> Custom automation and AI chatbot integration.</li>
+                    <li><strong>Transcription:</strong> Accurate audio-to-text conversion services.</li>
+                </ul>
+                
+                <div class="demo-box">
+                    <h4 style="margin-top: 0; color: #fb923c;">Web Project Demos</h4>
+                    <p style="font-size: 0.85rem;">I'm currently uploading my Udemy course projects (HTML/CSS/JS). Live demo links will be active shortly!</p>
+                </div>
+
+                <a href="https://wa.me/917907311445" class="wa-link">Discuss a Project</a>
+            </div>
         </div>
     </div>
 
     <script>
-        // പോപ്പ് അപ്പ് കാണിക്കാൻ
-        function showModal(id) {
-            document.getElementById('modal-' + id).style.display = 'flex';
+        function openModal(id) {
+            document.getElementById(id).style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // വിൻഡോ തുറക്കുമ്പോൾ ബാക്ക്ഗ്രൗണ്ട് സ്ക്രോൾ തടയാൻ
         }
 
-        // പോപ്പ് അപ്പ് ഒളിപ്പിക്കാൻ
-        function hideModal(id) {
-            document.getElementById('modal-' + id).style.display = 'none';
+        function closeModal(id) {
+            document.getElementById(id).style.display = 'none';
+            document.body.style.overflow = 'auto';
         }
+
+        // എസ്കേപ്പ് കീ അമർത്തിയാൽ മോഡൽ ക്ലോസ് ആകാൻ
+        document.addEventListener('keydown', (e) => {
+            if (e.key === "Escape") {
+                const modals = document.querySelectorAll('.modal-overlay');
+                modals.forEach(m => {
+                    m.style.display = 'none';
+                    document.body.style.overflow = 'auto';
+                });
+            }
+        });
     </script>
 
 </body>
