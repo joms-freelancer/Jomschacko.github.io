@@ -9,22 +9,11 @@
         .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
         #chat-messages::-webkit-scrollbar { width: 4px; }
         #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
-        #chat-window { display: none; flex-direction: column; }
+        #chat-window { display: none; flex-direction: column; transition: all 0.3s ease; }
     </style>
-    <script>
-        // ടോഗിൾ ഫംഗ്ഷൻ ഹെഡറിൽ നൽകിയാൽ ബട്ടൺ എറർ ഒഴിവാക്കാം
-        function toggleChat() { 
-            const win = document.getElementById('chat-window');
-            if (win.style.display === "none" || win.style.display === "") {
-                win.style.display = "flex";
-            } else {
-                win.style.display = "none";
-            }
-        }
-    </script>
 </head>
 <body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500 overflow-x-hidden">
-    
+
     <nav class="glass sticky top-0 z-50 p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-2xl text-blue-400 tracking-tighter">JOMS</h1>
@@ -56,17 +45,17 @@
             <a href="services.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-green-500 transition-all duration-300 shadow-lg h-full">
                     <h3 class="font-bold text-green-400 mb-3">Services</h3>
-                    <p class="text-xs text-slate-400">50+ Interactive Projects</p>
+                    <p class="text-xs text-slate-400">50+ Web Applications</p>
                 </div>
             </a>
             <div class="glass p-8 rounded-3xl hover:border-purple-500 transition shadow-lg h-full cursor-default">
                 <h3 class="font-bold text-purple-400 mb-3">Skills</h3>
-                <p class="text-xs text-slate-400">Python, AI & Cloud Tools</p>
+                <p class="text-xs text-slate-400">Python, AI & Web Tools</p>
             </div>
             <a href="projects/magic-boxes.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-emerald-500 transition-all duration-300 shadow-lg h-full">
                     <h3 class="font-bold text-emerald-400 mb-3">Magic Box</h3>
-                    <p class="text-xs text-slate-400">Interactive 3D Demo</p>
+                    <p class="text-xs text-slate-400">CSS 3D Animation Demo</p>
                 </div>
             </a>
         </div>
@@ -76,65 +65,67 @@
 
     <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-[450px] glass rounded-2xl shadow-2xl z-50 border border-white/20 bg-slate-900/95 overflow-hidden">
         <div class="bg-blue-600 p-4 font-bold flex justify-between items-center shadow-md">
-            <span class="text-sm">Joms AI Bot</span>
-            <button onclick="toggleChat()" class="hover:text-red-400 text-xl">✕</button>
+            <span class="text-sm">Joms Smart Bot</span>
+            <button onclick="toggleChat()" class="hover:text-red-400 text-xl font-bold">✕</button>
         </div>
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent scroll-smooth">
-            <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5">
-                Hi! I'm Joms's AI assistant. How can I help you today?
+        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent">
+            <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5 text-blue-100">
+                Hi! I'm Joms's Assistant. You can ask me about his services, skills, or projects.
             </div>
         </div>
         <div class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
-            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 text-white" placeholder="Ask AI something...">
-            <button onclick="sendMessage()" class="bg-blue-600 p-2 rounded-xl hover:bg-blue-500 transition shadow-lg">➤</button>
+            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 text-white" placeholder="Ask something (e.g. services, contact)...">
+            <button onclick="sendLocalMessage()" class="bg-blue-600 p-2 rounded-xl hover:bg-blue-500 transition shadow-lg">➤</button>
         </div>
     </div>
 
     <script>
-        // നിങ്ങളുടെ പുതിയ API Key ഇവിടെ നൽകിയിരിക്കുന്നു
-        const API_KEY = "AIzaSyC_KC_9nzyFZyLxe_IfzCisVY8JDohbdhM"; 
+        // ചോദ്യങ്ങളും ഉത്തരങ്ങളും ഇവിടെ ചേർക്കാം
+        const qaDatabase = [
+            { keywords: ["services", "work", "ചെയ്തുതരും"], response: "Joms specializes in Data Solutions, Python Automation, and Web Development. He has 50+ project demos ready!" },
+            { keywords: ["contact", "phone", "whatsapp", "വിളിക്കാൻ"], response: "You can contact Joms via WhatsApp at +91 7907311445 or through the contact section on this site." },
+            { keywords: ["skills", "python", "ai", "അറിയാം"], response: "He is proficient in Python, AI/ML models, Tailwind CSS, and Cloud Data Solutions." },
+            { keywords: ["experience", "years", "പഴക്കം"], response: "Joms has extensive experience in handling complex data systems and building automated web applications." },
+            { keywords: ["hi", "hello", "hey", "ഹലോ"], response: "Hello! How can I assist you with Joms's portfolio today?" },
+            { keywords: ["project", "magic box", "demo"], response: "You can check out the 'Magic Box' 3D animation project in the grid above!" }
+        ];
 
-        async function sendMessage() {
+        function toggleChat() { 
+            const win = document.getElementById('chat-window');
+            win.style.display = (win.style.display === "none" || win.style.display === "") ? "flex" : "none";
+        }
+
+        function sendLocalMessage() {
             const input = document.getElementById('chat-input');
             const messages = document.getElementById('chat-messages');
-            const userText = input.value.trim();
+            const userText = input.value.toLowerCase().trim();
             
             if (!userText) return;
 
-            // യൂസർ മെസേജ് ചേർക്കുന്നു
-            messages.innerHTML += `<div class="flex justify-end"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%] mb-2 shadow-sm">${userText}</div></div>`;
+            // User Message
+            messages.innerHTML += `<div class="flex justify-end"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%] mb-2 shadow-sm">${input.value}</div></div>`;
             input.value = "";
-            messages.scrollTop = messages.scrollHeight;
 
-            try {
-                // gemini-1.5-flash ഉപയോഗിച്ചുള്ള സ്റ്റേബിൾ URL
-                // പഴയ ലിങ്കിന് പകരം ഇത് ഉപയോഗിക്കുക (v1beta + gemini-pro)
-            const url = `https://generativelanguage.googleapis.com/v1beta/models/gemini-pro:generateContent?key=${API_KEY}`;
-                
-                const response = await fetch(url, {
-                    method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    body: JSON.stringify({
-                        contents: [{ parts: [{ text: userText }] }]
-                    })
-                });
-
-                const data = await response.json();
-                
-                if (data.candidates && data.candidates[0].content) {
-                    const aiText = data.candidates[0].content.parts[0].text;
-                    messages.innerHTML += `<div class="flex justify-start"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5 mb-2">${aiText}</div></div>`;
-                } else {
-                    console.error("API Response Error:", data);
-                    const errMsg = data.error ? data.error.message : "Service busy";
-                    messages.innerHTML += `<div class="text-amber-400 text-[10px] text-center italic">I'm stuck! ${errMsg}. Please check if API is enabled in Cloud Console.</div>`;
+            // Bot Response കണ്ടെത്തുന്നു
+            let botReply = "I'm sorry, I don't have information on that. Please try asking about 'services', 'skills', or 'contact'.";
+            
+            for (let item of qaDatabase) {
+                if (item.keywords.some(key => userText.includes(key))) {
+                    botReply = item.response;
+                    break;
                 }
-            } catch (e) {
-                messages.innerHTML += `<div class="text-red-400 text-[10px] text-center italic">Connection error.</div>`;
             }
+
+            // മറുപടി നൽകാൻ ചെറിയൊരു ഡിലേ (Real feel കിട്ടാൻ)
+            setTimeout(() => {
+                messages.innerHTML += `<div class="flex justify-start"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5 mb-2">${botReply}</div></div>`;
+                messages.scrollTop = messages.scrollHeight;
+            }, 500);
+            
             messages.scrollTop = messages.scrollHeight;
         }
 
+        // Language toggle logic
         function changeLang(l) {
             const t = { 
                 'en': ['Welcome', 'Data Solutions Specialist & AI/ML Enthusiast'], 
@@ -145,7 +136,7 @@
         }
 
         document.getElementById('chat-input').addEventListener('keypress', (e) => { 
-            if(e.key === 'Enter') sendMessage(); 
+            if(e.key === 'Enter') sendLocalMessage(); 
         });
     </script>
 </body>
