@@ -46,21 +46,21 @@
             <a href="about.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-blue-500 transition shadow-lg h-full">
                     <h3 class="font-bold text-blue-400 mb-3" id="box-about-title">About Me</h3>
-                    <p class="text-xs text-slate-400" id="box-about-desc">Experience & Journey</p>
+                    <p class="text-xs text-slate-400" id="box-about-desc">Professional Journey & Expert Background</p>
                 </div>
             </a>
 
             <a href="services.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-green-500 transition shadow-lg h-full">
                     <h3 class="font-bold text-green-400 mb-3" id="box-service-title">Services</h3>
-                    <p class="text-xs text-slate-400" id="box-service-desc">Top 10 Project Demos</p>
+                    <p class="text-xs text-slate-400" id="box-service-desc">Top 10 Advanced Project Demos</p>
                 </div>
             </a>
 
             <a href="skills.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-purple-500 transition shadow-lg h-full">
                     <h3 class="font-bold text-purple-400 mb-3" id="box-skill-title">Skills</h3>
-                    <p class="text-xs text-slate-400" id="box-skill-desc">Expert Python & AI Architect</p>
+                    <p class="text-xs text-slate-400" id="box-skill-desc">Expert Python & AI Solutions Architect</p>
                 </div>
             </a>
 
@@ -75,28 +75,29 @@
     <button class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl" onclick="toggleChat()">💬</button>
 
     <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-[450px] glass rounded-2xl shadow-2xl z-50 border border-white/20 bg-slate-900/95 overflow-hidden">
-        <div class="bg-blue-600 p-4 font-bold flex justify-between items-center shadow-md">
-            <span class="text-sm">Joms Smart Bot</span>
+        <div class="bg-blue-600 p-4 font-bold flex justify-between items-center">
+            <span class="text-sm">Joms AI Assistant</span>
             <button onclick="toggleChat()" class="text-xl">✕</button>
         </div>
         <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent">
             <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5 text-blue-100">
-                Hi! I can help you with Joms's services or contact info.
+                Hi! I can provide info about Joms's services, skills, or contact details.
             </div>
         </div>
         <div class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
-            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 text-white" placeholder="Ask something...">
-            <button onclick="sendLocalMessage()" class="bg-blue-600 p-2 rounded-xl hover:bg-blue-500 transition shadow-lg">➤</button>
+            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 text-white" placeholder="Type your message...">
+            <button onclick="sendLocalMessage()" class="bg-blue-600 p-2 rounded-xl">➤</button>
         </div>
     </div>
 
     <script>
+        // Database updated to respond in English only
         const qaDatabase = [
-            { keywords: ["services", "work", "ചെയ്തുതരും", "സേവനം"], response: "ഞാൻ ഡാറ്റാ സൊല്യൂഷൻസ്, പൈത്തൺ ഓട്ടോമേഷൻ, വെബ് ഡെവലപ്‌മെന്റ് എന്നിവയിൽ വിദഗ്ധനാണ്. 10 മികച്ച പ്രോജക്റ്റുകൾ എന്റെ പക്കൽ ലഭ്യമാണ്." },
-            { keywords: ["contact", "phone", "email", "விளിക്കാൻ", "ബന്ധപ്പെടാൻ", "ഇമെയിൽ"], response: "നിങ്ങൾക്ക് എന്നെ jomon13051983@gmail.com എന്ന ഇമെയിൽ വിലാസം വഴി ബന്ധപ്പെടാം." },
-            { keywords: ["time", "duration", "ദിവസം", "സമയം"], response: "ചെറിയ പ്രോജക്റ്റുകൾ 2-3 ദിവസത്തിനുള്ളിലും, വലിയവ 1-2 ആഴ്ചയ്ക്കുള്ളിലും ഞാൻ പൂർത്തിയാക്കി നൽകും." },
-            { keywords: ["skills", "python", "ai", "ഭാഷ", "അറിയാം"], response: "പൈത്തൺ, AI/ML, ക്ലൗഡ് കമ്പ്യൂട്ടിംഗ്, ടൈൽവിൻഡ് സിഎസ്എസ് എന്നിവയിലാണ് എന്റെ പ്രധാന കഴിവുകൾ. പൈത്തണിൽ ഞാൻ ഒരു എക്സ്പെർട്ട് ആണ്." },
-            { keywords: ["hi", "hello", "hey", "ഹലോ", "നമസ്കാരം"], response: "ഹലോ! ജോംസിന്റെ അസിസ്റ്റന്റാണ് ഞാൻ. നിങ്ങൾക്ക് എന്ത് സഹായമാണ് വേണ്ടത്?" }
+            { keywords: ["service", "work", "do", "offer", "സേവനം", "ചെയ്തുതരും"], response: "Joms specializes in Data Solutions, Python Automation, and Web Development. He has 10+ premium project demos available for review." },
+            { keywords: ["contact", "email", "reach", "hire", "വിളിക്കാൻ", "ബന്ധപ്പെടാൻ"], response: "You can reach Joms professionally via email at: jomon13051983@gmail.com." },
+            { keywords: ["time", "duration", "fast", "ദിവസം", "സമയം"], response: "Project timelines vary. Small automation tools take 2-3 days, while complex web applications are delivered within 1-2 weeks." },
+            { keywords: ["skill", "python", "ai", "language", "അറിയാം"], response: "Joms is an expert in Python, AI/ML models, Cloud Data Systems, and Tailwind CSS. He builds scalable and efficient AI solutions." },
+            { keywords: ["hi", "hello", "hey", "ഹലോ", "നമസ്കാരം"], response: "Hello! I am Joms's AI assistant. How can I help you with his portfolio today?" }
         ];
 
         function sendLocalMessage() {
@@ -105,10 +106,10 @@
             const userText = input.value.toLowerCase().trim();
             if (!userText) return;
 
-            messages.innerHTML += `<div class="flex justify-end mb-2"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%]">${input.value}</div></div>`;
+            messages.innerHTML += `<div class="flex justify-end mb-2"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%] shadow-md">${input.value}</div></div>`;
             input.value = "";
 
-            let botReply = "I'm sorry, I don't know about that. Try asking about 'services' or 'contact'.";
+            let botReply = "I'm sorry, I don't have information on that topic. Please try asking about 'services', 'skills', or 'contact'.";
             for (let item of qaDatabase) {
                 if (item.keywords.some(key => userText.includes(key))) {
                     botReply = item.response;
@@ -116,7 +117,7 @@
                 }
             }
             setTimeout(() => {
-                messages.innerHTML += `<div class="flex justify-start mb-2"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5">${botReply}</div></div>`;
+                messages.innerHTML += `<div class="flex justify-start mb-2"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5 shadow-sm">${botReply}</div></div>`;
                 messages.scrollTop = messages.scrollHeight;
             }, 500);
         }
@@ -124,15 +125,15 @@
         const translations = {
             'en': {
                 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast',
-                'box-about-title': 'About Me', 'box-about-desc': 'Experience & Journey',
-                'box-service-title': 'Services', 'box-service-desc': 'Top 10 Project Demos',
-                'box-skill-title': 'Skills', 'box-skill-desc': 'Expert Python & AI Architect',
+                'box-about-title': 'About Me', 'box-about-desc': 'Professional Journey & Expert Background',
+                'box-service-title': 'Services', 'box-service-desc': 'Top 10 Advanced Project Demos',
+                'box-skill-title': 'Skills', 'box-skill-desc': 'Expert Python & AI Solutions Architect',
                 'box-contact-title': 'Contact Me', 'box-contact-desc': 'Email: jomon13051983@gmail.com'
             },
             'ml': {
                 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്',
-                'box-about-title': 'എന്നെക്കുറിച്ച്', 'box-about-desc': 'അനുഭവസമ്പത്തും യാത്രയും',
-                'box-service-title': 'സേവനങ്ങൾ', 'box-service-desc': 'മികച്ച 10 പ്രോജക്റ്റുകൾ',
+                'box-about-title': 'എന്നെക്കുറിച്ച്', 'box-about-desc': 'പ്രൊഫഷണൽ അനുഭവസമ്പത്തും വൈദഗ്ധ്യവും',
+                'box-service-title': 'സേവനങ്ങൾ', 'box-service-desc': 'മികച്ച 10 പ്രീമിയം പ്രോജക്റ്റുകൾ',
                 'box-skill-title': 'കഴിവുകൾ', 'box-skill-desc': 'അഡ്വാൻസ്ഡ് പൈത്തൺ & AI വിദഗ്ധൻ',
                 'box-contact-title': 'ബന്ധപ്പെടുക', 'box-contact-desc': 'ഇമെയിൽ: jomon13051983@gmail.com'
             }
