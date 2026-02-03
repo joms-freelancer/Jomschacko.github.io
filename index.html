@@ -8,7 +8,6 @@
     <style>
         .fade-in { animation: fadeIn 0.5s ease-in; }
         @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        /* സ്ക്രോൾ ബാർ കൃത്യമായി കാണാൻ */
         #chat-messages::-webkit-scrollbar { width: 5px; }
         #chat-messages::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.2); border-radius: 10px; }
     </style>
@@ -52,10 +51,10 @@
             <button onclick="toggleChat()" class="text-xl">✕</button>
         </div>
         <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-3 text-sm text-white h-64 scroll-smooth">
-            <div class="bg-white/10 p-2 rounded-lg">Hi! I am your AI assistant. Ask me anything!</div>
+            <div class="bg-white/10 p-2 rounded-lg">Hi! I am Joms's AI assistant. Ask me anything!</div>
         </div>
         <div class="p-3 bg-black/40 border-t border-white/10 flex">
-            <input id="chat-input" type="text" class="bg-transparent border-none outline-none text-white w-full text-sm placeholder-white/30" placeholder="Ask something..." autocomplete="off">
+            <input id="chat-input" type="text" class="bg-transparent border-none outline-none text-white w-full text-sm placeholder-white/30" placeholder="Ask AI..." autocomplete="off">
             <button onclick="sendMessage()" class="text-blue-400 font-bold ml-2">Send</button>
         </div>
     </div>
@@ -63,8 +62,8 @@
     <script>
         const API_KEY = "AIzaSyAxbOwy6aA_QrL7FjZ_c4Tf4kKjJzyAflo";
         const content = {
-            'en': { 'hero-title': 'Hi, I am Joms', 'hero-desc': 'Data Entry Expert & AI/ML Enthusiast', 'col-1-title': 'About Me', 'col-1-desc': 'Specialized in precision data management and AI.', 'col-2-title': 'Services', 'col-2-desc': 'Data Entry, Python scripting, and Web Research.', 'col-3-title': 'Skills', 'col-3-desc': 'Expertise in Excel, Python, SQL, and Data Cleaning.', 'col-4-title': 'Contact', 'col-4-desc': 'Email: jomschacko@gmail.com' },
-            'ml': { 'hero-title': 'ഹലോ, ഞാൻ ജോംസ്', 'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്', 'col-1-title': 'എന്നെക്കുറിച്ച്', 'col-1-desc': 'ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.', 'col-2-title': 'സേവനങ്ങൾ', 'col-2-desc': 'ഡാറ്റാ എൻട്രി, പൈത്തൺ ഓട്ടോമേഷൻ എന്നിവ നൽകുന്നു.', 'col-3-title': 'കഴിവുകൾ', 'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.', 'col-4-title': 'ബന്ധപ്പെടുക', 'col-4-desc': 'ഇമെയിൽ: jomschacko@gmail.com' }
+            'en': { 'hero-title': 'Hi, I am Joms', 'hero-desc': 'Data Entry Expert & AI/ML Enthusiast', 'col-1-title': 'About Me', 'col-1-desc': 'Specialized in precision data management and AI.', 'col-2-title': 'Services', 'col-2-desc': 'Data Entry, Python scripting, and Web Research.', 'col-3-title': 'Skills', 'col-3-desc': 'Expertise in Excel, Python, SQL, and Data Cleaning.', 'col-4-title': 'Contact', 'col-4-desc': 'Email: jomonc60@gmail.com' },
+            'ml': { 'hero-title': 'ഹലോ, ഞാൻ ജോംസ്', 'hero-desc': 'ഡാറ്റാ എൻട്രി വിദഗ്ധനും AI/ML പഠിതാവുമാണ്', 'col-1-title': 'എന്നെക്കുറിച്ച്', 'col-1-desc': 'ഡാറ്റാ മാനേജ്‌മെന്റിലും AI-യിലും താല്പര്യമുള്ള ഫ്രീലാൻസർ.', 'col-2-title': 'സേവനങ്ങൾ', 'col-2-desc': 'ഡാറ്റാ എൻട്രി, പൈത്തൺ ഓട്ടോമേഷൻ എന്നിവ നൽകുന്നു.', 'col-3-title': 'കഴിവുകൾ', 'col-3-desc': 'പൈത്തൺ, എക്സൽ, ഡാറ്റാ അനാലിസിസ് എന്നിവയിൽ പ്രാവീണ്യമുണ്ട്.', 'col-4-title': 'ബന്ധപ്പെടുക', 'col-4-desc': 'ഇമെയിൽ: jomonc60@gmail.com' }
         };
 
         window.changeLang = (lang) => {
@@ -81,12 +80,10 @@
             const prompt = input.value.trim();
             if (!prompt) return;
 
-            // User Message
             messages.innerHTML += `<div class="bg-blue-600/40 p-2 rounded-lg text-right ml-10 mb-2">${prompt}</div>`;
             input.value = "";
             messages.scrollTop = messages.scrollHeight;
 
-            // Thinking Message
             const loadingId = "loading-" + Date.now();
             messages.innerHTML += `<div id="${loadingId}" class="bg-white/10 p-2 rounded-lg mr-10 mb-2 italic text-gray-400">Thinking...</div>`;
             messages.scrollTop = messages.scrollHeight;
@@ -96,17 +93,20 @@
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({
-                        contents: [{ parts: [{ text: `You are an AI assistant for Joms's portfolio website. Joms is a Data Entry expert and AI learner. Be helpful and concise. User says: ${prompt}` }] }]
+                        contents: [{ parts: [{ text: `You are an AI assistant for Joms. Joms's email is jomonc60@gmail.com. Keep answers short and professional. User says: ${prompt}` }] }]
                     })
                 });
 
                 const data = await response.json();
-                const aiReply = data.candidates[0].content.parts[0].text;
-                
-                document.getElementById(loadingId).remove();
-                messages.innerHTML += `<div class="bg-white/20 p-2 rounded-lg mr-10 mb-2 border border-white/10">${aiReply}</div>`;
+                if (data.candidates && data.candidates[0].content.parts[0].text) {
+                    const aiReply = data.candidates[0].content.parts[0].text;
+                    document.getElementById(loadingId).remove();
+                    messages.innerHTML += `<div class="bg-white/20 p-2 rounded-lg mr-10 mb-2 border border-white/10">${aiReply}</div>`;
+                } else {
+                    throw new Error("Invalid response");
+                }
             } catch (error) {
-                document.getElementById(loadingId).innerText = "Sorry, I'm having trouble connecting. Try again!";
+                document.getElementById(loadingId).innerText = "Error connecting to AI. Please check your API key or network.";
             }
             messages.scrollTop = messages.scrollHeight;
         };
