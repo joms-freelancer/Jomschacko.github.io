@@ -6,30 +6,172 @@
     <title>Services & Projects | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
-        body { background-color: #0f172a; color: white; }
+        .glass-card { 
+            backdrop-filter: blur(12px); 
+            background: rgba(255, 255, 255, 0.03); 
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+        }
+        .glass-card:hover { 
+            border-color: #10b981;
+            background: rgba(16, 185, 129, 0.05);
+            transform: scale(1.02);
+        }
     </style>
 </head>
-<body class="min-h-screen p-6 md:p-12">
-    <div class="max-w-5xl mx-auto">
-        <a href="index.html" class="inline-block mb-8 text-blue-400 hover:underline">← Back to Home</a>
-        
-        <h1 class="text-4xl font-bold text-green-400 mb-8">My Projects & Services</h1>
+<body class="bg-slate-950 text-white font-sans selection:bg-green-500 min-h-screen p-6 md:p-12">
+
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-12">
+            <a href="index.html" class="text-green-400 hover:text-white transition flex items-center gap-2">
+                <span>←</span> Back to Home
+            </a>
+            <div class="flex gap-2">
+                <button onclick="changeLang('en')" class="text-xs bg-white/10 px-3 py-1 rounded-full hover:bg-white/20">English</button>
+                <button onclick="changeLang('ml')" class="text-xs bg-white/10 px-3 py-1 rounded-full hover:bg-white/20">മലയാളം</button>
+            </div>
+        </div>
+
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent" id="page-title">
+                Premium Services
+            </h1>
+            <p class="text-slate-400 text-lg italic" id="page-subtitle">Innovative solutions delivered with precision</p>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             
-            <div class="glass p-6 rounded-3xl hover:border-blue-500 transition group">
-                <div class="h-32 bg-yellow-500/20 rounded-xl mb-4 flex items-center justify-center text-4xl">🎩</div>
-                <h3 class="font-bold text-xl mb-2">3D Magic Boxes</h3>
-                <p class="text-sm text-slate-400 mb-6">Interactive 3D background grid created with HTML, CSS, and JS.</p>
-                <a href="projects/magic-boxes.html" class="block w-full text-center bg-blue-600 py-2 rounded-xl font-bold hover:bg-blue-700">View Project</a>
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 text-green-400">🤖</div>
+                <h3 class="text-xl font-bold mb-2" id="p1-title">AI Customer Assistant</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p1-desc">Custom Gemini-powered chatbots trained on business data for 24/7 client support.</p>
             </div>
 
-            <div class="glass p-6 rounded-3xl border-dashed border-white/10 flex items-center justify-center text-slate-500">
-                Coming Soon...
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 text-blue-400">📊</div>
+                <h3 class="text-xl font-bold mb-2" id="p2-title">Predictive Data Dashboard</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p2-desc">Dynamic visualization tools that analyze market trends and predict future growth.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 text-purple-400">🐍</div>
+                <h3 class="text-xl font-bold mb-2" id="p3-title">Python Automation Bot</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p3-desc">Advanced scripts to automate repetitive web tasks, data entry, and file management.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4 text-orange-400">📦</div>
+                <h3 class="text-xl font-bold mb-2" id="p4-title">Smart Inventory System</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p4-desc">Inventory tracking with low-stock alerts and automated supplier communication.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mb-4 text-red-400">💰</div>
+                <h3 class="text-xl font-bold mb-2" id="p5-title">Financial Algo-Tracker</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p5-desc">Real-time expense and revenue monitoring with algorithmic financial health scoring.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-4 text-emerald-400">👁️</div>
+                <h3 class="text-xl font-bold mb-2" id="p6-title">Computer Vision Tool</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p6-desc">AI tools for image recognition and automated object detection in digital assets.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4 text-yellow-400">📁</div>
+                <h3 class="text-xl font-bold mb-2" id="p7-title">Client Management Portal</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p7-desc">Secure end-to-end portals for managing projects, invoices, and client communication.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4 text-pink-400">✉️</div>
+                <h3 class="text-xl font-bold mb-2" id="p8-title">Bulk Notification Suite</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p8-desc">Automated system for sending personalized bulk emails and SMS notifications.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4 text-indigo-400">🏗️</div>
+                <h3 class="text-xl font-bold mb-2" id="p9-title">Resume AI Engine</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p9-desc">Dynamic web system that generates AI-optimized resumes based on user skills.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4 text-teal-400">✨</div>
+                <h3 class="text-xl font-bold mb-2" id="p10-title">3D Visualization (Magic Box)</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p10-desc">Immersive 3D CSS animations for showcasing products in an interactive way.</p>
             </div>
 
         </div>
+
+        <div class="mt-20 text-center p-12 glass-card rounded-3xl">
+            <h3 class="text-2xl font-bold mb-4" id="footer-text">Interested in a custom solution?</h3>
+            <a href="mailto:jomon13051983@gmail.com" class="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-full font-bold transition">
+                Start a Conversation
+            </a>
+        </div>
     </div>
+
+    <script>
+        const translations = {
+            'en': {
+                'page-title': 'Premium Services',
+                'page-subtitle': 'Innovative solutions delivered with precision',
+                'p1-title': 'AI Customer Assistant',
+                'p1-desc': 'Custom Gemini-powered chatbots trained on business data for 24/7 client support.',
+                'p2-title': 'Predictive Data Dashboard',
+                'p2-desc': 'Dynamic visualization tools that analyze market trends and predict future growth.',
+                'p3-title': 'Python Automation Bot',
+                'p3-desc': 'Advanced scripts to automate repetitive web tasks, data entry, and file management.',
+                'p4-title': 'Smart Inventory System',
+                'p4-desc': 'Inventory tracking with low-stock alerts and automated supplier communication.',
+                'p5-title': 'Financial Algo-Tracker',
+                'p5-desc': 'Real-time expense and revenue monitoring with algorithmic financial health scoring.',
+                'p6-title': 'Computer Vision Tool',
+                'p6-desc': 'AI tools for image recognition and automated object detection in digital assets.',
+                'p7-title': 'Client Management Portal',
+                'p7-desc': 'Secure end-to-end portals for managing projects, invoices, and client communication.',
+                'p8-title': 'Bulk Notification Suite',
+                'p8-desc': 'Automated system for sending personalized bulk emails and SMS notifications.',
+                'p9-title': 'Resume AI Engine',
+                'p9-desc': 'Dynamic web system that generates AI-optimized resumes based on user skills.',
+                'p10-title': '3D Visualization (Magic Box)',
+                'p10-desc': 'Immersive 3D CSS animations for showcasing products in an interactive way.',
+                'footer-text': 'Interested in a custom solution?'
+            },
+            'ml': {
+                'page-title': 'പ്രീമിയം സേവനങ്ങൾ',
+                'page-subtitle': 'നവീനമായ പരിഹാരങ്ങൾ, കൃത്യതയോടെ',
+                'p1-title': 'AI കസ്റ്റമർ അസിസ്റ്റന്റ്',
+                'p1-desc': 'ബിസിനസ്സ് ഡാറ്റ ഉപയോഗിച്ച് പരിശീലിപ്പിച്ച, 24/7 സേവനം നൽകുന്ന AI ചാറ്റ് ബോട്ടുകൾ.',
+                'p2-title': 'പ്രെഡിക്റ്റീവ് ഡാറ്റാ ഡാഷ്‌ബോർഡ്',
+                'p2-desc': 'വിപണിയിലെ മാറ്റങ്ങൾ വിശകലനം ചെയ്യാനും ഭാവി വളർച്ച പ്രവചിക്കാനുമുള്ള ഡാറ്റാ ടൂളുകൾ.',
+                'p3-title': 'പൈത്തൺ ഓട്ടോമേഷൻ ബോട്ട്',
+                'p3-desc': 'ആവർത്തന സ്വഭാവമുള്ള ജോലികൾ സ്വയം ചെയ്യാൻ സഹായിക്കുന്ന അത്യാധുനിക പൈത്തൺ സ്ക്രിപ്റ്റുകൾ.',
+                'p4-title': 'സ്മാർട്ട് ഇൻവെന്ററി സിസ്റ്റം',
+                'p4-desc': 'സ്റ്റോക്ക് കുറയുമ്പോൾ തനിയെ അലേർട്ടുകൾ നൽകുന്ന ഓട്ടോമേറ്റഡ് ഇൻവെന്ററി മാനേജ്മെന്റ്.',
+                'p5-title': 'ഫിനാൻഷ്യൽ അൽഗോ-ട്രാക്കർ',
+                'p5-desc': 'വരവ് ചിലവുകൾ കൃത്യമായി നിരീക്ഷിക്കാനും സാമ്പത്തിക നില വിശകലനം ചെയ്യാനുമുള്ള ടൂളുകൾ.',
+                'p6-title': 'കമ്പ്യൂട്ടർ വിഷൻ ടൂൾ',
+                'p6-desc': 'ചിത്രങ്ങൾ തിരിച്ചറിയാനും അവയിലെ വിവരങ്ങൾ തനിയെ വിശകലനം ചെയ്യാനുമുള്ള AI ടൂളുകൾ.',
+                'p7-title': 'ക്ലയന്റ് മാനേജ്‌മെന്റ് പോർട്ടൽ',
+                'p7-desc': 'പ്രോജക്റ്റുകളും ഇൻവോയ്സുകളും സുരക്ഷിതമായി കൈകാര്യം ചെയ്യാനുള്ള വെബ് പോർട്ടലുകൾ.',
+                'p8-title': 'ബൾക്ക് നോട്ടിഫിക്കേഷൻ സ്യൂട്ട്',
+                'p8-desc': 'ഒരേസമയം നിരവധി ആളുകളിലേക്ക് മെയിലുകളും മെസേജുകളും അയക്കാനുള്ള ഓട്ടോമേറ്റഡ് സിസ്റ്റം.',
+                'p9-title': 'AI റെസ്യൂമെ എൻജിൻ',
+                'p9-desc': 'ഉദ്യോഗാർത്ഥികളുടെ കഴിവുകൾക്കനുസരിച്ച് മികച്ച റെസ്യൂമെകൾ നിർമ്മിച്ചു നൽകുന്ന AI സിസ്റ്റം.',
+                'p10-title': '3D വിഷ്വലൈസേഷൻ (മാജിക് ബോക്സ്)',
+                'p10-desc': 'ഉൽപ്പന്നങ്ങൾ ആകർഷകമായ രീതിയിൽ പ്രദർശിപ്പിക്കാൻ സഹായിക്കുന്ന 3D അനിമേഷനുകൾ.',
+                'footer-text': 'നിങ്ങൾക്കായി ഒരു പ്രത്യേക പരിഹാരം വേണോ?'
+            }
+        };
+
+        function changeLang(lang) {
+            const t = translations[lang];
+            for (let key in t) {
+                const el = document.getElementById(key);
+                if(el) el.innerText = t[key];
+            }
+        }
+    </script>
 </body>
 </html>
