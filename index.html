@@ -1,33 +1,108 @@
-<div onclick="openModal('services-modal')" class="glass p-8 rounded-3xl border-green-500/20 hover:border-green-500 cursor-pointer transition transform hover:scale-105 shadow-lg">
-    <h3 class="font-bold text-green-400 mb-3">Services</h3>
-    <p class="text-xs text-slate-400">View my services and Live Project Demos.</p>
-</div>
-
-<div id="services-modal" class="modal">
-    <div class="glass p-8 rounded-3xl max-w-2xl w-full border border-green-500/30">
-        <div class="flex justify-between items-center mb-6">
-            <h2 class="text-2xl font-bold text-green-400">My Services</h2>
-            <button onclick="closeModal('services-modal')" class="text-2xl hover:text-red-500">✕</button>
-        </div>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-white/5 p-4 rounded-xl">
-                <h4 class="font-bold text-blue-300 mb-2">Data & AI</h4>
-                <p class="text-[11px] text-slate-400">Excel Automation, Python Scripting, AI Chatbot integration.</p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Joms Portfolio | Pro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { backdrop-filter: blur(16px); background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); }
+        .modal { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 200; align-items: center; justify-content: center; padding: 20px; }
+        .modal.active { display: flex; }
+        body { background-color: #0f172a; color: white; }
+    </style>
+</head>
+<body class="min-h-screen font-sans selection:bg-blue-500">
+    
+    <nav class="glass sticky top-0 z-50 p-4 mb-8">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <h1 class="font-bold text-2xl text-blue-400">JOMS</h1>
+            <div class="flex gap-2">
+                <button class="px-3 py-1 bg-white/10 rounded-full text-[10px]" onclick="changeLang('en')">EN</button>
+                <button class="px-3 py-1 bg-white/10 rounded-full text-[10px]" onclick="changeLang('ml')">ML</button>
             </div>
-            <div class="bg-white/5 p-4 rounded-xl border border-blue-500/20">
-                <h4 class="font-bold text-orange-400 mb-2">Web Projects (Demos)</h4>
-                <ul class="text-[11px] space-y-2">
-                    <li class="flex justify-between items-center">
-                        <span>Project 1: Portfolio Template</span>
-                        <a href="projects/project1/index.html" class="text-blue-400 hover:underline">Live Demo</a>
-                    </li>
-                    <li class="flex justify-between items-center">
-                        <span>Project 2: JavaScript App</span>
-                        <a href="#" class="text-blue-400 hover:underline">View</a>
-                    </li>
+        </div>
+    </nav>
+
+    <header class="max-w-4xl mx-auto text-center py-10 px-6">
+        <div class="mb-6 flex justify-center">
+            <img class="w-40 h-40 rounded-full border-4 border-blue-500 object-cover shadow-2xl" 
+                 src="Photo from jomon13051983 copy.jpg" 
+                 onerror="this.src='https://ui-avatars.com/api/?name=Joms&background=0D8ABC&color=fff&size=200'">
+        </div>
+        <h2 class="text-5xl font-extrabold mb-4 tracking-tight" id="hero-title">Welcome</h2>
+        <p class="text-lg text-slate-400 italic" id="hero-desc">Data Entry Expert & AI/ML Enthusiast</p>
+    </header>
+
+    <main class="max-w-6xl mx-auto pb-24 px-6">
+        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
+            
+            <div onclick="openModal('about-modal')" class="glass p-8 rounded-3xl border-blue-500/20 hover:border-blue-500 cursor-pointer transition transform hover:-translate-y-2">
+                <h3 class="font-bold text-blue-400 mb-3">About Me</h3>
+                <p class="text-xs text-slate-400">Experience & Journey</p>
+            </div>
+
+            <div onclick="openModal('services-modal')" class="glass p-8 rounded-3xl border-green-500/20 hover:border-green-500 cursor-pointer transition transform hover:-translate-y-2">
+                <h3 class="font-bold text-green-400 mb-3">Services</h3>
+                <p class="text-xs text-slate-400">Works & Project Demos</p>
+            </div>
+
+            <div onclick="alert('Skills section coming in next update!')" class="glass p-8 rounded-3xl border-purple-500/20 hover:border-purple-500 cursor-pointer transition transform hover:-translate-y-2">
+                <h3 class="font-bold text-purple-400 mb-3">Skills</h3>
+                <p class="text-xs text-slate-400">Tools & Technologies</p>
+            </div>
+
+            <div onclick="sendToWhatsApp()" class="glass p-8 rounded-3xl border-emerald-500/20 hover:border-emerald-500 cursor-pointer transition transform hover:-translate-y-2">
+                <h3 class="font-bold text-emerald-400 mb-3">WhatsApp</h3>
+                <p class="text-xs text-slate-400">Direct Message</p>
+            </div>
+
+        </div>
+    </main>
+
+    <div id="about-modal" class="modal" onclick="closeModal('about-modal')">
+        <div class="glass p-8 rounded-3xl max-w-2xl w-full mx-4" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-blue-400">About Me</h2>
+                <button onclick="closeModal('about-modal')" class="text-xl">✕</button>
+            </div>
+            <div class="space-y-4 text-slate-300 text-sm">
+                <p>I am Jomon, a professional specializing in accurate data management and emerging AI technologies.</p>
+                <ul class="list-disc list-inside space-y-2 text-blue-200">
+                    <li>Years of experience in Data Entry.</li>
+                    <li>Currently focusing on AI automation using Python.</li>
+                    <li>Udemy Certified Web Developer.</li>
                 </ul>
             </div>
         </div>
-        <p class="mt-4 text-[10px] italic text-slate-500">* Udemy-യിൽ നിന്ന് പഠിച്ചെടുത്ത പ്രീമിയം വെബ് ഡിസൈനുകൾ പ്രൊജക്റ്റുകൾക്ക് അനുസരിച്ച് ലഭ്യമാക്കാം.</p>
     </div>
-</div>
+
+    <div id="services-modal" class="modal" onclick="closeModal('services-modal')">
+        <div class="glass p-8 rounded-3xl max-w-2xl w-full mx-4" onclick="event.stopPropagation()">
+            <div class="flex justify-between items-center mb-6">
+                <h2 class="text-2xl font-bold text-green-400">Services & Demos</h2>
+                <button onclick="closeModal('services-modal')" class="text-xl">✕</button>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                <div class="bg-white/5 p-4 rounded-xl border border-white/10">
+                    <h4 class="font-bold text-blue-300 mb-2">Data Services</h4>
+                    <p class="text-xs text-slate-400">Advanced Excel, Data Mining, and Document Automation.</p>
+                </div>
+                <div class="bg-white/5 p-4 rounded-xl border border-green-500/20">
+                    <h4 class="font-bold text-orange-400 mb-2">Web Front-end Demos</h4>
+                    <ul class="text-[11px] space-y-2">
+                        <li class="flex justify-between">Project 1: Portfolio <a href="#" class="text-blue-400 underline">Demo</a></li>
+                        <li class="flex justify-between">Project 2: Business <a href="#" class="text-blue-400 underline">Demo</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <button class="fixed bottom-6 right-6 w-14 h-14 bg-blue-600 rounded-full shadow-2xl flex items-center justify-center z-50" onclick="alert('AI Assistant is being updated!')">💬</button>
+
+    <script>
+        function openModal(id) { document.getElementById(id).classList.add('active'); }
+        function closeModal(id) { document.getElementById(id).classList.remove('active'); }
+        
+        function sendToWhatsApp() {
