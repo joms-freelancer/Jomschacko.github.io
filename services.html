@@ -1,116 +1,84 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Services & Projects | Joms</title>
-	<script src="https://cdn.tailwindcss.com">
-	</script>
-	<style>
-	       .glass-card { 
-	           backdrop-filter: blur(12px); 
-	           background: rgba(255, 255, 255, 0.03); 
-	           border: 1px solid rgba(255, 255, 255, 0.1);
-	           transition: all 0.3s ease;
-	       }
-	       .glass-card:hover { 
-	           border-color: #10b981;
-	           background: rgba(16, 185, 129, 0.05);
-	           transform: scale(1.02);
-	       }
-	</style>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Services & Projects | Joms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+           .glass-card { 
+               backdrop-filter: blur(12px); 
+               background: rgba(255, 255, 255, 0.03); 
+               border: 1px solid rgba(255, 255, 255, 0.1);
+               transition: all 0.3s ease;
+               cursor: pointer; /* ക്ലിക്ക് ചെയ്യാമെന്ന് അറിയിക്കാൻ */
+           }
+           .glass-card:hover { 
+               border-color: #10b981;
+               background: rgba(16, 185, 129, 0.05);
+               transform: scale(1.02);
+           }
+           /* Modal Animation */
+           .modal-active { display: flex !important; }
+    </style>
 </head>
 <body class="bg-slate-950 text-white font-sans selection:bg-green-500 min-h-screen p-6 md:p-12">
-	<div class="max-w-6xl mx-auto">
-		<div class="flex justify-between items-center mb-12">
-			<a class="text-green-400 hover:text-white transition flex items-center gap-2" href="index.html"><span>←</span> Back to Home</a>
-			<div class="flex gap-2">
-				<button class="text-xs bg-white/10 px-3 py-1 rounded-full hover:bg-white/20" onclick="changeLang('en')">English</button> <button class="text-xs bg-white/10 px-3 py-1 rounded-full hover:bg-white/20" onclick="changeLang('ml')">മലയാളം</button>
-			</div>
-		</div>
-		<div class="text-center mb-16">
-			<h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent" id="page-title">Premium Services</h1>
-			<p class="text-slate-400 text-lg italic" id="page-subtitle">Innovative solutions delivered with precision</p>
-		</div>
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			<a class="glass-card p-6 rounded-3xl block transition-all" href="ai-assistant.html">
-			<div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 text-green-400">
-				🤖
-			</div>
-			<h3 class="text-xl font-bold mb-2" id="p1-title">AI Customer Assistant</h3>
-			<p class="text-sm text-slate-400 leading-relaxed" id="p1-desc">Custom Gemini-powered chatbots trained on business data for 24/7 client support.</p></a>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 text-blue-400">
-					📊
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p2-title">Predictive Data Dashboard</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p2-desc">Dynamic visualization tools that analyze market trends and predict future growth.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 text-purple-400">
-					🐍
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p3-title">Python Automation Bot</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p3-desc">Advanced scripts to automate repetitive web tasks, data entry, and file management.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-orange-500/20 rounded-xl flex items-center justify-center mb-4 text-orange-400">
-					📦
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p4-title">Smart Inventory System</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p4-desc">Inventory tracking with low-stock alerts and automated supplier communication.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-red-500/20 rounded-xl flex items-center justify-center mb-4 text-red-400">
-					💰
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p5-title">Financial Algo-Tracker</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p5-desc">Real-time expense and revenue monitoring with algorithmic financial health scoring.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mb-4 text-emerald-400">
-					👁️
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p6-title">Computer Vision Tool</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p6-desc">AI tools for image recognition and automated object detection in digital assets.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-yellow-500/20 rounded-xl flex items-center justify-center mb-4 text-yellow-400">
-					📁
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p7-title">Client Management Portal</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p7-desc">Secure end-to-end portals for managing projects, invoices, and client communication.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-pink-500/20 rounded-xl flex items-center justify-center mb-4 text-pink-400">
-					✉️
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p8-title">Bulk Notification Suite</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p8-desc">Automated system for sending personalized bulk emails and SMS notifications.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center mb-4 text-indigo-400">
-					🏗️
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p9-title">Resume AI Engine</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p9-desc">Dynamic web system that generates AI-optimized resumes based on user skills.</p>
-			</div>
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-12 h-12 bg-teal-500/20 rounded-xl flex items-center justify-center mb-4 text-teal-400">
-					✨
-				</div>
-				<h3 class="text-xl font-bold mb-2" id="p10-title">3D Visualization (Magic Box)</h3>
-				<p class="text-sm text-slate-400 leading-relaxed" id="p10-desc">Immersive 3D CSS animations for showcasing products in an interactive way.</p>
-			</div>
-		</div>
-		<div class="mt-20 text-center p-12 glass-card rounded-3xl">
-			<h3 class="text-2xl font-bold mb-4" id="footer-text">Interested in a custom solution?</h3><a class="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-full font-bold transition" href="mailto:jomon13051983@gmail.com">Start a Conversation</a>
-		</div>
-	</div>
-</body>
-</html>
+
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-12">
+            <a class="text-green-400 hover:text-white transition flex items-center gap-2" href="index.html"><span>←</span> Back to Home</a>
+            <div class="flex gap-2">
+                <button class="text-xs bg-white/10 px-3 py-1 rounded-full hover:bg-white/20" onclick="changeLang('en')">English</button> 
+                <button class="text-xs bg-white/10 px-3 py-1 rounded-full hover:bg-white/20" onclick="changeLang('ml')">മലയാളം</button>
+            </div>
+        </div>
+
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent" id="page-title">Premium Services</h1>
+            <p class="text-slate-400 text-lg italic" id="page-subtitle">Innovative solutions delivered with precision</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <a class="glass-card p-6 rounded-3xl block transition-all" href="ai-assistant.html">
+                <div class="w-12 h-12 bg-green-500/20 rounded-xl flex items-center justify-center mb-4 text-green-400">🤖</div>
+                <h3 class="text-xl font-bold mb-2" id="p1-title">AI Customer Assistant</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p1-desc">Custom Gemini-powered chatbots trained on business data for 24/7 client support.</p>
+            </a>
+
+            <div class="glass-card p-6 rounded-3xl" onclick="openWhiteWindow()">
+                <div class="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mb-4 text-blue-400">📊</div>
+                <h3 class="text-xl font-bold mb-2" id="p2-title">Predictive Data Dashboard</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p2-desc">Dynamic visualization tools that analyze market trends and predict future growth.</p>
+            </div>
+
+            <div class="glass-card p-6 rounded-3xl">
+                <div class="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mb-4 text-purple-400">🐍</div>
+                <h3 class="text-xl font-bold mb-2" id="p3-title">Python Automation Bot</h3>
+                <p class="text-sm text-slate-400 leading-relaxed" id="p3-desc">Advanced scripts to automate repetitive web tasks, data entry, and file management.</p>
+            </div>
+            </div>
+    </div>
+
+    <div id="whiteWindow" class="hidden fixed inset-0 bg-white z-[100] flex flex-col items-center justify-center text-slate-900 p-10">
+        <button onclick="closeWhiteWindow()" class="absolute top-10 right-10 text-slate-400 hover:text-black text-4xl">&times;</button>
+        <h2 class="text-3xl font-bold">Dashboard Loading...</h2>
+        <p class="text-slate-500 mt-2">Connecting to predictive engine.</p>
+    </div>
 
     <script>
+        // വൈറ്റ് വിൻഡോ ഓപ്പൺ ചെയ്യാനുള്ള ഫംഗ്‌ഷൻ
+        function openWhiteWindow() {
+            document.getElementById('whiteWindow').classList.add('modal-active');
+            document.body.style.overflow = 'hidden'; // മെയിൻ പേജ് സ്ക്രോൾ തടയാൻ
+        }
+
+        // ക്ലോസ് ചെയ്യാനുള്ള ഫംഗ്‌ഷൻ
+        function closeWhiteWindow() {
+            document.getElementById('whiteWindow').classList.remove('modal-active');
+            document.body.style.overflow = 'auto';
+        }
+
+        // നിങ്ങളുടെ പഴയ ഭാഷാ മാറ്റാനുള്ള ലോജിക്
         const translations = {
             'en': {
                 'page-title': 'Premium Services',
@@ -120,22 +88,7 @@
                 'p2-title': 'Predictive Data Dashboard',
                 'p2-desc': 'Dynamic visualization tools that analyze market trends and predict future growth.',
                 'p3-title': 'Python Automation Bot',
-                'p3-desc': 'Advanced scripts to automate repetitive web tasks, data entry, and file management.',
-                'p4-title': 'Smart Inventory System',
-                'p4-desc': 'Inventory tracking with low-stock alerts and automated supplier communication.',
-                'p5-title': 'Financial Algo-Tracker',
-                'p5-desc': 'Real-time expense and revenue monitoring with algorithmic financial health scoring.',
-                'p6-title': 'Computer Vision Tool',
-                'p6-desc': 'AI tools for image recognition and automated object detection in digital assets.',
-                'p7-title': 'Client Management Portal',
-                'p7-desc': 'Secure end-to-end portals for managing projects, invoices, and client communication.',
-                'p8-title': 'Bulk Notification Suite',
-                'p8-desc': 'Automated system for sending personalized bulk emails and SMS notifications.',
-                'p9-title': 'Resume AI Engine',
-                'p9-desc': 'Dynamic web system that generates AI-optimized resumes based on user skills.',
-                'p10-title': '3D Visualization (Magic Box)',
-                'p10-desc': 'Immersive 3D CSS animations for showcasing products in an interactive way.',
-                'footer-text': 'Interested in a custom solution?'
+                'p3-desc': 'Advanced scripts to automate repetitive web tasks, data entry, and file management.'
             },
             'ml': {
                 'page-title': 'പ്രീമിയം സേവനങ്ങൾ',
@@ -145,22 +98,7 @@
                 'p2-title': 'പ്രെഡിക്റ്റീവ് ഡാറ്റാ ഡാഷ്‌ബോർഡ്',
                 'p2-desc': 'വിപണിയിലെ മാറ്റങ്ങൾ വിശകലനം ചെയ്യാനും ഭാവി വളർച്ച പ്രവചിക്കാനുമുള്ള ഡാറ്റാ ടൂളുകൾ.',
                 'p3-title': 'പൈത്തൺ ഓട്ടോമേഷൻ ബോട്ട്',
-                'p3-desc': 'ആവർത്തന സ്വഭാവമുള്ള ജോലികൾ സ്വയം ചെയ്യാൻ സഹായിക്കുന്ന അത്യാധുനിക പൈത്തൺ സ്ക്രിപ്റ്റുകൾ.',
-                'p4-title': 'സ്മാർട്ട് ഇൻവെന്ററി സിസ്റ്റം',
-                'p4-desc': 'സ്റ്റോക്ക് കുറയുമ്പോൾ തനിയെ അലേർട്ടുകൾ നൽകുന്ന ഓട്ടോമേറ്റഡ് ഇൻവെന്ററി മാനേജ്മെന്റ്.',
-                'p5-title': 'ഫിനാൻഷ്യൽ അൽഗോ-ട്രാക്കർ',
-                'p5-desc': 'വരവ് ചിലവുകൾ കൃത്യമായി നിരീക്ഷിക്കാനും സാമ്പത്തിക നില വിശകലനം ചെയ്യാനുമുള്ള ടൂളുകൾ.',
-                'p6-title': 'കമ്പ്യൂട്ടർ വിഷൻ ടൂൾ',
-                'p6-desc': 'ചിത്രങ്ങൾ തിരിച്ചറിയാനും അവയിലെ വിവരങ്ങൾ തനിയെ വിശകലനം ചെയ്യാനുമുള്ള AI ടൂളുകൾ.',
-                'p7-title': 'ക്ലയന്റ് മാനേജ്‌മെന്റ് പോർട്ടൽ',
-                'p7-desc': 'പ്രോജക്റ്റുകളും ഇൻവോയ്സുകളും സുരക്ഷിതമായി കൈകാര്യം ചെയ്യാനുള്ള വെബ് പോർട്ടലുകൾ.',
-                'p8-title': 'ബൾക്ക് നോട്ടിഫിക്കേഷൻ സ്യൂട്ട്',
-                'p8-desc': 'ഒരേസമയം നിരവധി ആളുകളിലേക്ക് മെയിലുകളും മെസേജുകളും അയക്കാനുള്ള ഓട്ടോമേറ്റഡ് സിസ്റ്റം.',
-                'p9-title': 'AI റെസ്യൂമെ എൻജിൻ',
-                'p9-desc': 'ഉദ്യോഗാർത്ഥികളുടെ കഴിവുകൾക്കനുസരിച്ച് മികച്ച റെസ്യൂമെകൾ നിർമ്മിച്ചു നൽകുന്ന AI സിസ്റ്റം.',
-                'p10-title': '3D വിഷ്വലൈസേഷൻ (മാജിക് ബോക്സ്)',
-                'p10-desc': 'ഉൽപ്പന്നങ്ങൾ ആകർഷകമായ രീതിയിൽ പ്രദർശിപ്പിക്കാൻ സഹായിക്കുന്ന 3D അനിമേഷനുകൾ.',
-                'footer-text': 'നിങ്ങൾക്കായി ഒരു പ്രത്യേക പരിഹാരം വേണോ?'
+                'p3-desc': 'ആവർത്തന സ്വഭാവമുള്ള ജോലികൾ സ്വയം ചെയ്യാൻ സഹായിക്കുന്ന അത്യാധുനിക പൈത്തൺ സ്ക്രിപ്റ്റുകൾ.'
             }
         };
 
