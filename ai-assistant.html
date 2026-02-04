@@ -5,6 +5,42 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>AI Customer Assistant | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @keyframes wave {
+            0% { transform: rotate(0deg); }
+            10% { transform: rotate(14deg); }
+            20% { transform: rotate(-8deg); }
+            30% { transform: rotate(14deg); }
+            40% { transform: rotate(-4deg); }
+            50% { transform: rotate(10deg); }
+            60% { transform: rotate(0deg); }
+            100% { transform: rotate(0deg); }
+        }
+        .animate-wave {
+            animation: wave 2s linear infinite;
+            transform-origin: 70% 70%; /* Adjust origin for natural arm wave */
+        }
+
+        /* Typing effect for text */
+        .typing-text {
+            overflow: hidden; /* Ensures the text is not visible until typed */
+            white-space: nowrap; /* Keeps the content on a single line */
+            width: 0; /* Starts with 0 width */
+            animation: typing 2.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+        }
+
+        /* The typing animation effect */
+        @keyframes typing {
+            from { width: 0 }
+            to { width: 100% }
+        }
+
+        /* The typewriter cursor effect */
+        @keyframes blink-caret {
+            from, to { border-color: transparent }
+            50% { border-color: #3b82f6; } /* Tailwind blue-500 */
+        }
+    </style>
 </head>
 <body class="bg-slate-950 text-white font-sans min-h-screen p-6 md:p-12">
 
@@ -15,8 +51,23 @@
 
         <h1 class="text-4xl font-bold mb-6 text-green-400">AI Customer Assistant</h1>
 
-        <div class="w-full h-96 bg-white rounded-3xl shadow-2xl flex items-center justify-center">
-            <p class="text-slate-400 italic">Work in progress... Future AI interface goes here.</p>
+        <div class="w-full min-h-96 bg-slate-800/50 rounded-3xl shadow-2xl flex flex-col items-center justify-center p-8">
+            
+            <div class="relative w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mb-6 text-5xl">
+                <span class="block animate-wave transform -translate-y-2">👋</span>
+                <span class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 text-2xl">🤖</span>
+            </div>
+
+            <div class="bg-white/10 text-white p-4 rounded-xl max-w-lg text-center border border-white/10">
+                <span id="bot-message" class="typing-text border-r-2 border-blue-500">
+                    Hi, I am your assistant. What would you like to know?
+                </span>
+            </div>
+
+            <div class="mt-8 w-full max-w-md flex items-center justify-center">
+                <input type="text" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your question...">
+            </div>
+
         </div>
     </div>
 
