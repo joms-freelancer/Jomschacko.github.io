@@ -23,9 +23,13 @@
         }
         @keyframes typing { from { width: 0 } to { width: 100% } }
 
-        /* Custom Scrollbar for Modal */
+        /* Smooth Scrolling for Modal */
+        #category-container { scroll-behavior: smooth; }
         #category-container::-webkit-scrollbar { width: 6px; }
         #category-container::-webkit-scrollbar-thumb { background: #334155; border-radius: 10px; }
+        
+        /* Highlight selected question */
+        .highlight-q { background-color: rgba(34, 197, 94, 0.2); border-radius: 8px; transition: all 0.5s; }
     </style>
 </head>
 <body class="bg-slate-950 text-white font-sans min-h-screen p-4 md:p-12">
@@ -61,9 +65,10 @@
                        class="w-full p-4 rounded-2xl bg-slate-950 border border-white/10 text-white placeholder-slate-600 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-inner" 
                        placeholder="Type a question and press Enter...">
                 
-                <div class="mt-4 text-center">
-                    <button onclick="openHelpModal()" class="text-xs text-slate-500 hover:text-green-400 underline transition underline-offset-4">
-                        Don't know what to ask? Explore categories
+                <div class="mt-6">
+                    <button onclick="openHelpModal()" class="w-full p-3 bg-white/5 border border-white/10 rounded-xl text-sm text-slate-300 hover:text-green-400 hover:border-green-400/50 transition duration-300 group">
+                        <span class="block font-medium">Don't know what to ask?</span>
+                        <span class="text-xs text-slate-500 group-hover:text-green-400/80 underline decoration-dotted">Explore all 100+ questions by category</span>
                     </button>
                 </div>
             </div>
@@ -82,9 +87,10 @@
     </div>
 
     <script>
-        // Full Data (100 Questions)
+        let lastSelectedQ = ""; // Last selected question index for scrolling
+
         const botData = [
-            // Category 1
+            // General (0-14)
             { question: "what is an ai customer assistant", answer: "An AI assistant is a smart chatbot that uses Natural Language Processing to interact with users like a human." },
             { question: "different from a standard chatbot", answer: "Yes. Standard bots follow a rigid script; this AI understands intent and handles conversational context." },
             { question: "24/7", answer: "Yes, it provides round-the-clock support without breaks or delays." },
@@ -100,7 +106,7 @@
             { question: "name", answer: "Yes, if the user is logged in or provides their name, the bot uses it." },
             { question: "limit", answer: "No, it can be trained on thousands of pages of information." },
             { question: "jokes", answer: "Yes, we can enable 'Small Talk' to make the bot more engaging." },
-            // Category 2
+            // Sales (15-34)
             { question: "book appointments", answer: "Yes, it integrates with Google Calendar or Calendly to schedule meetings." },
             { question: "generate leads", answer: "Yes, it captures names, emails, and phone numbers during the chat." },
             { question: "take orders", answer: "Yes, it can guide users through a product catalog and take order details." },
@@ -121,7 +127,7 @@
             { question: "compare products", answer: "Yes, it can list the differences between two items for the user." },
             { question: "e-commerce", answer: "Yes, it integrates with platforms like Shopify and WooCommerce." },
             { question: "complaints", answer: "Yes, it can log a complaint and provide a ticket number." },
-            // Category 3
+            // Technical (35-54)
             { question: "ai models", answer: "I use GPT-4, Gemini Pro, or Claude depending on the use case." },
             { question: "whatsapp", answer: "Yes, via the WhatsApp Business API." },
             { question: "instagram", answer: "Yes, for automated DM management." },
@@ -142,7 +148,7 @@
             { question: "translate", answer: "Yes, if a user speaks in French, it can reply in French." },
             { question: "chat history", answer: "Yes, an admin dashboard allows you to view all logs." },
             { question: "turn it off", answer: "Yes, you have full control over its availability." },
-            // Category 4
+            // UI/UX (55-74)
             { question: "color", answer: "Yes, we can change the bot's color to match your brand's theme." },
             { question: "use my logo", answer: "Yes, the bot icon can be replaced with your brand logo." },
             { question: "typing indicator", answer: "Yes, it shows 'Typing...' to make it feel more human." },
@@ -163,7 +169,7 @@
             { question: "hidden", answer: "Yes, you can choose where it appears or hide it on certain pages." },
             { question: "search bar", answer: "It acts like a smart search bar but in a conversational way." },
             { question: "how-to steps", answer: "Yes, it provides clear, numbered instructions." },
-            // Category 5
+            // Advanced (75-89)
             { question: "sentiment analysis", answer: "The bot detects user mood and adjusts its tone accordingly." },
             { question: "human handoff", answer: "Transferring the chat to a real person when the AI is stuck." },
             { question: "hallucination", answer: "When AI makes up facts; I use grounding to prevent this." },
@@ -179,7 +185,7 @@
             { question: "detect sarcasm", answer: "Advanced models are very good at identifying tone." },
             { question: "citations", answer: "Yes, it can link to the source of information." },
             { question: "generate images", answer: "Yes, if integrated with models like DALL-E." },
-            // Category 6
+            // Pricing (90-99)
             { question: "cost of setup", answer: "It depends on the complexity (Basic vs Advanced)." },
             { question: "monthly fees", answer: "Yes, for AI model usage and maintenance." },
             { question: "trial", answer: "Yes, I can set up a basic demo for your business." },
@@ -190,6 +196,7 @@
             { question: "multiple bots", answer: "Yes (e.g., Sales Bot and Support Bot)." },
             { question: "get started", answer: "Just share your website URL and goals with me!" },
             { question: "why choose your service", answer: "Because I provide custom, high-accuracy AI solutions." },
+            // Extra matches
             { question: "services", answer: "Joms offers Data Solutions, Python Automation, and AI integration services." },
             { question: "contact", answer: "You can reach out via email at jomon13051983@gmail.com." },
             { question: "price", answer: "Pricing depends on the project's complexity. Please contact Joms for a quote." }
@@ -203,13 +210,11 @@
 
                 if (!userQuery) return;
 
-                // Reset Display
                 displayArea.classList.remove('typing-text');
                 void displayArea.offsetWidth; 
                 displayArea.style.width = 'auto';
                 displayArea.style.borderRight = 'none';
 
-                // 1. Greetings
                 const greetings = ["hi", "hello", "hoi", "hai"];
                 if (greetings.includes(userQuery)) {
                     displayArea.innerText = userQuery.charAt(0).toUpperCase() + userQuery.slice(1) + "!";
@@ -217,7 +222,6 @@
                     return;
                 }
 
-                // 2. Logic
                 let response = "I'm sorry, I don't have information on that. Try 'services' or 'contact'.";
                 const found = botData.find(item => {
                     const dbQ = item.question.toLowerCase();
@@ -231,7 +235,8 @@
             }
         }
 
-        function askQuick(query) {
+        function askQuick(query, elementId = null) {
+            if (elementId) lastSelectedQ = elementId; // Record the ID
             document.getElementById('user-input').value = query;
             handleQuery({ key: "Enter" });
         }
@@ -253,20 +258,37 @@
             for (let cat in categories) {
                 let details = document.createElement('details');
                 details.className = "group border border-white/5 rounded-2xl bg-white/5 overflow-hidden";
+                
+                // Check if last selected question belongs to this category to keep it open
+                const hasSelected = categories[cat].some((_, idx) => `q-${cat}-${idx}` === lastSelectedQ);
+                if (hasSelected) details.open = true;
+
                 details.innerHTML = `
                     <summary class="p-4 cursor-pointer font-semibold text-slate-300 hover:bg-white/10 flex justify-between items-center transition">
                         ${cat} <span class="text-[10px] bg-white/10 px-2 py-1 rounded-md">${categories[cat].length}</span>
                     </summary>
                     <div class="p-4 pt-0 space-y-2 bg-slate-950/40">
-                        ${categories[cat].map(item => `
-                            <p onclick="askQuick('${item.question}'); closeHelpModal();" 
-                               class="text-xs text-slate-400 cursor-pointer hover:text-green-400 border-b border-white/5 pb-2 transition capitalize">
-                               • ${item.question}
-                            </p>
-                        `).join('')}
+                        ${categories[cat].map((item, idx) => {
+                            const qId = `q-${cat}-${idx}`;
+                            const isSelected = qId === lastSelectedQ ? 'highlight-q p-2' : '';
+                            return `
+                                <p id="${qId}" onclick="askQuick('${item.question}', '${qId}'); closeHelpModal();" 
+                                   class="text-xs text-slate-400 cursor-pointer hover:text-green-400 border-b border-white/5 pb-2 transition capitalize ${isSelected}">
+                                   • ${item.question}
+                                </p>
+                            `;
+                        }).join('')}
                     </div>
                 `;
                 container.appendChild(details);
+            }
+
+            // After building, scroll to the last selected item
+            if (lastSelectedQ) {
+                setTimeout(() => {
+                    const el = document.getElementById(lastSelectedQ);
+                    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
             }
         }
 
