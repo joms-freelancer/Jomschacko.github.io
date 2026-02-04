@@ -6,6 +6,7 @@
     <title>AI Customer Assistant | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        /* കൈ ആട്ടുന്ന ആനിമേഷൻ */
         @keyframes wave {
             0% { transform: rotate(0deg); }
             10% { transform: rotate(14deg); }
@@ -18,27 +19,22 @@
         }
         .animate-wave {
             animation: wave 2s linear infinite;
-            transform-origin: 70% 70%; /* Adjust origin for natural arm wave */
+            transform-origin: 70% 70%;
         }
 
-        /* Typing effect for text */
+        /* തുടക്കത്തിലെ ടൈപ്പിംഗ് ആനിമേഷൻ */
         .typing-text {
-            overflow: hidden; /* Ensures the text is not visible until typed */
-            white-space: nowrap; /* Keeps the content on a single line */
-            width: 0; /* Starts with 0 width */
-            animation: typing 2.5s steps(40, end) forwards, blink-caret .75s step-end infinite;
+            overflow: hidden;
+            white-space: nowrap;
+            display: inline-block;
+            width: 0;
+            animation: typing 2.5s steps(40, end) forwards;
+            border-right: 2px solid #3b82f6;
         }
 
-        /* The typing animation effect */
         @keyframes typing {
             from { width: 0 }
             to { width: 100% }
-        }
-
-        /* The typewriter cursor effect */
-        @keyframes blink-caret {
-            from, to { border-color: transparent }
-            50% { border-color: #3b82f6; } /* Tailwind blue-500 */
         }
     </style>
 </head>
@@ -51,25 +47,66 @@
 
         <h1 class="text-4xl font-bold mb-6 text-green-400">AI Customer Assistant</h1>
 
-        <div class="w-full min-h-96 bg-slate-800/50 rounded-3xl shadow-2xl flex flex-col items-center justify-center p-8">
+        <div class="w-full min-h-[400px] bg-slate-800/50 rounded-3xl shadow-2xl flex flex-col items-center justify-center p-8 border border-white/10">
             
-            <div class="relative w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mb-6 text-5xl">
+            <div class="relative w-24 h-24 bg-blue-600 rounded-full flex items-center justify-center mb-6 text-5xl shadow-lg">
                 <span class="block animate-wave transform -translate-y-2">👋</span>
                 <span class="absolute top-1/2 left-1/2 -translate-x-1/2 translate-y-1/2 text-2xl">🤖</span>
             </div>
 
-            <div class="bg-white/10 text-white p-4 rounded-xl max-w-lg text-center border border-white/10">
-                <span id="bot-message" class="typing-text border-r-2 border-blue-500">
+            <div class="bg-white/5 text-white p-6 rounded-2xl max-w-lg text-center border border-white/10 mb-8 min-h-[80px] flex items-center justify-center">
+                <span id="bot-message" class="typing-text">
                     Hi, I am your assistant. What would you like to know?
                 </span>
             </div>
 
-            <div class="mt-8 w-full max-w-md flex items-center justify-center">
-                <input type="text" class="w-full p-3 rounded-xl bg-white/10 border border-white/20 text-sm placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-blue-500" placeholder="Type your question...">
+            <div class="w-full max-w-md">
+                <input type="text" 
+                       id="user-input"
+                       onkeypress="handleQuery(event)"
+                       class="w-full p-4 rounded-2xl bg-slate-900 border border-white/20 text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all shadow-inner" 
+                       placeholder="Type 'services' or 'contact'...">
+                <p class="text-[10px] text-slate-500 mt-2 text-center text-uppercase tracking-widest">Press Enter to Search</p>
             </div>
 
         </div>
     </div>
 
+    <script src="bot-data.js"></script>
+
+    <script>
+        function handleQuery(event) {
+            // എന്റർ കീ അമർത്തുമ്പോൾ മാത്രം
+            if (event.key === "Enter") {
+                const inputField = document.getElementById('user-input');
+                const userQuery = inputField.value.toLowerCase().trim();
+                const displayArea = document.getElementById('bot-message');
+
+                if (!userQuery) return;
+
+                // പഴയ ആനിമേഷൻ റിമൂവ് ചെയ്യുക
+                displayArea.classList.remove('typing-text');
+                displayArea.style.width = 'auto';
+                displayArea.style.borderRight = 'none';
+
+                // മറുപടി കണ്ടെത്തുക
+                let response = "I'm sorry, I don't have information on that. Try asking about 'services' or 'contact'.";
+                
+                // bot-data.js-ൽ നിന്ന് ചെക്ക് ചെയ്യുന്നു
+                if (window.botData) {
+                    const found = window.botData.find(item => userQuery.includes(item.question.toLowerCase()));
+                    if (found) {
+                        response = found.answer;
+                    }
+                }
+
+                // മറുപടി കാണിക്കുക
+                displayArea.innerText = response;
+                
+                // ഇൻപുട്ട് ക്ലിയർ ചെയ്യുക
+                inputField.value = "";
+            }
+        }
+    </script>
 </body>
 </html>
