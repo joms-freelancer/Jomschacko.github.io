@@ -72,7 +72,7 @@
         </div>
     </div>
 
-   <script>
+  <script>
     function handleQuery(event) {
         if (event.key === "Enter") {
             const inputField = document.getElementById('user-input');
@@ -81,11 +81,13 @@
 
             if (!userQuery) return;
 
+            // അനിമേഷൻ റീസെറ്റ് ചെയ്യുന്നു
             displayArea.classList.remove('typing-text');
+            void displayArea.offsetWidth; // അനിമേഷൻ റീസ്റ്റാർട്ട് ചെയ്യാൻ സഹായിക്കുന്ന ട്രിക്ക്
             displayArea.style.width = 'auto';
             displayArea.style.borderRight = 'none';
 
-            // 1. Greetings Logic
+            // 1. ഹലോ/ഹായ് മറുപടികൾ
             const greetings = ["hi", "hello", "hoi", "hai"];
             if (greetings.includes(userQuery)) {
                 displayArea.innerText = userQuery.charAt(0).toUpperCase() + userQuery.slice(1) + "!";
@@ -93,22 +95,22 @@
                 return;
             }
 
-            // 2. Advanced Search Logic (AI-like identification)
+            // 2. അഡ്വാൻസ്ഡ് സെർച്ച് ലോജിക് (AI-like)
             let response = "I'm sorry, I don't have information on that.";
             
-            if (window.botData) {
-                /* ഇവിടെയാണ് മാറ്റം: യൂസർ ചോദിച്ച വാചകത്തിൽ നമ്മുടെ 
-                   ലിസ്റ്റിലെ 'question' ഉണ്ടോ എന്ന് മാത്രമല്ല, തിരിച്ചും പരിശോധിക്കുന്നു.
-                */
+            if (window.botData && window.botData.length > 0) {
+                // ലളിതമായ മാച്ചിംഗിന് പകരം ഓരോ വാക്കും ഉണ്ടോ എന്ന് നോക്കുന്നു
                 const found = window.botData.find(item => {
                     const dbQuestion = item.question.toLowerCase();
-                    // യൂസർ ചോദിച്ചതിൽ നമ്മുടെ കീവേഡ് ഉണ്ടോ അല്ലെങ്കിൽ കീവേഡിൽ യൂസർ ചോദിച്ച വാക്കുണ്ടോ എന്ന് നോക്കുന്നു
+                    // 'service' എന്ന വാക്ക് 'services' എന്നതിലുണ്ടോ എന്ന് നോക്കുന്നു (അഥവാ തിരിച്ചും)
                     return userQuery.includes(dbQuestion) || dbQuestion.includes(userQuery);
                 });
 
                 if (found) {
                     response = found.answer;
                 }
+            } else {
+                console.error("bot-data.js ലോഡ് ആയിട്ടില്ല അല്ലെങ്കിൽ അതിൽ ഡാറ്റ ഇല്ല!");
             }
 
             displayArea.innerText = response;
