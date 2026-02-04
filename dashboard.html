@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Predictive Analytics Dashboard | Joms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .glow-green { box-shadow: 0 0 20px rgba(34, 197, 94, 0.2); }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen p-4 md:p-12">
+
+    <div class="max-w-6xl mx-auto">
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
+            <div>
+                <a href="services.html" class="text-green-400 text-sm hover:underline">← Back to Services</a>
+                <h1 class="text-4xl font-bold mt-2">Predictive Data <span class="text-green-400">Dashboard</span></h1>
+                <p class="text-slate-400 mt-1 text-sm">AI-driven market trend forecasting & growth analysis.</p>
+            </div>
+            <div class="glass p-3 rounded-xl flex gap-4">
+                <div class="text-center px-4">
+                    <p class="text-[10px] text-slate-500 uppercase">Confidence Score</p>
+                    <p class="text-xl font-mono text-green-400">98.2%</p>
+                </div>
+                <div class="text-center px-4 border-l border-white/10">
+                    <p class="text-[10px] text-slate-500 uppercase">Status</p>
+                    <p class="text-xl font-mono text-blue-400">Live</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            <div class="md:col-span-2 glass rounded-3xl p-6 glow-green">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="font-semibold text-lg">Market Growth Projection</h3>
+                    <select class="bg-slate-800 text-xs p-2 rounded-lg border-none outline-none">
+                        <option>Next 12 Months</option>
+                        <option>Next 5 Years</option>
+                    </select>
+                </div>
+                <div class="h-[300px]">
+                    <canvas id="growthChart"></canvas>
+                </div>
+            </div>
+
+            <div class="glass rounded-3xl p-6 flex flex-col justify-between">
+                <h3 class="font-semibold text-lg mb-4">AI Insights</h3>
+                <div class="space-y-4">
+                    <div class="p-3 bg-white/5 rounded-xl border-l-4 border-green-500">
+                        <p class="text-xs text-slate-400">Trend Detected</p>
+                        <p class="text-sm font-medium">Digital asset values expected to rise by 22% in Q3.</p>
+                    </div>
+                    <div class="p-3 bg-white/5 rounded-xl border-l-4 border-blue-500">
+                        <p class="text-xs text-slate-400">Risk Factor</p>
+                        <p class="text-sm font-medium">Market volatility low. Ideal for long-term expansion.</p>
+                    </div>
+                    <div class="p-3 bg-white/5 rounded-xl border-l-4 border-purple-500">
+                        <p class="text-xs text-slate-400">Prediction</p>
+                        <p class="text-sm font-medium">Automation adoption will hit peak in October.</p>
+                    </div>
+                </div>
+                <button class="w-full mt-6 py-3 bg-green-500 hover:bg-green-600 text-black font-bold rounded-xl transition">
+                    Generate Full Report
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <script>
+        const ctx = document.getElementById('growthChart').getContext('2d');
+        
+        // Gradient for Chart
+        const gradient = ctx.createLinearGradient(0, 0, 0, 400);
+        gradient.addColorStop(0, 'rgba(34, 197, 94, 0.4)');
+        gradient.addColorStop(1, 'rgba(34, 197, 94, 0)');
+
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                datasets: [{
+                    label: 'Predicted Growth (%)',
+                    data: [10, 15, 12, 19, 25, 22, 30, 45, 50, 65, 72, 85],
+                    borderColor: '#22c55e',
+                    borderWidth: 3,
+                    fill: true,
+                    backgroundColor: gradient,
+                    tension: 0.4, // Curves the line
+                    pointRadius: 0,
+                    pointHoverRadius: 6
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: { legend: { display: false } },
+                scales: {
+                    y: {
+                        grid: { color: 'rgba(255, 255, 255, 0.05)' },
+                        ticks: { color: '#64748b' }
+                    },
+                    x: {
+                        grid: { display: false },
+                        ticks: { color: '#64748b' }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+</html>
