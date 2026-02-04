@@ -75,38 +75,44 @@
     <script src="bot-data.js"></script>
 
     <script>
-        function handleQuery(event) {
-            // എന്റർ കീ അമർത്തുമ്പോൾ മാത്രം
-            if (event.key === "Enter") {
-                const inputField = document.getElementById('user-input');
-                const userQuery = inputField.value.toLowerCase().trim();
-                const displayArea = document.getElementById('bot-message');
+    function handleQuery(event) {
+        if (event.key === "Enter") {
+            const inputField = document.getElementById('user-input');
+            const userQuery = inputField.value.toLowerCase().trim();
+            const displayArea = document.getElementById('bot-message');
 
-                if (!userQuery) return;
+            if (!userQuery) return;
 
-                // പഴയ ആനിമേഷൻ റിമൂവ് ചെയ്യുക
-                displayArea.classList.remove('typing-text');
-                displayArea.style.width = 'auto';
-                displayArea.style.borderRight = 'none';
+            // പഴയ ആനിമേഷൻ റിമൂവ് ചെയ്യുന്നു
+            displayArea.classList.remove('typing-text');
+            displayArea.style.width = 'auto';
+            displayArea.style.borderRight = 'none';
 
-                // മറുപടി കണ്ടെത്തുക
-                let response = "I'm sorry, I don't have information on that. Try asking about 'services' or 'contact'.";
-                
-                // bot-data.js-ൽ നിന്ന് ചെക്ക് ചെയ്യുന്നു
-                if (window.botData) {
-                    const found = window.botData.find(item => userQuery.includes(item.question.toLowerCase()));
-                    if (found) {
-                        response = found.answer;
-                    }
-                }
-
-                // മറുപടി കാണിക്കുക
-                displayArea.innerText = response;
-                
-                // ഇൻപുട്ട് ക്ലിയർ ചെയ്യുക
+            // 1. ഹലോ/ഹായ് മറുപടികൾ (Greetings)
+            const greetings = ["hi", "hello", "hoi", "hai"];
+            if (greetings.includes(userQuery)) {
+                // യൂസർ പറഞ്ഞ വാക്ക് തന്നെ തിരിച്ചു പറയുന്നു (ആദ്യക്ഷരം ക്യാപിറ്റൽ ആക്കി)
+                displayArea.innerText = userQuery.charAt(0).toUpperCase() + userQuery.slice(1) + "!";
                 inputField.value = "";
+                return; // ഇവിടെ വെച്ച് ഫംഗ്‌ഷൻ നിർത്തുന്നു
             }
+
+            // 2. ഡാറ്റാബേസിൽ നിന്നുള്ള മറുപടി (Default Message ഇതിൽ ഉൾപ്പെടുത്തിയിട്ടുണ്ട്)
+            let response = "I'm sorry, I don't have information on that.";
+            
+            if (window.botData) {
+                // യൂസർ ടൈപ്പ് ചെയ്ത വാക്ക് നമ്മുടെ ലിസ്റ്റിലെ 'question' കീവേഡുമായി ഉണ്ടോ എന്ന് നോക്കുന്നു
+                const found = window.botData.find(item => userQuery.includes(item.question.toLowerCase()));
+                if (found) {
+                    response = found.answer;
+                }
+            }
+
+            // മറുപടി കാണിക്കുന്നു
+            displayArea.innerText = response;
+            inputField.value = "";
         }
-    </script>
+    }
+</script>
 </body>
 </html>
