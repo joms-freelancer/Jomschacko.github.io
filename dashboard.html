@@ -3,145 +3,71 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Predictive Analytics Dashboard | Joms</title>
+    <title>AI Dashboard | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <style>
-        .glass {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        .glow-green { box-shadow: 0 0 20px rgba(34, 197, 94, 0.1); }
-        canvas { width: 100% !important; height: 100% !important; }
-    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.9.1/chart.min.js"></script>
 </head>
-<body class="bg-slate-950 text-white min-h-screen p-4 md:p-12">
+<body class="bg-slate-950 text-white p-6">
 
-    <div class="max-w-6xl mx-auto">
-        <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-10 gap-4">
-            <div>
-                <a href="services.html" class="text-green-400 text-sm hover:underline">← Back to Services</a>
-                <h1 class="text-4xl font-bold mt-2">Predictive Data <span class="text-green-400">Dashboard</span></h1>
-                <p class="text-slate-400 mt-1 text-sm">AI-driven market trend forecasting & growth analysis.</p>
-            </div>
-            <div class="glass p-3 rounded-xl flex gap-4">
-                <div class="text-center px-4">
-                    <p class="text-[10px] text-slate-500 uppercase">Confidence Score</p>
-                    <p class="text-xl font-mono text-green-400">98.2%</p>
-                </div>
-                <div class="text-center px-4 border-l border-white/10">
-                    <p class="text-[10px] text-slate-500 uppercase">Status</p>
-                    <p class="text-xl font-mono text-blue-400">Live</p>
-                </div>
-            </div>
-        </div>
+    <div class="max-w-5xl mx-auto">
+        <a href="services.html" class="text-green-400 text-sm mb-4 inline-block">← Back</a>
+        <h1 class="text-3xl font-bold mb-8">Predictive <span class="text-green-400">Analysis</span></h1>
 
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-            
-            <div class="md:col-span-2 glass rounded-3xl p-6 glow-green relative min-h-[400px]">
-                <div class="flex justify-between items-center mb-6">
-                    <h3 class="font-semibold text-lg">Market Growth Projection</h3>
-                    <div class="flex gap-2">
-                        <span class="flex items-center gap-1 text-[10px] text-green-400">
-                            <span class="w-2 h-2 bg-green-400 rounded-full"></span> Predicted
-                        </span>
-                    </div>
-                </div>
-                <div class="relative h-[300px] w-full">
-                    <canvas id="growthChart"></canvas>
+            <div class="md:col-span-2 bg-slate-900 border border-white/10 p-6 rounded-3xl min-h-[400px]">
+                <h3 class="mb-6 text-slate-400">Market Growth Forecast</h3>
+                <div style="position: relative; height:300px; width:100%">
+                    <canvas id="myChart"></canvas>
                 </div>
             </div>
 
-            <div class="glass rounded-3xl p-6 flex flex-col justify-between">
-                <h3 class="font-semibold text-lg mb-4">AI Insights</h3>
-                <div class="space-y-4">
-                    <div class="p-3 bg-white/5 rounded-xl border-l-4 border-green-500">
-                        <p class="text-xs text-slate-500">Trend Detected</p>
-                        <p class="text-sm font-medium">Digital asset values expected to rise by 22% in Q3.</p>
+            <div class="bg-slate-900 border border-white/10 p-6 rounded-3xl">
+                <h3 class="mb-6 text-slate-400">AI Insights</h3>
+                <div class="space-y-4 text-sm">
+                    <div class="p-3 bg-green-500/10 border-l-2 border-green-500 rounded">
+                        Accuracy: 98.2%
                     </div>
-                    <div class="p-3 bg-white/5 rounded-xl border-l-4 border-blue-500">
-                        <p class="text-xs text-slate-500">Risk Factor</p>
-                        <p class="text-sm font-medium">Market volatility low. Ideal for long-term expansion.</p>
-                    </div>
-                    <div class="p-3 bg-white/5 rounded-xl border-l-4 border-purple-500">
-                        <p class="text-xs text-slate-500">Prediction</p>
-                        <p class="text-sm font-medium">Automation adoption will hit peak in October.</p>
+                    <div class="p-3 bg-blue-500/10 border-l-2 border-blue-500 rounded">
+                        Trend: Bullish
                     </div>
                 </div>
-                <button class="w-full mt-6 py-3 bg-green-500 hover:bg-green-600 text-black font-bold rounded-xl transition shadow-lg shadow-green-500/20">
-                    Generate Full AI Report
-                </button>
             </div>
-
         </div>
     </div>
 
     <script>
-        // Ensure script runs after the library is loaded
-        window.onload = function() {
-            const canvas = document.getElementById('growthChart');
-            if (!canvas) return;
-
-            const ctx = canvas.getContext('2d');
+        document.addEventListener("DOMContentLoaded", function() {
+            // ചാർട്ട് വരയ്ക്കാൻ തുടങ്ങുന്നു
+            const ctx = document.getElementById('myChart');
             
-            // Create Gradient
-            const gradient = ctx.createLinearGradient(0, 0, 0, 400);
-            gradient.addColorStop(0, 'rgba(34, 197, 94, 0.4)');
-            gradient.addColorStop(1, 'rgba(34, 197, 94, 0)');
+            if (typeof Chart === 'undefined') {
+                alert("Chart.js ലോഡ് ആയില്ല! ഇന്റർനെറ്റ് ഉണ്ടെന്ന് ഉറപ്പുവരുത്തുക.");
+                return;
+            }
 
-            // Data
-            const labels = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
-            const data = {
-                labels: labels,
-                datasets: [{
-                    label: 'Growth Forecast',
-                    data: [12, 19, 15, 25, 22, 30, 45, 40, 55, 70, 75, 90],
-                    borderColor: '#22c55e',
-                    borderWidth: 3,
-                    fill: true,
-                    backgroundColor: gradient,
-                    tension: 0.4,
-                    pointBackgroundColor: '#22c55e',
-                    pointRadius: 2,
-                    pointHoverRadius: 6
-                }]
-            };
-
-            // Config
-            const config = {
+            new Chart(ctx, {
                 type: 'line',
-                data: data,
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Growth %',
+                        data: [10, 25, 15, 40, 35, 60],
+                        borderColor: '#22c55e',
+                        backgroundColor: 'rgba(34, 197, 94, 0.2)',
+                        fill: true,
+                        tension: 0.4
+                    }]
+                },
                 options: {
                     responsive: true,
                     maintainAspectRatio: false,
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: '#1e293b',
-                            titleColor: '#22c55e',
-                            padding: 12,
-                            borderRadius: 10,
-                            displayColors: false
-                        }
-                    },
                     scales: {
-                        y: {
-                            beginAtZero: true,
-                            grid: { color: 'rgba(255, 255, 255, 0.05)', drawBorder: false },
-                            ticks: { color: '#64748b', font: { size: 10 } }
-                        },
-                        x: {
-                            grid: { display: false, drawBorder: false },
-                            ticks: { color: '#64748b', font: { size: 10 } }
-                        }
+                        y: { grid: { color: '#1e293b' } },
+                        x: { grid: { display: false } }
                     }
                 }
-            };
-
-            // Initialize Chart
-            new Chart(ctx, config);
-        };
+            });
+        });
     </script>
 </body>
 </html>
