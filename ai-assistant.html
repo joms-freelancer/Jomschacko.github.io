@@ -72,9 +72,7 @@
         </div>
     </div>
 
-    <script src="bot-data.js"></script>
-
-    <script>
+   <script>
     function handleQuery(event) {
         if (event.key === "Enter") {
             const inputField = document.getElementById('user-input');
@@ -83,32 +81,36 @@
 
             if (!userQuery) return;
 
-            // പഴയ ആനിമേഷൻ റിമൂവ് ചെയ്യുന്നു
             displayArea.classList.remove('typing-text');
             displayArea.style.width = 'auto';
             displayArea.style.borderRight = 'none';
 
-            // 1. ഹലോ/ഹായ് മറുപടികൾ (Greetings)
+            // 1. Greetings Logic
             const greetings = ["hi", "hello", "hoi", "hai"];
             if (greetings.includes(userQuery)) {
-                // യൂസർ പറഞ്ഞ വാക്ക് തന്നെ തിരിച്ചു പറയുന്നു (ആദ്യക്ഷരം ക്യാപിറ്റൽ ആക്കി)
                 displayArea.innerText = userQuery.charAt(0).toUpperCase() + userQuery.slice(1) + "!";
                 inputField.value = "";
-                return; // ഇവിടെ വെച്ച് ഫംഗ്‌ഷൻ നിർത്തുന്നു
+                return;
             }
 
-            // 2. ഡാറ്റാബേസിൽ നിന്നുള്ള മറുപടി (Default Message ഇതിൽ ഉൾപ്പെടുത്തിയിട്ടുണ്ട്)
+            // 2. Advanced Search Logic (AI-like identification)
             let response = "I'm sorry, I don't have information on that.";
             
             if (window.botData) {
-                // യൂസർ ടൈപ്പ് ചെയ്ത വാക്ക് നമ്മുടെ ലിസ്റ്റിലെ 'question' കീവേഡുമായി ഉണ്ടോ എന്ന് നോക്കുന്നു
-                const found = window.botData.find(item => userQuery.includes(item.question.toLowerCase()));
+                /* ഇവിടെയാണ് മാറ്റം: യൂസർ ചോദിച്ച വാചകത്തിൽ നമ്മുടെ 
+                   ലിസ്റ്റിലെ 'question' ഉണ്ടോ എന്ന് മാത്രമല്ല, തിരിച്ചും പരിശോധിക്കുന്നു.
+                */
+                const found = window.botData.find(item => {
+                    const dbQuestion = item.question.toLowerCase();
+                    // യൂസർ ചോദിച്ചതിൽ നമ്മുടെ കീവേഡ് ഉണ്ടോ അല്ലെങ്കിൽ കീവേഡിൽ യൂസർ ചോദിച്ച വാക്കുണ്ടോ എന്ന് നോക്കുന്നു
+                    return userQuery.includes(dbQuestion) || dbQuestion.includes(userQuery);
+                });
+
                 if (found) {
                     response = found.answer;
                 }
             }
 
-            // മറുപടി കാണിക്കുന്നു
             displayArea.innerText = response;
             inputField.value = "";
         }
