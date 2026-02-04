@@ -1,3 +1,17 @@
+<head>
+    </head>
+<body>
+    <script src="bot-data.js"></script>
+    <script>
+        window.onload = function() {
+            if (typeof botData !== 'undefined') {
+                console.log("Success: Data loaded!");
+            } else {
+                console.error("Error: bot-data.js is still not found!");
+            }
+        };
+  
+
 // bot-data.js
 const botQA = [
     // --- Category 1: General & Capabilities (1-15) ---
@@ -115,3 +129,6 @@ const botQA = [
 
 // Making data available to ai-assistant.html
 window.botData = botQA;
+
+  </script>
+</body>
