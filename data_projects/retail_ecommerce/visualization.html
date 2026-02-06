@@ -1,20 +1,96 @@
-<div class="w-full">
-    <h4 class="text-sm font-bold text-slate-700 mb-6 text-center">Monthly Revenue Growth</h4>
-    <div class="flex items-end justify-between gap-2 h-40 border-l border-b border-slate-200 p-2">
-        <div class="w-full bg-green-200 h-1/3 rounded-t-md relative group">
-            <span class="hidden group-hover:block absolute -top-6 left-0 text-[10px] font-bold">$2K</span>
+<div class="w-full space-y-10 animate-in fade-in slide-in-from-bottom-5 duration-700">
+    
+    <div class="bg-gradient-to-br from-slate-800 to-slate-900 p-8 rounded-[2.5rem] text-white shadow-xl">
+        <h4 class="text-xs font-black text-green-400 uppercase tracking-widest mb-3">Executive Summary</h4>
+        <p class="text-sm leading-relaxed opacity-90 font-medium italic">
+            "ഈ റിപ്പോർട്ട് പ്രകാരം കഴിഞ്ഞ ക്വാർട്ടറിൽ ബിസിനസ് 22% വളർച്ച രേഖപ്പെടുത്തി. ഇലക്ട്രോണിക്സ് വിഭാഗം വിപണിയിൽ മുന്നിട്ടു നിൽക്കുന്നു. പരസ്യങ്ങൾ സെയിൽസിനെ നേരിട്ട് സ്വാധീനിക്കുന്നുണ്ടെന്ന് ഗ്രാഫുകൾ വ്യക്തമാക്കുന്നു."
+        </p>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+        
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Product Comparison (Bar Chart)</h5>
+            <div class="flex items-end justify-around h-40 border-b border-slate-100 pb-2">
+                <div class="w-8 bg-green-500 rounded-t-md h-[80%] relative group">
+                    <span class="absolute -top-6 text-[8px] font-bold w-full text-center">Tech</span>
+                </div>
+                <div class="w-8 bg-blue-400 rounded-t-md h-[50%] relative">
+                    <span class="absolute -top-6 text-[8px] font-bold w-full text-center">Fashion</span>
+                </div>
+                <div class="w-8 bg-slate-300 rounded-t-md h-[30%] relative">
+                    <span class="absolute -top-6 text-[8px] font-bold w-full text-center">Home</span>
+                </div>
+            </div>
         </div>
-        <div class="w-full bg-green-300 h-1/2 rounded-t-md relative group">
-            <span class="hidden group-hover:block absolute -top-6 left-0 text-[10px] font-bold">$4K</span>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Profit Trends (Line Chart)</h5>
+            <div class="relative h-40 w-full flex items-end">
+                <svg viewBox="0 0 100 40" class="w-full h-full overflow-visible">
+                    <path d="M0 35 L20 25 L40 30 L60 10 L80 15 L100 5" fill="none" stroke="#10b981" stroke-width="2" />
+                    <circle cx="0" cy="35" r="1.5" fill="#10b981" />
+                    <circle cx="100" cy="5" r="1.5" fill="#10b981" />
+                </svg>
+            </div>
+            <div class="flex justify-between text-[8px] mt-2 font-bold text-slate-400">
+                <span>JAN</span><span>MAR</span><span>JUN</span><span>SEP</span><span>DEC</span>
+            </div>
         </div>
-        <div class="w-full bg-green-500 h-full rounded-t-md relative group">
-            <span class="hidden group-hover:block absolute -top-6 left-0 text-[10px] font-bold">$9K</span>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm flex flex-col items-center">
+            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Market Share (Donut)</h5>
+            <div class="w-24 h-24 rounded-full border-[12px] border-green-500 border-t-slate-100 border-l-slate-100 rotate-45 flex items-center justify-center">
+                <span class="text-xs font-black rotate-[-45deg]">65%</span>
+            </div>
+            <p class="mt-4 text-[10px] font-medium text-slate-500">Main Category dominance</p>
         </div>
-        <div class="w-full bg-green-600 h-3/4 rounded-t-md relative group">
-            <span class="hidden group-hover:block absolute -top-6 left-0 text-[10px] font-bold">$7K</span>
+
+        <div class="bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-6">Ads vs Sales (Scatter)</h5>
+            <div class="h-32 w-full border-l border-b border-slate-200 relative">
+                <div class="absolute w-2 h-2 bg-blue-500 rounded-full top-2/3 left-1/4"></div>
+                <div class="absolute w-2 h-2 bg-blue-500 rounded-full top-1/2 left-1/2"></div>
+                <div class="absolute w-2 h-2 bg-blue-500 rounded-full top-1/4 left-3/4"></div>
+                <div class="absolute w-2 h-2 bg-green-500 rounded-full top-10 left-[90%]"></div>
+            </div>
+        </div>
+
+        <div class="col-span-1 md:col-span-2 bg-white p-6 rounded-[2rem] border border-slate-100 shadow-sm">
+            <h5 class="text-[10px] font-black text-slate-400 uppercase tracking-widest mb-4">Peak Activity (Heatmap)</h5>
+            <div class="grid grid-cols-6 gap-1">
+                <div class="h-8 bg-green-100 rounded"></div>
+                <div class="h-8 bg-green-200 rounded"></div>
+                <div class="h-8 bg-green-500 rounded"></div>
+                <div class="h-8 bg-green-700 rounded"></div>
+                <div class="h-8 bg-green-900 rounded"></div>
+                <div class="h-8 bg-green-400 rounded"></div>
+            </div>
+            <p class="text-[8px] text-slate-400 mt-2 uppercase text-center font-bold">Time Slots (9 AM - 12 PM - 6 PM - 11 PM)</p>
         </div>
     </div>
-    <div class="flex justify-between mt-2 text-[10px] font-bold text-slate-400 uppercase">
-        <span>Jan</span><span>Feb</span><span>Mar</span><span>Apr</span>
+
+    <div class="bg-amber-50 p-8 rounded-[2.5rem] border border-amber-100">
+        <h4 class="text-xs font-black text-amber-700 uppercase tracking-widest mb-6">Actionable Insights</h4>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                    <span class="p-1 bg-amber-200 rounded text-xs">01</span>
+                    <p class="text-xs text-amber-900 font-medium">പരസ്യ ബജറ്റ് 15% വർദ്ധിപ്പിക്കുന്നത് വിൽപനയിൽ വലിയ മാറ്റമുണ്ടാക്കും (Scatter plot നോക്കുക).</p>
+                </div>
+            </div>
+            <div class="space-y-3">
+                <div class="flex items-start gap-3">
+                    <span class="p-1 bg-amber-200 rounded text-xs">02</span>
+                    <p class="text-xs text-amber-900 font-medium">തിരക്കുള്ള രാത്രി സമയങ്ങളിൽ കൂടുതൽ സർവ്വറുകൾ അല്ലെങ്കിൽ സപ്പോർട്ട് സ്റ്റാഫിനെ വിന്യസിക്കുക.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center p-6 border-2 border-dashed border-slate-200 rounded-3xl">
+        <p class="text-xs text-slate-400 font-medium">
+            💡 <b>Note:</b> കൂടുതൽ ആഴത്തിലുള്ള ഡാറ്റാ ഫിൽട്ടറിംഗിനായി <b>Tableau/Power BI</b> ഇന്റഗ്രേഷൻ ലഭ്യമാണ്.
+        </p>
     </div>
 </div>
