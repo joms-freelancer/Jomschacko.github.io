@@ -1,4 +1,72 @@
-<div style="background: #dcfce7; p: 20px; border-radius: 10px; color: #166534;">
-   <h2 style="font-weight: bold;">Retail Data Cleaned! 🧹</h2>
-   <p>ഡാറ്റാ ക്ലീനിംഗ് വിജയകരമായി പൂർത്തിയായി.</p>
+<div class="w-full space-y-6">
+    <div class="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
+        <div class="bg-slate-50 border-b border-slate-200 px-4 py-2 flex justify-between items-center">
+            <span class="text-[10px] font-bold text-slate-500 uppercase tracking-wider italic">retail_inventory_v2.csv</span>
+            <span class="text-[10px] bg-green-100 text-green-700 px-2 py-0.5 rounded-md font-bold">100% CLEANED</span>
+        </div>
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-[11px] font-medium border-collapse">
+                <thead>
+                    <tr class="bg-slate-100 border-b border-slate-200 text-slate-600">
+                        <th class="p-3 border-r border-slate-200">ID</th>
+                        <th class="p-3 border-r border-slate-200">Product Name</th>
+                        <th class="p-3 border-r border-slate-200">Category</th>
+                        <th class="p-3 border-r border-slate-200">Price ($)</th>
+                        <th class="p-3">Stock Status</th>
+                    </tr>
+                </thead>
+                <tbody class="text-slate-700">
+                    <tr class="border-b border-slate-100">
+                        <td class="p-3 border-r border-slate-100">#RT-901</td>
+                        <td class="p-3 border-r border-slate-100">iPhone 15 Pro</td>
+                        <td class="p-3 border-r border-slate-100">Electronics</td>
+                        <td class="p-3 border-r border-slate-100">999.00</td>
+                        <td class="p-3 text-green-600 font-bold">In Stock</td>
+                    </tr>
+                    <tr class="border-b border-slate-100 bg-slate-50/50">
+                        <td class="p-3 border-r border-slate-100">#RT-902</td>
+                        <td class="p-3 border-r border-slate-100">Wireless Headset</td>
+                        <td class="p-3 border-r border-slate-100">Audio</td>
+                        <td class="p-3 border-r border-slate-100">149.50 <span class="text-[9px] text-blue-500 font-bold">(Filled)</span></td>
+                        <td class="p-3 text-green-600 font-bold">In Stock</td>
+                    </tr>
+                    <tr class="border-b border-slate-100">
+                        <td class="p-3 border-r border-slate-100">#RT-903</td>
+                        <td class="p-3 border-r border-slate-100">Mechanical Keyboard</td>
+                        <td class="p-3 border-r border-slate-100">Accessories</td>
+                        <td class="p-3 border-r border-slate-100">89.00</td>
+                        <td class="p-3 text-orange-500 font-bold">Limited</td>
+                    </tr>
+                    <tr class="bg-slate-50/50">
+                        <td class="p-3 border-r border-slate-100">#RT-904</td>
+                        <td class="p-3 border-r border-slate-100">OLED Monitor</td>
+                        <td class="p-3 border-r border-slate-100">Displays</td>
+                        <td class="p-3 border-r border-slate-100">599.00</td>
+                        <td class="p-3 text-green-600 font-bold">In Stock</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="bg-slate-50 p-6 rounded-[2rem] border border-slate-100">
+        <h4 class="text-xs font-black text-slate-400 uppercase tracking-widest mb-4">Cleaning Summary Report</h4>
+        <ul class="space-y-3 text-sm text-slate-700 font-medium">
+            <li class="flex items-center gap-2">
+                <span class="text-green-500">✔</span>
+                <span>The original dataset contained <b>1,450 rows</b> and <b>12 columns</b>.</span>
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="text-green-500">✔</span>
+                <span>Identified <b>84 empty cells</b> (Null values) across the 'Price' and 'Stock' fields.</span>
+            </li>
+            <li class="flex items-center gap-2">
+                <span class="text-green-500">✔</span>
+                <span>Successfully filled <b>84 missing entries</b> using Mean-Imputation and historical data.</span>
+            </li>
+            <li class="flex items-center gap-2 border-t border-slate-200 pt-3 mt-3 italic text-slate-500 text-xs">
+                <span>🛡 <b>Verification:</b> All duplicates have been purged, and data integrity is now 100% verified for high-accuracy AI modeling.</span>
+            </li>
+        </ul>
+    </div>
 </div>
