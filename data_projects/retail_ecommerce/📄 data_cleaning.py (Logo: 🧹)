@@ -1,1 +1,21 @@
-
+<div class="w-full space-y-6">
+    <div class="bg-red-50 p-4 rounded-2xl border border-red-100">
+        <h4 class="text-xs font-bold text-red-600 uppercase mb-2">Raw Data (Before)</h4>
+        <table class="w-full text-[11px] text-slate-500">
+            <tr class="border-b"><th>ID</th><th>Product</th><th>Price</th></tr>
+            <tr><td>#101</td><td>iPhone 15</td><td>$999</td></tr>
+            <tr class="bg-red-100"><td>#102</td><td>Airpods</td><td>NULL</td></tr>
+            <tr class="bg-red-100"><td>#101</td><td>iPhone 15</td><td>$999</td></tr>
+        </table>
+    </div>
+    <div class="text-center text-xl">⬇️</div>
+    <div class="bg-green-50 p-4 rounded-2xl border border-green-100">
+        <h4 class="text-xs font-bold text-green-600 uppercase mb-2">Cleaned Data (After)</h4>
+        <table class="w-full text-[11px] text-slate-700">
+            <tr class="border-b"><th>ID</th><th>Product</th><th>Price</th></tr>
+            <tr><td>#101</td><td>iPhone 15</td><td>$999</td></tr>
+            <tr><td>#102</td><td>Airpods</td><td>$129 (Fixed)</td></tr>
+        </table>
+        <p class="text-[10px] mt-2 text-green-600 font-bold">✓ Duplicates removed | ✓ Null values filled</p>
+    </div>
+</div>
