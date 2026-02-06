@@ -1,1 +1,13 @@
-
+<div class="w-full flex flex-col items-center justify-center space-y-4">
+    <div class="p-8 border-2 border-dashed border-slate-200 rounded-[2rem] text-center w-full">
+        <p class="text-4xl mb-2">📄</p>
+        <h4 class="font-bold text-slate-800">Retail_Monthly_Report_Q1.pdf</h4>
+        <p class="text-[10px] text-slate-400">Generated on Feb 6, 2026</p>
+    </div>
+    <button class="w-full py-4 bg-slate-900 text-white rounded-2xl font-bold text-xs hover:bg-black transition-all shadow-lg">
+        DOWNLOAD REPORT (PDF)
+    </button>
+    <button class="w-full py-4 border-2 border-slate-900 text-slate-900 rounded-2xl font-bold text-xs hover:bg-slate-50 transition-all">
+        VIEW ONLINE VERSION
+    </button>
+</div>
