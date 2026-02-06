@@ -1,1 +1,86 @@
+<div class="w-full space-y-6 animate-in fade-in duration-700">
+    <div class="bg-[#0f172a] border border-slate-700 rounded-xl overflow-hidden shadow-2xl">
+        <div class="bg-slate-800/50 border-b border-slate-700 px-4 py-3 flex justify-between items-center">
+            <div class="flex items-center gap-2">
+                <div class="w-2 h-2 bg-blue-500 rounded-full animate-pulse"></div>
+                <span class="text-[10px] font-bold text-slate-300 uppercase tracking-wider italic">loan_disbursement_logs_v4.sql</span>
+            </div>
+            <span class="text-[10px] bg-blue-500/20 text-blue-400 px-2 py-1 rounded-md border border-blue-500/30 font-bold">DATA INTEGRITY: 100%</span>
+        </div>
+        
+        <div class="overflow-x-auto">
+            <table class="w-full text-left text-[11px] font-medium border-collapse">
+                <thead>
+                    <tr class="bg-slate-800 text-slate-400 border-b border-slate-700">
+                        <th class="p-4 border-r border-slate-700">Transaction ID</th>
+                        <th class="p-4 border-r border-slate-700">Customer Class</th>
+                        <th class="p-4 border-r border-slate-700">Credit Score</th>
+                        <th class="p-4 border-r border-slate-700">Loan Amount ($)</th>
+                        <th class="p-4">Risk Assessment</th>
+                    </tr>
+                </thead>
+                <tbody class="text-slate-300">
+                    <tr class="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                        <td class="p-4 border-r border-slate-800 font-mono text-blue-400">#TXN-4401</td>
+                        <td class="p-4 border-r border-slate-800">Premium High-Net</td>
+                        <td class="p-4 border-r border-slate-800">820</td>
+                        <td class="p-4 border-r border-slate-800">250,000.00</td>
+                        <td class="p-4"><span class="bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded text-[10px]">LOW RISK</span></td>
+                    </tr>
+                    <tr class="border-b border-slate-800 bg-slate-800/20 hover:bg-slate-800/30 transition-colors">
+                        <td class="p-4 border-r border-slate-800 font-mono text-blue-400">#TXN-4402</td>
+                        <td class="p-4 border-r border-slate-800">Standard Retail</td>
+                        <td class="p-4 border-r border-slate-800">645 <span class="text-[9px] text-indigo-400 font-bold ml-1">(Corrected)</span></td>
+                        <td class="p-4 border-r border-slate-800">12,500.00</td>
+                        <td class="p-4"><span class="bg-amber-500/10 text-amber-500 px-2 py-0.5 rounded text-[10px]">MEDIUM</span></td>
+                    </tr>
+                    <tr class="border-b border-slate-800 hover:bg-slate-800/30 transition-colors">
+                        <td class="p-4 border-r border-slate-800 font-mono text-blue-400">#TXN-4403</td>
+                        <td class="p-4 border-r border-slate-800">Corporate Elite</td>
+                        <td class="p-4 border-r border-slate-800">790</td>
+                        <td class="p-4 border-r border-slate-800">1,200,000.00</td>
+                        <td class="p-4"><span class="bg-emerald-500/10 text-emerald-500 px-2 py-0.5 rounded text-[10px]">LOW RISK</span></td>
+                    </tr>
+                    <tr class="bg-slate-800/20 hover:bg-slate-800/30 transition-colors">
+                        <td class="p-4 border-r border-slate-800 font-mono text-blue-400">#TXN-4404</td>
+                        <td class="p-4 border-r border-slate-800">SME Business</td>
+                        <td class="p-4 border-r border-slate-800">510 <span class="text-[9px] text-red-400 font-bold ml-1">(Outlier Checked)</span></td>
+                        <td class="p-4 border-r border-slate-800">45,000.00</td>
+                        <td class="p-4"><span class="bg-red-500/10 text-red-500 px-2 py-0.5 rounded text-[10px]">HIGH RISK</span></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
 
+    <div class="bg-slate-900/40 p-6 rounded-2xl border border-slate-800 backdrop-blur-sm">
+        <div class="flex items-center gap-3 mb-4">
+            <div class="p-2 bg-blue-500/10 rounded-lg">
+                <svg class="w-4 h-4 text-blue-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <h4 class="text-xs font-black text-slate-300 uppercase tracking-widest">Financial Data Scrubbing Report</h4>
+        </div>
+        
+        <div class="grid md:grid-cols-2 gap-4">
+            <ul class="space-y-3 text-sm text-slate-400 font-medium">
+                <li class="flex items-start gap-2">
+                    <span class="text-blue-500 mt-1">▹</span>
+                    <span>Processed <b>8,240 financial records</b> from core banking SQL tables.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                    <span class="text-blue-500 mt-1">▹</span>
+                    <span>Detected <b>112 inconsistent credit scores</b> outside the 300-850 range.</span>
+                </li>
+            </ul>
+            <ul class="space-y-3 text-sm text-slate-400 font-medium">
+                <li class="flex items-start gap-2">
+                    <span class="text-blue-500 mt-1">▹</span>
+                    <span>Standardized <b>Currency Formats</b> and handled missing 'Transaction Type' tags.</span>
+                </li>
+                <li class="flex items-start gap-2 border-t border-slate-800 pt-3 mt-1 italic text-slate-500 text-xs">
+                    <span>🔐 <b>Security:</b> All PII (Personally Identifiable Information) has been masked/anonymized.</span>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
