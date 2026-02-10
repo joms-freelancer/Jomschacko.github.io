@@ -8,9 +8,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
         .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
-        #chat-window { display: none; flex-direction: column; }
-
-        /* Grand Backdrop Curtain Styles */
+        
+        /* Curtain Container */
         #curtain-wrapper {
             position: fixed;
             inset: 0;
@@ -20,40 +19,43 @@
             overflow: hidden;
         }
 
+        /* Each Curtain Panel */
         .curtain-panel {
             flex: 1;
             position: relative;
-            /* Gradient to mimic the red/orange fabric fold */
             background-image: repeating-linear-gradient(90deg, #b91c1c 0%, #ef4444 10%, #f97316 20%, #ef4444 30%, #b91c1c 40%);
             background-size: 200% 100%;
-            transition: transform 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
+            /* പതുക്കെ തുറന്നു മാറാനുള്ള വേഗത ഇവിടെയാണ് സെറ്റ് ചെയ്യുന്നത് */
+            transition: all 1.8s cubic-bezier(0.645, 0.045, 0.355, 1); 
             display: flex;
             align-items: center;
             box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
+            opacity: 1;
         }
 
-        /* Fairy Lights Effect (The dots on the curtain) */
+        /* Fairy Lights Decoration */
         .curtain-panel::before {
             content: '';
             position: absolute;
             inset: 0;
             background-image: radial-gradient(circle, #fef08a 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.6;
-            animation: twinkle 2s infinite alternate;
+            background-size: 50px 50px;
+            opacity: 0.5;
         }
 
-        @keyframes twinkle {
-            from { opacity: 0.3; }
-            to { opacity: 0.8; }
+        /* Golden Border at the edge */
+        .left-panel { border-right: 5px solid #facc15; justify-content: flex-end; transform-origin: left; }
+        .right-panel { border-left: 5px solid #facc15; justify-content: flex-start; transform-origin: right; }
+
+        /* തുറക്കുമ്പോൾ വശങ്ങളിലേക്ക് ചുരുങ്ങി മാറുന്ന എഫക്റ്റ് */
+        .open-left { 
+            transform: scaleX(0.1) translateX(-100%); 
+            opacity: 0;
         }
-
-        .left-panel { border-right: 4px solid #facc15; justify-content: flex-end; transform-origin: left; }
-        .right-panel { border-left: 4px solid #facc15; justify-content: flex-start; transform-origin: right; }
-
-        /* Opening Animation (Curtain Fold Effect) */
-        .open-left { transform: scaleX(0) translateX(-100%); opacity: 0; }
-        .open-right { transform: scaleX(0) translateX(100%); opacity: 0; }
+        .open-right { 
+            transform: scaleX(0.1) translateX(100%); 
+            opacity: 0;
+        }
 
         .royal-text {
             font-family: 'Cinzel', serif;
@@ -61,27 +63,35 @@
             color: #fef08a;
             text-shadow: 0 0 20px rgba(250, 204, 21, 0.8);
             z-index: 10;
-            transition: all 0.8s ease;
+            transition: opacity 0.5s ease;
         }
     </style>
     <script>
+        window.addEventListener('DOMContentLoaded', () => {
+            // സൈറ്റ് ലോഡ് ആയി 1 സെക്കൻഡ് കഴിഞ്ഞു അനിമേഷൻ തുടങ്ങും
+            setTimeout(() => {
+                const left = document.querySelector('.left-panel');
+                const right = document.querySelector('.right-panel');
+                const wrapper = document.getElementById('curtain-wrapper');
+                
+                // അനിമേഷൻ ക്ലാസ്സുകൾ ആഡ് ചെയ്യുന്നു
+                left.classList.add('open-left');
+                right.classList.add('open-right');
+                
+                // അനിമേഷൻ പൂർത്തിയായ ശേഷം കർട്ടൻ ലെയർ പൂർണ്ണമായും നീക്കം ചെയ്യുന്നു
+                setTimeout(() => {
+                    wrapper.style.display = 'none';
+                }, 2000); 
+            }, 1000);
+        });
+
         function toggleChat() { 
             const win = document.getElementById('chat-window');
             win.style.display = (win.style.display === "none" || win.style.display === "") ? "flex" : "none";
         }
-
-        window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelector('.left-panel').classList.add('open-left');
-                document.querySelector('.right-panel').classList.add('open-right');
-                setTimeout(() => {
-                    document.getElementById('curtain-wrapper').remove();
-                }, 2000);
-            }, 1500);
-        });
     </script>
 </head>
-<body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500 overflow-x-hidden">
+<body class="bg-slate-900 min-h-screen text-white font-sans overflow-x-hidden">
     
     <div id="curtain-wrapper">
         <div class="curtain-panel left-panel">
@@ -96,58 +106,19 @@
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-2xl text-blue-400 tracking-tighter">JOMS</h1>
             <div class="flex space-x-2">
-                <button class="px-4 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('en')">English</button> 
-                <button class="px-4 py-1 bg-white/10 rounded-full text-xs hover:bg-white/20 transition" onclick="changeLang('ml')">മലയാളം</button>
+                <button class="px-4 py-1 bg-white/10 rounded-full text-xs" onclick="changeLang('en')">English</button> 
+                <button class="px-4 py-1 bg-white/10 rounded-full text-xs" onclick="changeLang('ml')">മലയാളം</button>
             </div>
         </div>
     </nav>
 
     <header class="max-w-4xl mx-auto text-center py-16 px-6">
         <div class="mb-6 flex justify-center">
-            <img id="profile-img" alt="Joms Profile" class="w-44 h-44 rounded-full border-4 border-blue-500 object-cover shadow-2xl" 
-                 src="Photo from jomon13051983 copy.jpg" 
-                 onerror="this.src='https://ui-avatars.com/api/?name=Joms&background=0D8ABC&color=fff&size=200'">
+            <img id="profile-img" alt="Joms Profile" class="w-44 h-44 rounded-full border-4 border-blue-500 object-cover shadow-2xl" src="Photo from jomon13051983 copy.jpg">
         </div>
-        <h2 class="text-5xl font-extrabold mb-4 tracking-tight" id="hero-title">Welcome</h2>
-        <p class="text-lg text-slate-400 italic" id="hero-desc">Data Solutions Specialist & AI/ML Enthusiast</p>
+        <h2 class="text-5xl font-extrabold mb-4 tracking-tight">Welcome</h2>
+        <p class="text-lg text-slate-400 italic">Data Solutions Specialist & AI/ML Enthusiast</p>
     </header>
 
-    <main class="max-w-6xl mx-auto pb-24 px-6">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-            <a href="about.html" class="block group">
-                <div class="glass p-8 rounded-3xl group-hover:border-blue-500 transition shadow-lg h-full">
-                    <h3 class="font-bold text-blue-400 mb-3" id="box-about-title">About Me</h3>
-                    <p class="text-xs text-slate-400" id="box-about-desc">Professional Journey</p>
-                </div>
-            </a>
-            <a href="services.html" class="block group">
-                <div class="glass p-8 rounded-3xl group-hover:border-green-500 transition shadow-lg h-full">
-                    <h3 class="font-bold text-green-400 mb-3" id="box-service-title">Services</h3>
-                    <p class="text-xs text-slate-400" id="box-service-desc">Advanced Project Demos</p>
-                </div>
-            </a>
-            <a href="skills.html" class="block group">
-                <div class="glass p-8 rounded-3xl group-hover:border-purple-500 transition shadow-lg h-full">
-                    <h3 class="font-bold text-purple-400 mb-3" id="box-skill-title">Skills</h3>
-                    <p class="text-xs text-slate-400" id="box-skill-desc">Expert AI Solutions</p>
-                </div>
-            </a>
-            <div class="glass p-8 rounded-3xl border-emerald-500/30 transition shadow-lg h-full">
-                <h3 class="font-bold text-emerald-400 mb-3" id="box-contact-title">Contact Me</h3>
-                <p class="text-xs text-slate-400" id="box-contact-desc">jomon13051983@gmail.com</p>
-            </div>
-        </div>
-    </main>
-
-    <script>
-        const translations = {
-            'en': { 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast' },
-            'ml': { 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്' }
-        };
-        function changeLang(lang) {
-            const t = translations[lang];
-            for (let key in t) { document.getElementById(key).innerText = t[key]; }
-        }
-    </script>
-</body>
+    </body>
 </html>
