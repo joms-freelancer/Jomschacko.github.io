@@ -10,16 +10,72 @@
         #chat-messages::-webkit-scrollbar { width: 4px; }
         #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
         #chat-window { display: none; flex-direction: column; }
+
+        /* Curtain Animation Styles */
+        #curtain-wrapper {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            display: flex;
+            pointer-events: none;
+        }
+        .curtain-panel {
+            flex: 1;
+            background: #0f172a; /* Slate-900 same as body */
+            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1);
+            display: flex;
+            align-items: center;
+            pointer-events: all;
+        }
+        .left-panel { border-right: 1px solid rgba(59, 130, 246, 0.2); justify-content: flex-end; }
+        .right-panel { border-left: 1px solid rgba(59, 130, 246, 0.2); justify-content: flex-start; }
+        
+        /* Animation Classes */
+        .open-left { transform: translateX(-100%); }
+        .open-right { transform: translateX(100%); }
+        
+        .welcome-text {
+            color: #60a5fa;
+            font-weight: 900;
+            font-size: 2rem;
+            letter-spacing: -0.05em;
+            text-transform: uppercase;
+            opacity: 1;
+            transition: opacity 0.5s ease;
+        }
+        .fade-out { opacity: 0; }
     </style>
     <script>
         function toggleChat() { 
             const win = document.getElementById('chat-window');
             win.style.display = (win.style.display === "none" || win.style.display === "") ? "flex" : "none";
         }
+
+        // Start curtain animation on load
+        window.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                document.querySelector('.welcome-text').classList.add('fade-out');
+                document.querySelector('.left-panel').classList.add('open-left');
+                document.querySelector('.right-panel').classList.add('open-right');
+                // Remove the wrapper from DOM after animation
+                setTimeout(() => {
+                    document.getElementById('curtain-wrapper').style.display = 'none';
+                }, 1500);
+            }, 1000); // 1 second delay before opening
+        });
     </script>
 </head>
 <body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500 overflow-x-hidden">
     
+    <div id="curtain-wrapper">
+        <div class="curtain-panel left-panel">
+            <span class="welcome-text mr-4">JO</span>
+        </div>
+        <div class="curtain-panel right-panel">
+            <span class="welcome-text ml-4">MS</span>
+        </div>
+    </div>
+
     <nav class="glass sticky top-0 z-50 p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
             <h1 class="font-bold text-2xl text-blue-400 tracking-tighter">JOMS</h1>
@@ -91,7 +147,6 @@
     </div>
 
     <script>
-        // Database updated to respond in English only
         const qaDatabase = [
             { keywords: ["service", "work", "do", "offer", "സേവനം", "ചെയ്തുതരും"], response: "Joms specializes in Data Solutions, Python Automation, and Web Development. He has 10+ premium project demos available for review." },
             { keywords: ["contact", "email", "reach", "hire", "വിളിക്കാൻ", "ബന്ധപ്പെടാൻ"], response: "You can reach Joms professionally via email at: jomon13051983@gmail.com." },
@@ -129,14 +184,14 @@
             'en': {
                 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast',
                 'box-about-title': 'About Me', 'box-about-desc': 'Professional Journey & Expert Background',
-                'box-service-title': 'Services', 'box-service-desc': 'Top 10 Advanced Project Demos',
+                'box-service-title': 'Services', 'box-service-desc': 'Top 4 Advanced Project Demos',
                 'box-skill-title': 'Skills', 'box-skill-desc': 'Expert Python & AI Solutions Architect',
                 'box-contact-title': 'Contact Me', 'box-contact-desc': 'Email: jomon13051983@gmail.com'
             },
             'ml': {
                 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്',
                 'box-about-title': 'എന്നെക്കുറിച്ച്', 'box-about-desc': 'പ്രൊഫഷണൽ അനുഭവസമ്പത്തും വൈദഗ്ധ്യവും',
-                'box-service-title': 'സേവനങ്ങൾ', 'box-service-desc': 'മികച്ച 10 പ്രീമിയം പ്രോജക്റ്റുകൾ',
+                'box-service-title': 'സേവനങ്ങൾ', 'box-service-desc': 'മികച്ച 4 പ്രീമിയം പ്രോജക്റ്റുകൾ',
                 'box-skill-title': 'കഴിവുകൾ', 'box-skill-desc': 'അഡ്വാൻസ്ഡ് പൈത്തൺ & AI വിദഗ്ധൻ',
                 'box-contact-title': 'ബന്ധപ്പെടുക', 'box-contact-desc': 'ഇമെയിൽ: jomon13051983@gmail.com'
             }
