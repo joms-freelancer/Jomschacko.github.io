@@ -1,99 +1,69 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<meta charset="UTF-8">
-	<meta content="width=device-width, initial-scale=1.0" name="viewport">
-	<title>Services & Projects | Joms</title>
-	<script src="https://cdn.tailwindcss.com"></script>
-	<style>
-	       .glass-card { 
-	           backdrop-filter: blur(12px); 
-	           background: rgba(255, 255, 255, 0.03); 
-	           border: 1px solid rgba(255, 255, 255, 0.1);
-	           transition: all 0.3s ease;
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Services & Projects | Joms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+           .glass-card { 
+               backdrop-filter: blur(12px); 
+               background: rgba(255, 255, 255, 0.03); 
+               border: 1px solid rgba(255, 255, 255, 0.1);
+               transition: all 0.3s ease;
                display: flex;
                flex-direction: column;
-	       }
-	       .glass-card:hover { 
-	           border-color: #10b981;
-	           background: rgba(16, 185, 129, 0.05);
-	           transform: scale(1.02);
-	       }
-	</style>
+           }
+           .glass-card:hover { 
+               border-color: #10b981;
+               background: rgba(16, 185, 129, 0.05);
+               transform: scale(1.02);
+           }
+    </style>
 </head>
 <body class="bg-slate-950 text-white font-sans selection:bg-green-500 min-h-screen p-6 md:p-12">
-	<div class="max-w-6xl mx-auto">
-		<div class="flex justify-between items-center mb-12">
-			<a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm" href="index.html"><span>←</span> Back to Home</a>
+    <div class="max-w-6xl mx-auto">
+        <div class="flex justify-between items-center mb-12">
+            <a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm" href="index.html"><span>←</span> Back to Home</a>
+        </div>
+
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent uppercase">Premium Services</h1>
+            <p class="text-slate-400 text-lg italic">Innovative solutions delivered with precision</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 max-w-4xl mx-auto">
+            
+            <a href="ai-assistant.html" class="glass-card p-8 rounded-3xl block transition-all">
+                <div class="w-12 h-12 bg-green-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🤖</div>
+                <h3 class="text-xl font-bold mb-3 text-slate-100">AI Customer Assistant</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Custom Gemini-powered chatbots trained on business data for 24/7 client support.</p>
+            </a>
+
+            <a href="dashboard.html" class="glass-card p-8 rounded-3xl block transition-all">
+                <div class="w-12 h-12 bg-blue-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">📊</div>
+                <h3 class="text-xl font-bold mb-3 text-slate-100">Predictive Data Dashboard</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Dynamic visualization tools that analyze market trends and predict future growth.</p>
+            </a>
+
+            <div class="glass-card p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🐍</div>
+                <h3 class="text-xl font-bold mb-3 text-slate-100">Python Automation Bot</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Advanced scripts to automate repetitive web tasks, data entry, and file management.</p>
             </div>
 
-		<div class="text-center mb-16">
-			<h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent uppercase">Premium Services</h1>
-			<p class="text-slate-400 text-lg italic">Innovative solutions delivered with precision</p>
-		</div>
+            <div class="glass-card p-8 rounded-3xl">
+                <div class="w-12 h-12 bg-pink-500/10 rounded-xl flex items-center justify-center mb-6 text-2xl">🎨</div>
+                <h3 class="text-xl font-bold mb-3 text-slate-100">Modern Web Design</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Crafting high-performance, responsive, and visually stunning websites with a focus on UI/UX.</p>
+            </div>
 
-		<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-			
-			<a href="ai-assistant.html" class="glass-card p-6 rounded-3xl block transition-all">
-				<div class="w-10 h-10 bg-green-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">🤖</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">AI Customer Assistant</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Custom Gemini-powered chatbots trained on business data for 24/7 client support.</p>
-			</a>
+        </div>
 
-			<a href="dashboard.html" class="glass-card p-6 rounded-3xl block transition-all">
-				<div class="w-10 h-10 bg-blue-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">📊</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Predictive Data Dashboard</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Dynamic visualization tools that analyze market trends and predict future growth.</p>
-			</a>
-
-			<div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-purple-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">🐍</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Python Automation Bot</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Advanced scripts to automate repetitive web tasks, data entry, and file management.</p>
-			</div>
-
-            <div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-orange-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">📦</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Smart Inventory System</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Inventory tracking with low-stock alerts and automated supplier communication.</p>
-			</div>
-
-            <div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-red-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">💰</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Financial Algo-Tracker</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Real-time expense and revenue monitoring with algorithmic financial health scoring.</p>
-			</div>
-
-            <div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-teal-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">👁️</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Computer Vision Tool</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">AI tools for image recognition and automated object detection in digital assets.</p>
-			</div>
-
-            <div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-yellow-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">📁</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Client Management Portal</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Secure end-to-end portals for managing projects, invoices, and client communication.</p>
-			</div>
-
-            <div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-pink-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">✉️</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Bulk Notification Suite</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Automated system for sending personalized bulk emails and SMS notifications.</p>
-			</div>
-
-            <div class="glass-card p-6 rounded-3xl">
-				<div class="w-10 h-10 bg-indigo-500/10 rounded-lg flex items-center justify-center mb-4 text-xl">🏗️</div>
-				<h3 class="text-lg font-bold mb-2 text-slate-100">Resume AI Engine</h3>
-				<p class="text-xs text-slate-400 leading-relaxed">Dynamic web system that generates AI-optimized resumes based on user skills.</p>
-			</div>
-
-		</div>
-
-		<div class="mt-20 text-center p-12 glass-card rounded-3xl border border-white/5">
-			<h3 class="text-xl font-bold mb-4">Interested in a custom solution?</h3>
-			<a class="bg-green-600 hover:bg-green-500 text-white px-6 py-2 rounded-full text-sm font-bold transition inline-block" href="mailto:jomon13051983@gmail.com">Start a Conversation</a>
-		</div>
-	</div>
+        <div class="mt-20 text-center p-12 glass-card rounded-3xl border border-white/5">
+            <h3 class="text-xl font-bold mb-4 text-white">Interested in a custom solution?</h3>
+            <a class="bg-green-600 hover:bg-green-500 text-white px-8 py-3 rounded-full text-sm font-bold transition inline-block shadow-lg shadow-green-900/20" href="mailto:jomon13051983@gmail.com">Start a Conversation</a>
+        </div>
+    </div>
 </body>
 </html>
