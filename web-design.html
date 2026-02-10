@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Web Design Portfolio | Joms</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+           .glass-card { 
+               backdrop-filter: blur(12px); 
+               background: rgba(255, 255, 255, 0.03); 
+               border: 1px solid rgba(255, 255, 255, 0.1);
+               transition: all 0.3s ease;
+           }
+           .glass-card:hover { 
+               border-color: #10b981;
+               background: rgba(16, 185, 129, 0.05);
+               transform: translateY(-5px);
+           }
+    </style>
+</head>
+<body class="bg-slate-950 text-white font-sans min-h-screen p-8 md:p-20">
+    <div class="max-w-5xl mx-auto">
+        <a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm mb-12" href="services.html">
+            <span>←</span> Back to Services
+        </a>
+
+        <div class="mb-16">
+            <h1 class="text-4xl font-black mb-4 tracking-tight uppercase">Web Design <span class="text-green-500">Portfolio</span></h1>
+            <p class="text-slate-400">Explore my custom-built responsive web layouts and UI concepts.</p>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
+            <a href="web_projects/first.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-2 block">Project 01</span>
+                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">Corporate Landing Page</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">A clean, professional interface designed for high-conversion business needs.</p>
+            </a>
+
+            <a href="web_projects/second.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-2 block">Project 02</span>
+                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">Creative Portfolio</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Minimalist aesthetic focused on showcasing visual content with smooth transitions.</p>
+            </a>
+
+            <a href="web_projects/theird.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-2 block">Project 03</span>
+                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">E-commerce UI</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">User-centric product grid and checkout flow designed for seamless shopping.</p>
+            </a>
+
+            <a href="web_projects/fourth.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-2 block">Project 04</span>
+                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">AI Tool Dashboard</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Modern dark-themed dashboard featuring complex data widgets and AI controls.</p>
+            </a>
+
+        </div>
+    </div>
+</body>
+</html>
