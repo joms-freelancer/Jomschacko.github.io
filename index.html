@@ -3,16 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joms Portfolio | Premium Experience</title>
+    <title>Joms Portfolio | Grand Entry</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
         .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
-        #chat-messages::-webkit-scrollbar { width: 4px; }
-        #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
         #chat-window { display: none; flex-direction: column; }
 
-        /* Royal Curtain Animation Styles */
+        /* Grand Backdrop Curtain Styles */
         #curtain-wrapper {
             position: fixed;
             inset: 0;
@@ -25,47 +23,46 @@
         .curtain-panel {
             flex: 1;
             position: relative;
-            background-color: #0a0a0a;
-            /* Silk Texture Effect */
-            background-image: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.02) 50%, transparent 100%);
-            background-size: 40px 100%;
-            transition: transform 1.5s cubic-bezier(0.7, 0, 0.3, 1);
+            /* Gradient to mimic the red/orange fabric fold */
+            background-image: repeating-linear-gradient(90deg, #b91c1c 0%, #ef4444 10%, #f97316 20%, #ef4444 30%, #b91c1c 40%);
+            background-size: 200% 100%;
+            transition: transform 1.8s cubic-bezier(0.45, 0.05, 0.55, 0.95);
             display: flex;
             align-items: center;
+            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
         }
 
-        /* Golden Border on Curtains */
-        .curtain-panel::after {
+        /* Fairy Lights Effect (The dots on the curtain) */
+        .curtain-panel::before {
             content: '';
             position: absolute;
-            top: 0;
-            bottom: 0;
-            width: 15px;
-            background: linear-gradient(90deg, #8a6d3b, #e4c58e, #8a6d3b);
-            box-shadow: 0 0 20px rgba(184, 134, 11, 0.5);
+            inset: 0;
+            background-image: radial-gradient(circle, #fef08a 1px, transparent 1px);
+            background-size: 40px 40px;
+            opacity: 0.6;
+            animation: twinkle 2s infinite alternate;
         }
 
-        .left-panel { justify-content: flex-end; border-right: 1px solid rgba(228, 197, 142, 0.3); }
-        .left-panel::after { right: 0; }
+        @keyframes twinkle {
+            from { opacity: 0.3; }
+            to { opacity: 0.8; }
+        }
 
-        .right-panel { justify-content: flex-start; border-left: 1px solid rgba(228, 197, 142, 0.3); }
-        .right-panel::after { left: 0; }
+        .left-panel { border-right: 4px solid #facc15; justify-content: flex-end; transform-origin: left; }
+        .right-panel { border-left: 4px solid #facc15; justify-content: flex-start; transform-origin: right; }
 
-        .open-left { transform: translateX(-100%) skewX(-5deg); }
-        .open-right { transform: translateX(100%) skewX(5deg); }
+        /* Opening Animation (Curtain Fold Effect) */
+        .open-left { transform: scaleX(0) translateX(-100%); opacity: 0; }
+        .open-right { transform: scaleX(0) translateX(100%); opacity: 0; }
 
-        /* Golden Text Styling */
         .royal-text {
             font-family: 'Cinzel', serif;
-            font-size: clamp(3rem, 10vw, 6rem);
-            background: linear-gradient(to bottom, #cfad6d, #f9e59a, #b38728);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            filter: drop-shadow(0 0 10px rgba(179, 135, 40, 0.4));
-            transition: opacity 0.8s ease;
+            font-size: clamp(3rem, 10vw, 5rem);
+            color: #fef08a;
+            text-shadow: 0 0 20px rgba(250, 204, 21, 0.8);
+            z-index: 10;
+            transition: all 0.8s ease;
         }
-        
-        .fade-out { opacity: 0; transform: scale(1.1); }
     </style>
     <script>
         function toggleChat() { 
@@ -75,16 +72,12 @@
 
         window.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => {
-                document.querySelectorAll('.royal-text').forEach(el => el.classList.add('fade-out'));
                 document.querySelector('.left-panel').classList.add('open-left');
                 document.querySelector('.right-panel').classList.add('open-right');
                 setTimeout(() => {
-                    document.getElementById('curtain-wrapper').style.pointerEvents = 'none';
-                    setTimeout(() => {
-                        document.getElementById('curtain-wrapper').remove();
-                    }, 1500);
-                }, 100);
-            }, 1200);
+                    document.getElementById('curtain-wrapper').remove();
+                }, 2000);
+            }, 1500);
         });
     </script>
 </head>
@@ -92,10 +85,10 @@
     
     <div id="curtain-wrapper">
         <div class="curtain-panel left-panel">
-            <span class="royal-text mr-8">JO</span>
+            <span class="royal-text mr-10">JO</span>
         </div>
         <div class="curtain-panel right-panel">
-            <span class="royal-text ml-8">MS</span>
+            <span class="royal-text ml-10">MS</span>
         </div>
     </div>
 
@@ -124,87 +117,37 @@
             <a href="about.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-blue-500 transition shadow-lg h-full">
                     <h3 class="font-bold text-blue-400 mb-3" id="box-about-title">About Me</h3>
-                    <p class="text-xs text-slate-400" id="box-about-desc">Professional Journey & Expert Background</p>
+                    <p class="text-xs text-slate-400" id="box-about-desc">Professional Journey</p>
                 </div>
             </a>
             <a href="services.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-green-500 transition shadow-lg h-full">
                     <h3 class="font-bold text-green-400 mb-3" id="box-service-title">Services</h3>
-                    <p class="text-xs text-slate-400" id="box-service-desc">Top 4 Advanced Project Demos</p>
+                    <p class="text-xs text-slate-400" id="box-service-desc">Advanced Project Demos</p>
                 </div>
             </a>
             <a href="skills.html" class="block group">
                 <div class="glass p-8 rounded-3xl group-hover:border-purple-500 transition shadow-lg h-full">
                     <h3 class="font-bold text-purple-400 mb-3" id="box-skill-title">Skills</h3>
-                    <p class="text-xs text-slate-400" id="box-skill-desc">Expert Python & AI Solutions Architect</p>
+                    <p class="text-xs text-slate-400" id="box-skill-desc">Expert AI Solutions</p>
                 </div>
             </a>
             <div class="glass p-8 rounded-3xl border-emerald-500/30 transition shadow-lg h-full">
                 <h3 class="font-bold text-emerald-400 mb-3" id="box-contact-title">Contact Me</h3>
-                <p class="text-xs text-slate-400" id="box-contact-desc">Email: jomon13051983@gmail.com</p>
+                <p class="text-xs text-slate-400" id="box-contact-desc">jomon13051983@gmail.com</p>
             </div>
         </div>
     </main>
 
-    <button class="fixed bottom-6 right-6 w-16 h-16 bg-blue-600 text-white rounded-full shadow-2xl z-50 flex items-center justify-center text-2xl" onclick="toggleChat()">💬</button>
-    <div id="chat-window" class="fixed bottom-24 right-6 w-80 h-[450px] glass rounded-2xl shadow-2xl z-50 border border-white/20 bg-slate-900/95 overflow-hidden">
-        <div class="bg-blue-600 p-4 font-bold flex justify-between items-center">
-            <span class="text-sm">Joms AI Assistant</span>
-            <button onclick="toggleChat()" class="text-xl">✕</button>
-        </div>
-        <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent">
-            <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5 text-blue-100">
-                Hi! I can provide info about Joms's services, skills, or contact details.
-            </div>
-        </div>
-        <div class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
-            <input id="chat-input" type="text" class="bg-white/10 border-none outline-none w-full text-sm rounded-xl px-4 py-2 text-white" placeholder="Type your message...">
-            <button onclick="sendLocalMessage()" class="bg-blue-600 p-2 rounded-xl">➤</button>
-        </div>
-    </div>
-
     <script>
-        // Copying your logic from previous code to ensure language and chat works
-        const qaDatabase = [
-            { keywords: ["service", "work", "do", "offer", "സേവനം", "ചെയ്തുതരും"], response: "Joms specializes in Data Solutions, Python Automation, and Web Development. He has premium project demos available for review." },
-            { keywords: ["contact", "email", "reach", "hire", "വിളിക്കാൻ", "ബന്ധപ്പെടാൻ"], response: "You can reach Joms professionally via email at: jomon13051983@gmail.com." },
-            { keywords: ["skill", "python", "ai", "language", "അറിയാം"], response: "Joms is an expert in Python, AI/ML models, Cloud Data Systems, and Tailwind CSS." },
-            { keywords: ["hi", "hello", "hey", "ഹലോ", "നമസ്കാരം"], response: "Hello! I am Joms's AI assistant. How can I help you with his portfolio today?" }
-        ];
-
-        function sendLocalMessage() {
-            const input = document.getElementById('chat-input');
-            const messages = document.getElementById('chat-messages');
-            const userText = input.value.toLowerCase().trim();
-            if (!userText) return;
-            messages.innerHTML += `<div class="flex justify-end mb-2"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%] shadow-md">${input.value}</div></div>`;
-            input.value = "";
-            let botReply = "Please ask about 'services', 'skills', or 'contact'.";
-            for (let item of qaDatabase) {
-                if (item.keywords.some(key => userText.includes(key))) {
-                    botReply = item.response;
-                    break;
-                }
-            }
-            setTimeout(() => {
-                messages.innerHTML += `<div class="flex justify-start mb-2"><div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-8 border border-white/5 shadow-sm">${botReply}</div></div>`;
-                messages.scrollTop = messages.scrollHeight;
-            }, 500);
-        }
-
         const translations = {
             'en': { 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast' },
             'ml': { 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്' }
         };
-
         function changeLang(lang) {
             const t = translations[lang];
-            for (let key in t) {
-                const el = document.getElementById(key);
-                if(el) el.innerText = t[key];
-            }
+            for (let key in t) { document.getElementById(key).innerText = t[key]; }
         }
-        document.getElementById('chat-input').addEventListener('keypress', (e) => { if(e.key === 'Enter') sendLocalMessage(); });
     </script>
 </body>
 </html>
