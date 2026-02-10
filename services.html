@@ -6,12 +6,11 @@
     <title>Services & Projects | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-           /* Premium Glassmorphism Styling */
            .glass-card { 
                backdrop-filter: blur(12px); 
                background: rgba(255, 255, 255, 0.03); 
                border: 1px solid rgba(255, 255, 255, 0.1);
-               transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+               transition: all 0.4s ease;
                display: flex;
                flex-direction: column;
                height: 100%;
@@ -19,75 +18,47 @@
            .glass-card:hover { 
                border-color: #10b981;
                background: rgba(16, 185, 129, 0.08);
-               transform: translateY(-8px);
+               transform: translateY(-5px);
            }
     </style>
 </head>
 <body class="bg-slate-950 text-white font-sans selection:bg-green-500 min-h-screen p-6 md:p-12 lg:p-20">
     <div class="max-w-6xl mx-auto">
-        
         <div class="flex justify-between items-center mb-16">
-            <a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm font-bold tracking-wide" href="index.html">
-                <span>←</span> BACK TO HOME
-            </a>
+            <a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm font-bold tracking-wide" href="index.html"><span>←</span> BACK TO HOME</a>
         </div>
 
-        <div class="text-center mb-20">
-            <h1 class="text-6xl font-black mb-6 tracking-tighter bg-gradient-to-r from-green-400 via-emerald-500 to-teal-500 bg-clip-text text-transparent uppercase">
-                Premium Services
-            </h1>
-            <p class="text-slate-400 text-xl italic font-light max-w-2xl mx-auto">
-                Innovative AI and Automation solutions delivered with professional precision.
-            </p>
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-green-400 to-emerald-500 bg-clip-text text-transparent uppercase">Premium Services</h1>
+            <p class="text-slate-400 text-lg italic">Innovative AI and Automation solutions</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-5xl mx-auto">
-            
-            <a href="ai-assistant.html" class="glass-card p-10 rounded-[2.5rem] block transition-all">
-                <div class="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl shadow-inner">🤖</div>
-                <h3 class="text-2xl font-black mb-4 text-slate-100 tracking-tight">AI Customer Assistant</h3>
-                <p class="text-sm text-slate-400 leading-relaxed font-medium">
-                    Custom Gemini-powered chatbots trained on your specific business data for 24/7 intelligent client support.
-                </p>
+            <a href="ai-assistant.html" class="glass-card p-10 rounded-[2.5rem] block">
+                <div class="w-14 h-14 bg-green-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl">🤖</div>
+                <h3 class="text-2xl font-bold mb-4">AI Customer Assistant</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Custom Gemini-powered chatbots for business data support.</p>
             </a>
 
-            <a href="dashboard.html" class="glass-card p-10 rounded-[2.5rem] block transition-all">
-                <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl shadow-inner">📊</div>
-                <h3 class="text-2xl font-black mb-4 text-slate-100 tracking-tight">Predictive Data Dashboard</h3>
-                <p class="text-sm text-slate-400 leading-relaxed font-medium">
-                    Advanced dynamic visualization tools that analyze historical market trends to predict future business growth.
-                </p>
+            <a href="dashboard.html" class="glass-card p-10 rounded-[2.5rem] block">
+                <div class="w-14 h-14 bg-blue-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl">📊</div>
+                <h3 class="text-2xl font-bold mb-4">Predictive Data Dashboard</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Analyze market trends and predict future growth.</p>
             </a>
 
-            <div class="glass-card p-10 rounded-[2.5rem] transition-all">
-                <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl shadow-inner">⚙️</div>
-                <h3 class="text-2xl font-black mb-4 text-slate-100 tracking-tight">Business Process Automation</h3>
-                <p class="text-sm text-slate-400 leading-relaxed font-medium">
-                    Custom Python scripts designed to automate repetitive business workflows, data extraction, and system management.
-                </p>
+            <div class="glass-card p-10 rounded-[2.5rem]">
+                <div class="w-14 h-14 bg-purple-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl">⚙️</div>
+                <h3 class="text-2xl font-bold mb-4">Business Process Automation</h3>
+                <p class="text-sm text-slate-400 leading-relaxed">Python scripts to automate repetitive business workflows.</p>
             </div>
 
-            <a href="web-design.html" class="glass-card p-10 rounded-[2.5rem] block border-pink-500/20 hover:border-pink-500 transition-all">
-                <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl shadow-inner text-pink-500">🎨</div>
-                <h3 class="text-2xl font-black mb-4 text-slate-100 tracking-tight">Modern Web Design</h3>
-                <p class="text-sm text-slate-400 leading-relaxed font-medium">
-                    Crafting high-performance, responsive, and visually stunning web architectures with a focus on premium UI/UX.
-                </p>
-                <div class="mt-6 flex items-center gap-2 text-pink-400 text-[10px] font-black uppercase tracking-widest group">
-                    View Project Showcase <span class="group-hover:translate-x-1 transition-transform">→</span>
-                </div>
-            </a>
-
-        </div>
-
-        <div class="mt-24 text-center p-16 glass-card rounded-[3rem] border border-white/5 relative overflow-hidden">
-            <h3 class="text-2xl font-black mb-6 text-white relative z-10">Interested in a Custom Digital Solution?</h3>
-            <p class="text-slate-400 mb-10 max-w-lg mx-auto relative z-10 font-medium">Let's discuss how we can automate your workflow and enhance your digital presence.</p>
-            <a class="bg-green-600 hover:bg-green-500 text-white px-10 py-4 rounded-2xl text-xs font-black uppercase tracking-widest transition-all inline-block shadow-2xl shadow-green-900/40 relative z-10" href="mailto:jomon13051983@gmail.com">
-                Start a Conversation
+            <a href="web-design.html" class="glass-card p-10 rounded-[2.5rem] block border-pink-500/20 hover:border-pink-500">
+                <div class="w-14 h-14 bg-pink-500/10 rounded-2xl flex items-center justify-center mb-8 text-3xl text-pink-500">🎨</div>
+                <h3 class="text-2xl font-bold mb-4 text-slate-100">Modern Web Design</h3>
+                <p class="text-sm text-slate-400 leading-relaxed font-medium">Responsive and stunning websites with a focus on UI/UX.</p>
+                <div class="mt-6 flex items-center gap-2 text-pink-400 text-[10px] font-black uppercase tracking-widest">Explore Portfolio →</div>
             </a>
         </div>
-        
     </div>
 </body>
 </html>
