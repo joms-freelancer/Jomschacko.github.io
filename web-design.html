@@ -10,37 +10,61 @@
                backdrop-filter: blur(12px); 
                background: rgba(255, 255, 255, 0.03); 
                border: 1px solid rgba(255, 255, 255, 0.1);
-               transition: all 0.3s ease;
+               transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
            }
            .glass-card:hover { 
                border-color: #10b981;
                background: rgba(16, 185, 129, 0.05);
-               transform: translateY(-5px);
+               transform: translateY(-8px);
            }
     </style>
 </head>
 <body class="bg-slate-950 text-white font-sans min-h-screen p-8 md:p-20">
-    <div class="max-w-5xl mx-auto">
-        <a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm mb-12 font-bold" href="services.html">
-            <span>←</span> BACK TO SERVICES
+    <div class="max-w-6xl mx-auto">
+        <a class="text-green-400 hover:text-white transition flex items-center gap-2 text-sm mb-12 font-bold tracking-widest uppercase" href="services.html">
+            <span>←</span> Back to Services
         </a>
 
-        <h1 class="text-4xl font-black mb-12 uppercase">Web Design <span class="text-green-500">Portfolio</span></h1>
+        <div class="mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter uppercase">Web Design <span class="text-green-500 italic">Showcase</span></h1>
+            <p class="text-slate-400 text-lg">A collection of premium UI/UX interfaces and responsive web architectures.</p>
+        </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            
             <a href="web_projects/first.html" class="glass-card p-10 rounded-[2.5rem] block group">
-                <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-2 block">Project 01</span>
+                <span class="text-[10px] font-black text-green-500 uppercase tracking-[0.3em] mb-3 block">Project 01</span>
                 <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">Corporate Landing Page</h3>
-                <p class="text-sm text-slate-500">Professional business interface.</p>
+                <p class="text-sm text-slate-500 leading-relaxed">Professional, clean, and high-conversion layout for corporate businesses.</p>
+                <div class="mt-6 text-[10px] font-bold text-slate-400 uppercase">View Interface →</div>
             </a>
 
             <a href="web_projects/second.html" class="glass-card p-10 rounded-[2.5rem] block group">
-                <span class="text-xs font-bold text-green-500 uppercase tracking-widest mb-2 block">Project 02</span>
+                <span class="text-[10px] font-black text-green-500 uppercase tracking-[0.3em] mb-3 block">Project 02</span>
                 <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">Creative Portfolio</h3>
-                <p class="text-sm text-slate-500">Minimalist layout design.</p>
+                <p class="text-sm text-slate-500 leading-relaxed">A minimalist and artistic approach to personal branding and portfolios.</p>
+                <div class="mt-6 text-[10px] font-bold text-slate-400 uppercase">View Interface →</div>
             </a>
-            
-            </div>
+
+            <a href="web_projects/theird.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <span class="text-[10px] font-black text-green-500 uppercase tracking-[0.3em] mb-3 block">Project 03</span>
+                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">E-commerce UI</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Modern shopping experience with focus on product grid and visual hierarchy.</p>
+                <div class="mt-6 text-[10px] font-bold text-slate-400 uppercase">View Interface →</div>
+            </a>
+
+            <a href="web_projects/fourth.html" class="glass-card p-10 rounded-[2.5rem] block group">
+                <span class="text-[10px] font-black text-green-500 uppercase tracking-[0.3em] mb-3 block">Project 04</span>
+                <h3 class="text-2xl font-bold mb-4 text-white group-hover:text-green-400 transition">AI Tool Dashboard</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Futuristic dark-themed dashboard for neural interfaces and AI applications.</p>
+                <div class="mt-6 text-[10px] font-bold text-slate-400 uppercase">View Interface →</div>
+            </a>
+
+        </div>
+
+        <div class="mt-20 text-center border-t border-white/5 pt-10">
+            <p class="text-[10px] text-slate-600 font-bold uppercase tracking-[0.5em]">Joms SD-G • Web Design Portfolio 2026</p>
+        </div>
     </div>
 </body>
 </html>
