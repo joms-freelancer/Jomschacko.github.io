@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Carousel | Joms Album</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            perspective: 1500px; /* 3D ഡെപ്ത് നൽകാൻ */
+            overflow: hidden;
+        }
+        .carousel-container {
+            position: relative;
+            width: 300px;
+            height: 200px;
+            transform-style: preserve-3d;
+            transition: transform 1s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .carousel-item {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            left: 0;
+            top: 0;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            overflow: hidden;
+            backface-visibility: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .glass-bg {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.05);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-6">
+
+    <div class="absolute top-10 text-center">
+        <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-4 block">
+            ← Back to Styles
+        </a>
+        <h1 class="text-3xl font-black tracking-tighter text-amber-500 uppercase">3D Carousel</h1>
+        <p class="text-slate-500 text-sm">Style 3: Cinematic Experience</p>
+    </div>
+
+    <div class="carousel-container" id="carousel">
+        <div class="carousel-item" style="transform: rotateY(0deg) translateZ(400px);">
+            <img src="images/one.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(45deg) translateZ(400px);">
+            <img src="images/two.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(90deg) translateZ(400px);">
+            <img src="images/three.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(135deg) translateZ(400px);">
+            <img src="images/four.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(180deg) translateZ(400px);">
+            <img src="images/five.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(225deg) translateZ(400px);">
+            <img src="images/six.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(270deg) translateZ(400px);">
+            <img src="images/seven.jpg" class="w-full h-full object-cover">
+        </div>
+        <div class="carousel-item" style="transform: rotateY(315deg) translateZ(400px);">
+            <img src="images/eight.jpg" class="w-full h-full object-cover">
+        </div>
+    </div>
+
+    <div class="absolute bottom-20 flex gap-6">
+        <button onclick="rotate(1)" class="glass-bg hover:bg-amber-500 hover:text-black transition w-16 h-16 rounded-full flex items-center justify-center text-2xl">
+            ←
+        </button>
+        <button onclick="rotate(-1)" class="glass-bg hover:bg-amber-500 hover:text-black transition w-16 h-16 rounded-full flex items-center justify-center text-2xl">
+            →
+        </button>
+    </div>
+
+    <script>
+        let currentRotation = 0;
+        const carousel = document.getElementById('carousel');
+
+        function rotate(direction) {
+            currentRotation += direction * 45; // 360 / 8 photos = 45 degrees
+            carousel.style.transform = `rotateY(${currentRotation}deg)`;
+        }
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'ArrowLeft') rotate(1);
+            if (e.key === 'ArrowRight') rotate(-1);
+        });
+    </script>
+
+</body>
+</html>
