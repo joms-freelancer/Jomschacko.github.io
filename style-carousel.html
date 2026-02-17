@@ -2,101 +2,94 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Carousel Pro | Joms Album</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>3D Carousel | Mobile Optimized</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        body {
-            perspective: 2000px; /* വലിപ്പം കൂട്ടുമ്പോൾ ഡെപ്ത് അഡ്ജസ്റ്റ് ചെയ്യാൻ */
-            overflow: hidden;
+        body { 
+            perspective: 1000px; 
+            overflow: hidden; 
+            touch-action: none; /* സ്ക്രീൻ അനങ്ങുന്നത് തടയാൻ */
         }
-        .carousel-container {
+        .carousel-scene {
             position: relative;
-            /* വലിപ്പം കൂട്ടി (450px width, 300px height) */
-            width: 450px; 
-            height: 300px;
+            width: 200px; /* മൊബൈലിൽ ചെറിയ വിഡ്ത് */
+            height: 280px;
             transform-style: preserve-3d;
-            transition: transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+            transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
         }
         .carousel-item {
             position: absolute;
             width: 100%;
             height: 100%;
-            left: 0;
-            top: 0;
-            border: 4px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1.5rem;
+            border-radius: 1rem;
             overflow: hidden;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
             backface-visibility: hidden;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
         }
-        .glass-bg {
-            backdrop-filter: blur(15px);
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
+        
+        /* വലിയ സ്ക്രീനുകൾക്ക് (Computer) */
+        @media (min-width: 768px) {
+            body { perspective: 2000px; }
+            .carousel-scene {
+                width: 400px;
+                height: 280px;
+            }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-6">
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
 
-    <div class="absolute top-10 text-center">
-        <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-4 block hover:underline">
-            ← Back to Styles
-        </a>
-        <h1 class="text-4xl font-black tracking-tighter text-amber-500 uppercase">Premium 3D Carousel</h1>
-        <p class="text-slate-500 text-sm">Enhanced View Style</p>
+    <div class="fixed top-6 left-6 z-20">
+        <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase">← Back</a>
     </div>
 
-    <div class="carousel-container" id="carousel">
-        <div class="carousel-item" style="transform: rotateY(0deg) translateZ(500px);">
-            <img src="images/one.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(45deg) translateZ(500px);">
-            <img src="images/two.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(90deg) translateZ(500px);">
-            <img src="images/three.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(135deg) translateZ(500px);">
-            <img src="images/four.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(180deg) translateZ(500px);">
-            <img src="images/five.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(225deg) translateZ(500px);">
-            <img src="images/six.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(270deg) translateZ(500px);">
-            <img src="images/seven.jpg" class="w-full h-full object-cover">
-        </div>
-        <div class="carousel-item" style="transform: rotateY(315deg) translateZ(500px);">
-            <img src="images/eight.jpg" class="w-full h-full object-cover">
-        </div>
+    <div class="text-center mb-10">
+        <h1 class="text-2xl font-black text-amber-500 uppercase">3D Carousel</h1>
+        <p class="text-slate-500 text-[10px] uppercase tracking-widest">Swipe left/right to rotate</p>
     </div>
 
-    <div class="absolute bottom-16 flex gap-10">
-        <button onclick="rotate(1)" class="glass-bg hover:bg-amber-500 hover:text-black transition w-20 h-20 rounded-full flex items-center justify-center text-3xl shadow-lg">
-            ←
-        </button>
-        <button onclick="rotate(-1)" class="glass-bg hover:bg-amber-500 hover:text-black transition w-20 h-20 rounded-full flex items-center justify-center text-3xl shadow-lg">
-            →
-        </button>
+    <div class="carousel-scene" id="scene">
+        <div class="carousel-item" style="transform: rotateY(0deg) translateZ(var(--tz));"><img src="images/one.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(45deg) translateZ(var(--tz));"><img src="images/two.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(90deg) translateZ(var(--tz));"><img src="images/three.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(135deg) translateZ(var(--tz));"><img src="images/four.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(180deg) translateZ(var(--tz));"><img src="images/five.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(225deg) translateZ(var(--tz));"><img src="images/six.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(270deg) translateZ(var(--tz));"><img src="images/seven.jpg" class="w-full h-full object-cover"></div>
+        <div class="carousel-item" style="transform: rotateY(315deg) translateZ(var(--tz));"><img src="images/eight.jpg" class="w-full h-full object-cover"></div>
+    </div>
+
+    <div class="mt-20 flex gap-2">
+        <button onclick="rotate(1)" class="bg-white/10 p-4 rounded-full active:bg-amber-500">←</button>
+        <button onclick="rotate(-1)" class="bg-white/10 p-4 rounded-full active:bg-amber-500">→</button>
     </div>
 
     <script>
         let currentRotation = 0;
-        const carousel = document.getElementById('carousel');
+        const scene = document.getElementById('scene');
+        
+        // സ്ക്രീൻ വലിപ്പത്തിന് അനുസരിച്ച് translateZ മാറ്റാൻ
+        function updateLayout() {
+            const tz = window.innerWidth < 768 ? 250 : 500;
+            document.documentElement.style.setProperty('--tz', tz + 'px');
+        }
 
         function rotate(direction) {
             currentRotation += direction * 45;
-            carousel.style.transform = `rotateY(${currentRotation}deg)`;
+            scene.style.transform = `rotateY(${currentRotation}deg)`;
         }
 
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'ArrowLeft') rotate(1);
-            if (e.key === 'ArrowRight') rotate(-1);
+        // Swipe support
+        let startX = 0;
+        document.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        document.addEventListener('touchend', e => {
+            let diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 30) rotate(diff > 0 ? -1 : 1);
         });
-    </script>
 
+        window.addEventListener('resize', updateLayout);
+        updateLayout();
+    </script>
 </body>
 </html>
