@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zoom Explorer | Joms Album</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .zoom-container {
+            position: relative;
+            overflow: hidden;
+            cursor: crosshair;
+            border-radius: 2rem;
+        }
+        .zoom-image {
+            transition: transform 0.1s ease-out;
+            transform-origin: center center;
+        }
+        .glass-panel {
+            backdrop-filter: blur(20px);
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        .thumb-active {
+            border-color: #f59e0b !important;
+            transform: scale(1.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen p-6 md:p-12 flex flex-col items-center">
+
+    <div class="text-center mb-10">
+        <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-4 inline-block hover:underline">
+            ← Back to Styles
+        </a>
+        <h1 class="text-4xl font-black tracking-tighter text-white uppercase">Zoom Explorer</h1>
+        <p class="text-slate-500 text-sm">Style 6: Hover to Explore Details</p>
+    </div>
+
+    <div class="w-full max-w-4xl">
+        <div class="zoom-container aspect-video glass-panel shadow-2xl" id="viewer" onmousemove="zoom(event)" onmouseleave="resetZoom()">
+            <img id="featured" src="images/one.jpg" class="zoom-image w-full h-full object-cover" alt="Zoom View">
+        </div>
+
+        <div class="grid grid-cols-4 md:grid-cols-8 gap-3 mt-8">
+            <img src="images/one.jpg" onclick="changeImage(this)" class="thumb-active h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/two.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/three.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/four.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/five.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/six.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/seven.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+            <img src="images/eight.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+        </div>
+    </div>
+
+    <div class="mt-12 text-slate-600 text-[10px] uppercase tracking-widest">
+        Move your mouse over the image to zoom
+    </div>
+
+    <script>
+        const featured = document.getElementById('featured');
+        const viewer = document.getElementById('viewer');
+
+        function zoom(e) {
+            const x = e.clientX - viewer.offsetLeft;
+            const y = e.clientY - viewer.offsetTop;
+
+            const mX = viewer.offsetWidth;
+            const mY = viewer.offsetHeight;
+
+            const newValueX = (x / mX) * 100;
+            const newValueY = (y / mY) * 100;
+
+            featured.style.transformOrigin = `${newValueX}% ${newValueY}%`;
+            featured.style.transform = "scale(2.5)"; // 2.5 മടങ്ങ് വലുതാക്കി കാണിക്കും
+        }
+
+        function resetZoom() {
+            featured.style.transform = "scale(1)";
+            featured.style.transformOrigin = "center center";
+        }
+
+        function changeImage(element) {
+            // മാറ്റങ്ങൾ വരുത്താൻ
+            featured.src = element.src;
+            
+            // തംബ്നെയിൽ ബോർഡർ മാറ്റാൻ
+            document.querySelectorAll('.thumb-active').forEach(el => el.classList.remove('thumb-active'));
+            element.classList.add('thumb-active');
+            
+            resetZoom();
+        }
+    </script>
+
+</body>
+</html>
