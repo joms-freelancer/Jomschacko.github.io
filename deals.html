@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Deals | Joms Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .glass { backdrop-filter: blur(12px); background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); }
+        body { background-color: #0f172a; color: white; font-family: sans-serif; }
+        .deal-card:hover { transform: translateY(-5px); transition: all 0.3s ease; border-color: rgba(249, 115, 22, 0.5); }
+    </style>
+</head>
+<body class="min-h-screen p-6">
+
+    <nav class="max-w-6xl mx-auto mb-12 flex justify-between items-center">
+        <a href="index.html" class="text-blue-400 hover:text-blue-300 flex items-center gap-2 transition">
+            <span class="text-xl">←</span> Back to Portfolio
+        </a>
+        <div class="glass px-4 py-2 rounded-full text-xs text-slate-400">
+            Live Price Tracking Active
+        </div>
+    </nav>
+
+    <header class="max-w-4xl mx-auto text-center mb-16">
+        <h1 class="text-5xl font-extrabold mb-4 bg-gradient-to-r from-orange-400 to-yellow-200 bg-clip-text text-transparent">
+            Smart Deals
+        </h1>
+        <p class="text-slate-400 text-lg">നിങ്ങൾക്കായി പൈത്തൺ ബോട്ട് കണ്ടെത്തിയ ഏറ്റവും പുതിയ വിലക്കുറവുകൾ താഴെ കാണാം.</p>
+    </header>
+
+    <main class="max-w-4xl mx-auto space-y-6" id="deals-list">
+        
+        <div class="glass p-6 rounded-3xl deal-card flex flex-col md:flex-row items-center gap-8 border border-white/10">
+            <div class="w-32 h-32 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-2xl flex items-center justify-center text-5xl">
+                💻
+            </div>
+            <div class="flex-1 text-center md:text-left">
+                <div class="flex items-center justify-center md:justify-start gap-2 mb-2">
+                    <span class="bg-orange-500 text-white text-[10px] font-bold px-2 py-0.5 rounded uppercase">Price Drop</span>
+                    <span class="text-slate-500 text-xs" id="update-time">Updated: Just now</span>
+                </div>
+                <h3 class="text-2xl font-bold mb-1" id="product-title">Acer Predator Helios 16</h3>
+                <div class="flex items-center justify-center md:justify-start gap-3">
+                    <p class="text-emerald-400 font-bold text-3xl" id="product-price">₹1,69,990</p>
+                    <span class="text-slate-500 line-through text-sm">₹1,99,990</span>
+                </div>
+            </div>
+            <a href="https://www.amazon.in/dp/B0D8SYV345/" target="_blank" 
+               class="w-full md:w-auto px-10 py-4 bg-blue-600 hover:bg-blue-700 text-white rounded-2xl font-bold text-center shadow-lg shadow-blue-900/20 transition">
+                Buy Now
+            </a>
+        </div>
+
+    </main>
+
+    <footer class="max-w-4xl mx-auto mt-20 text-center text-slate-500 text-sm">
+        <p>© 2026 Joms Data Solutions. All prices are tracked from Amazon.in</p>
+    </footer>
+
+</body>
+</html>
