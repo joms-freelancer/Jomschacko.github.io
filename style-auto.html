@@ -2,8 +2,8 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Auto Motion | Joms Album</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Auto Motion | Smooth</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .progress-bar {
@@ -12,60 +12,50 @@
             width: 0%;
             transition: width 8s linear;
         }
-        /* ഫോട്ടോകൾ മാറുമ്പോൾ സ്മൂത്ത് ആകാൻ */
-        .slide-hidden { opacity: 0; pointer-events: none; }
-        .slide-visible { 
-            opacity: 1; 
-            animation: kenBurns 9s ease-in-out forwards;
-            pointer-events: auto;
+        /* സ്മൂത്ത് ഫേഡ് ഇഫക്റ്റ് */
+        .fade-animation {
+            animation: fadeEffect 1s ease-in-out;
         }
-        
-        /* സിനിമാറ്റിക് സൂം ഇഫക്റ്റ് */
-        @keyframes kenBurns {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
+        @keyframes fadeEffect {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
-
         .glass-panel {
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(15px);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-
-        /* സ്മാർട്ട് ടിവിക്കും വലിയ സ്ക്രീനുകൾക്കും വേണ്ടിയുള്ള അഡ്ജസ്റ്റ്മെന്റ് */
-        @media (max-width: 768px) { .main-container { aspect-ratio: 3/4; } }
-        @media (min-width: 769px) { .main-container { aspect-ratio: 16/9; } }
-        
-        /* ടിവിയിൽ കാണുമ്പോൾ ബാക്ക്ഗ്രൗണ്ട് ഫീൽ മെച്ചപ്പെടുത്താൻ */
-        body {
-            background: radial-gradient(circle at center, #0f172a 0%, #020617 100%);
+        .main-container {
+            aspect-ratio: 16/9; /* Standard widescreen */
+            background-color: #000;
+        }
+        @media (max-width: 768px) {
+            .main-container { aspect-ratio: 4/5; } /* Mobile friendly height */
         }
     </style>
 </head>
 <body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
 
     <div class="fixed top-6 left-6 z-40">
-        <a href="online-album.html" class="text-amber-500 font-bold text-xs md:text-sm tracking-widest uppercase hover:text-white transition">← Back</a>
+        <a href="online-album.html" class="text-amber-400 font-bold text-xs uppercase tracking-widest">← Back</a>
     </div>
 
-    <div class="main-container relative w-full max-w-6xl rounded-[1.5rem] md:rounded-[3rem] overflow-hidden shadow-2xl glass-panel bg-black">
+    <div class="main-container relative w-full max-w-5xl rounded-[2rem] overflow-hidden shadow-2xl glass-panel">
         <div id="progress" class="progress-bar absolute top-0 left-0 z-30"></div>
 
-        <div class="w-full h-full relative overflow-hidden">
-            <img id="img1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 slide-visible">
-            <img id="img2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 slide-hidden">
+        <div class="w-full h-full relative">
+            <img id="display-img" src="images/one.jpg" class="w-full h-full object-cover" alt="Slide">
             
-            <div class="absolute bottom-0 left-0 right-0 h-1/2 bg-gradient-to-t from-black/90 via-black/40 to-transparent z-10"></div>
+            <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
             
-            <div class="absolute bottom-6 md:bottom-12 left-6 md:left-12 right-6 md:right-12 flex justify-between items-end z-20">
+            <div class="absolute bottom-8 left-8 right-8 flex justify-between items-end z-20">
                 <div>
-                    <p id="slide-count" class="text-amber-500 font-mono text-sm md:text-lg font-bold">01 / 08</p>
-                    <h3 id="slide-title" class="text-xl md:text-3xl font-black tracking-tight uppercase">Featured Memory</h3>
-                    <p class="text-slate-400 text-xs md:text-sm italic">Cinematic Auto Motion</p>
+                    <p id="slide-count" class="text-amber-500 font-mono text-lg font-bold">01 / 08</p>
+                    <h3 class="text-xl font-black uppercase tracking-tight">Memory Lane</h3>
                 </div>
                 
-                <button onclick="togglePlay()" class="bg-white/10 p-5 md:p-7 rounded-full backdrop-blur-xl border border-white/10 active:scale-90 hover:bg-amber-500 hover:text-black transition-all duration-300">
-                    <span id="play-icon" class="text-2xl md:text-3xl leading-none">⏸</span>
+                <button onclick="togglePlay()" class="bg-white/10 p-5 rounded-full backdrop-blur-md active:scale-90 transition-all border border-white/10">
+                    <span id="play-icon" class="text-2xl leading-none">⏸</span>
                 </button>
             </div>
         </div>
@@ -79,74 +69,75 @@
         
         let currentIndex = 0;
         let isPlaying = true;
-        let slideTimer;
-        let activeImg = document.getElementById('img1');
-        let nextImg = document.getElementById('img2');
+        let timer;
+        const displayImg = document.getElementById('display-img');
+        const playIcon = document.getElementById('play-icon');
+        const progressBar = document.getElementById('progress');
+        const slideCount = document.getElementById('slide-count');
 
-        function updateSlide() {
+        function runSlideshow() {
             if (!isPlaying) return;
 
-            // സ്ലൈഡ് കൗണ്ട്
-            document.getElementById('slide-count').innerText = `${(currentIndex + 1).toString().padStart(2, '0')} / 08`;
-
-            // Progress Bar Reset
-            const pb = document.getElementById('progress');
-            pb.style.transition = 'none';
-            pb.style.width = '0%';
+            // Reset Progress Bar
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
             
-            // ചെറിയ ഡിലേ നൽകി പ്രോഗ്രസ് ബാർ തുടങ്ങുന്നു
             setTimeout(() => {
-                if(isPlaying) {
-                    pb.style.transition = 'width 8000ms linear';
-                    pb.style.width = '100%';
+                if (isPlaying) {
+                    progressBar.style.transition = 'width 8000ms linear';
+                    progressBar.style.width = '100%';
                 }
             }, 50);
 
-            // Cross-fade logic
-            nextImg.src = images[currentIndex];
-            
-            nextImg.onload = () => {
-                activeImg.classList.replace('slide-visible', 'slide-hidden');
-                nextImg.classList.replace('slide-hidden', 'slide-visible');
-
-                // Swap roles
-                let temp = activeImg;
-                activeImg = nextImg;
-                nextImg = temp;
-
-                // ലൂപ്പ് ചെക്കിംഗ് (അവസാനം എത്തിയാൽ നിർത്തുക)
+            timer = setTimeout(() => {
                 if (currentIndex < images.length - 1) {
                     currentIndex++;
-                    slideTimer = setTimeout(updateSlide, 8000);
+                    changeImage();
                 } else {
-                    // സ്ലൈഡ് ഷോ പൂർത്തിയായി
-                    isPlaying = false;
-                    document.getElementById('play-icon').innerText = '▶';
-                    pb.style.width = '100%'; 
-                    currentIndex = 0; // റീസെറ്റ്
+                    stopSlideshow();
                 }
-            };
+            }, 8000);
+        }
+
+        function changeImage() {
+            // Animation Reset
+            displayImg.classList.remove('fade-animation');
+            void displayImg.offsetWidth; 
+            
+            displayImg.src = images[currentIndex];
+            slideCount.innerText = `${(currentIndex + 1).toString().padStart(2, '0')} / 08`;
+            displayImg.classList.add('fade-animation');
+            
+            runSlideshow();
         }
 
         function togglePlay() {
             if (isPlaying) {
-                // Pause ചെയ്യുമ്പോൾ
-                isPlaying = false;
-                document.getElementById('play-icon').innerText = '▶';
-                clearTimeout(slideTimer);
-                document.getElementById('progress').style.transition = 'none';
-                document.getElementById('progress').style.width = '0%';
+                stopSlideshow();
             } else {
-                // Play ചെയ്യുമ്പോൾ
                 isPlaying = true;
-                document.getElementById('play-icon').innerText = '⏸';
-                updateSlide();
+                playIcon.innerText = '⏸';
+                // അവസാനത്തെ ഫോട്ടോയിൽ ആണെങ്കിൽ ആദ്യം മുതൽ തുടങ്ങാൻ
+                if (currentIndex >= images.length - 1) currentIndex = 0;
+                changeImage();
             }
         }
 
-        // ഫസ്റ്റ് ഇമേജ് ലോഡ് ചെയ്യാൻ
-        activeImg.src = images[0];
-        updateSlide();
+        function stopSlideshow() {
+            isPlaying = false;
+            playIcon.innerText = '▶';
+            clearTimeout(timer);
+            progressBar.style.transition = 'none';
+            progressBar.style.width = '0%';
+        }
+
+        // ഫോട്ടോകൾ പ്രീ-ലോഡ് ചെയ്യാൻ (ലാഗ് ഒഴിവാക്കാൻ)
+        images.forEach(src => {
+            const img = new Image();
+            img.src = src;
+        });
+
+        runSlideshow();
     </script>
 </body>
 </html>
