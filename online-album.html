@@ -3,79 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Premium Slider Album | Joms</title>
+    <title>Select Album Style | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        .glass-bg {
-            backdrop-filter: blur(20px);
-            background: rgba(255, 255, 255, 0.05);
+        .style-card {
+            backdrop-filter: blur(12px);
+            background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.4s ease;
         }
-        .slide { display: none; }
-        .active-slide { display: block; animation: fadeIn 0.5s ease-in-out; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.95); }
-            to { opacity: 1; transform: scale(1); }
+        .style-card:hover {
+            border-color: #f59e0b;
+            transform: translateY(-8px);
+            background: rgba(245, 158, 11, 0.08);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-6">
-
-    <div class="mb-10 text-center">
-        <h1 class="text-3xl font-black tracking-tighter text-amber-500 uppercase">Interactive Slider Album</h1>
-        <p class="text-slate-400">Style 1: Classic Navigation</p>
-    </div>
-
-    <div class="relative w-full max-w-4xl glass-bg p-4 rounded-[2.5rem] shadow-2xl">
+<body class="bg-slate-950 text-white font-sans min-h-screen p-6 md:p-12">
+    <div class="max-w-6xl mx-auto">
         
-        <div class="overflow-hidden rounded-[2rem] aspect-video">
-            <img src="images/one.jpg" class="slide active-slide w-full h-full object-cover" alt="Photo 1">
-            <img src="images/two.jpg" class="slide w-full h-full object-cover" alt="Photo 2">
-            <img src="images/three.jpg" class="slide w-full h-full object-cover" alt="Photo 3">
-            <img src="images/four.jpg" class="slide w-full h-full object-cover" alt="Photo 4">
-            <img src="images/five.jpg" class="slide w-full h-full object-cover" alt="Photo 5">
-            <img src="images/six.jpg" class="slide w-full h-full object-cover" alt="Photo 6">
-            <img src="images/seven.jpg" class="slide w-full h-full object-cover" alt="Photo 7">
-            <img src="images/eight.jpg" class="slide w-full h-full object-cover" alt="Photo 8">
+        <div class="mb-10">
+            <a class="text-amber-400 hover:text-white transition flex items-center gap-2 text-sm font-bold tracking-wide uppercase" href="services.html"><span>←</span> Back to Services</a>
         </div>
 
-        <div class="flex justify-between items-center mt-6 px-4 pb-4">
-            <button onclick="changeSlide(-1)" class="bg-white/10 hover:bg-amber-500 hover:text-black transition px-8 py-3 rounded-full font-bold text-sm tracking-widest uppercase flex items-center gap-2">
-                <span>←</span> Previous
-            </button>
-            
-            <span id="slide-number" class="text-slate-500 font-mono">1 / 8</span>
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent uppercase">Choose Your Style</h1>
+            <p class="text-slate-400">Select how you want to experience the album</p>
+        </div>
 
-            <button onclick="changeSlide(1)" class="bg-white/10 hover:bg-amber-500 hover:text-black transition px-8 py-3 rounded-full font-bold text-sm tracking-widest uppercase flex items-center gap-2">
-                Next <span>→</span>
-            </button>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            
+            <a href="style-slider.html" class="style-card p-10 rounded-[2.5rem] block group">
+                <div class="text-4xl mb-6">🎞️</div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">Classic Slider</h3>
+                <p class="text-sm text-slate-500">Interactive navigation with Next/Previous buttons.</p>
+            </a>
+
+            <div class="style-card p-10 rounded-[2.5rem] opacity-50 cursor-not-allowed">
+                <div class="text-4xl mb-6">📱</div>
+                <h3 class="text-2xl font-bold mb-3">Modern Grid</h3>
+                <p class="text-sm text-slate-500">View all photos at once in a clean layout.</p>
+                <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest">Coming Soon</span>
+            </div>
+
+            <div class="style-card p-10 rounded-[2.5rem] opacity-50 cursor-not-allowed">
+                <div class="text-4xl mb-6">🎡</div>
+                <h3 class="text-2xl font-bold mb-3">3D Carousel</h3>
+                <p class="text-sm text-slate-500">Experience a cinematic rotating gallery.</p>
+            </div>
+
         </div>
     </div>
-
-    <a href="services.html" class="mt-12 text-slate-500 hover:text-white transition text-xs font-bold tracking-widest uppercase">
-        Back to Services
-    </a>
-
-    <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const slideNumberText = document.getElementById('slide-number');
-
-        function changeSlide(direction) {
-            // Hide current slide
-            slides[currentSlide].classList.remove('active-slide');
-            
-            // Calculate next slide index
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            
-            // Show new slide
-            slides[currentSlide].classList.add('active-slide');
-            
-            // Update slide counter
-            slideNumberText.innerText = `${currentSlide + 1} / ${slides.length}`;
-        }
-    </script>
-
 </body>
 </html>
