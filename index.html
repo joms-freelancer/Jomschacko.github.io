@@ -3,7 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Joms Portfolio</title>
+    <title>Joms Portfolio & Smart Deals</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#2563eb">
+    
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@700&display=swap" rel="stylesheet">
     <style>
@@ -11,78 +15,30 @@
         #chat-messages::-webkit-scrollbar { width: 4px; }
         #chat-messages::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 10px; }
         #chat-window { display: none; flex-direction: column; }
-
-        /* Curtain Animation Styles */
-        #curtain-wrapper {
-            position: fixed;
-            inset: 0;
-            z-index: 9999;
-            display: flex;
-            background: transparent;
-            pointer-events: none; /* Allows clicks to pass through after opening */
-        }
-        .curtain-panel {
-            flex: 1;
-            background-image: repeating-linear-gradient(90deg, #b91c1c 0%, #ef4444 10%, #f97316 20%, #ef4444 30%, #b91c1c 40%);
-            background-size: 200% 100%;
-            transition: transform 1.2s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.8s ease;
-            display: flex;
-            align-items: center;
-            pointer-events: all;
-            box-shadow: inset 0 0 100px rgba(0,0,0,0.5);
-        }
-        .curtain-panel::before {
-            content: '';
-            position: absolute;
-            inset: 0;
-            background-image: radial-gradient(circle, #fef08a 1px, transparent 1px);
-            background-size: 40px 40px;
-            opacity: 0.4;
-        }
-        .left-panel { border-right: 4px solid #facc15; justify-content: flex-end; }
-        .right-panel { border-left: 4px solid #facc15; justify-content: flex-start; }
         
-        /* Opening Animation Classes */
-        .open-left { transform: translateX(-100%); opacity: 0; }
-        .open-right { transform: translateX(100%); opacity: 0; }
-        
-        .royal-text {
-            font-family: 'Cinzel', serif;
-            color: #fef08a;
-            font-size: clamp(3rem, 10vw, 5rem);
-            text-shadow: 0 0 15px rgba(250, 204, 21, 0.6);
-            transition: opacity 0.5s ease;
-        }
-        .fade-out { opacity: 0; }
+        /* Smooth Fade-in instead of Curtain */
+        body { opacity: 0; transition: opacity 1s ease-in-out; }
+        body.loaded { opacity: 1; }
     </style>
     <script>
+        // PWA Service Worker Registration
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('sw.js').catch(err => console.log(err));
+            });
+        }
+
         function toggleChat() { 
             const win = document.getElementById('chat-window');
             win.style.display = (win.style.display === "none" || win.style.display === "") ? "flex" : "none";
         }
 
         window.addEventListener('DOMContentLoaded', () => {
-            setTimeout(() => {
-                document.querySelectorAll('.royal-text').forEach(el => el.classList.add('fade-out'));
-                document.querySelector('.left-panel').classList.add('open-left');
-                document.querySelector('.right-panel').classList.add('open-right');
-                setTimeout(() => {
-                    document.getElementById('curtain-wrapper').style.display = 'none';
-                }, 1300);
-            }, 800); // Animation starts after 0.8 seconds
+            document.body.classList.add('loaded');
         });
     </script>
 </head>
 <body class="bg-slate-900 min-h-screen text-white font-sans selection:bg-blue-500 overflow-x-hidden">
-    
-    <div id="curtain-wrapper">
-        <div class="curtain-panel left-panel">
-            <span class="royal-text mr-8">JO</span>
-        </div>
-        <div class="curtain-panel right-panel">
-            <span class="royal-text ml-8">MS</span>
-        </div>
-    </div>
 
     <nav class="glass sticky top-0 z-50 p-4">
         <div class="max-w-6xl mx-auto flex justify-between items-center">
@@ -121,10 +77,10 @@
                 </div>
             </a>
 
-            <a href="skills.html" class="block group">
-                <div class="glass p-8 rounded-3xl group-hover:border-purple-500 transition shadow-lg h-full">
-                    <h3 class="font-bold text-purple-400 mb-3" id="box-skill-title">Skills</h3>
-                    <p class="text-xs text-slate-400" id="box-skill-desc">Expert Python & AI Solutions Architect</p>
+            <a href="deals.html" class="block group">
+                <div class="glass p-8 rounded-3xl group-hover:border-orange-500 transition shadow-lg h-full">
+                    <h3 class="font-bold text-orange-400 mb-3" id="box-deals-title">Smart Deals</h3>
+                    <p class="text-xs text-slate-400" id="box-deals-desc">AI-Powered Live Price Tracking</p>
                 </div>
             </a>
 
@@ -144,7 +100,7 @@
         </div>
         <div id="chat-messages" class="flex-1 p-4 overflow-y-auto space-y-4 text-sm bg-transparent">
             <div class="bg-white/10 p-3 rounded-2xl rounded-tl-none mr-10 border border-white/5 text-blue-100">
-                Hi! I can provide info about Joms's services, skills, or contact details.
+                Hi! I can provide info about Joms's services, Smart Deals, or contact details.
             </div>
         </div>
         <div class="p-3 bg-white/5 border-t border-white/10 flex gap-2">
@@ -155,10 +111,10 @@
 
     <script>
         const qaDatabase = [
-            { keywords: ["service", "work", "do", "offer", "സേവനം"], response: "Joms specializes in Data Solutions, Python Automation, and Web Development. He has premium project demos available for review." },
-            { keywords: ["contact", "email", "reach", "Hire"], response: "You can reach Joms professionally via email at: jomon13051983@gmail.com." },
-            { keywords: ["skill", "python", "ai"], response: "Joms is an expert in Python, AI/ML models, Cloud Data Systems, and Tailwind CSS." },
-            { keywords: ["hi", "hello", "hey"], response: "Hello! I am Joms's AI assistant. How can I help you with his portfolio today?" }
+            { keywords: ["service", "work", "do", "offer", "സേവനം"], response: "Joms specializes in Data Solutions, Python Automation, and Smart Price Tracking Systems." },
+            { keywords: ["deal", "price", "track", "offer", "വില"], response: "Check out the 'Smart Deals' section to see live price drops on top gadgets tracked by Joms's AI bot." },
+            { keywords: ["contact", "email", "reach"], response: "You can reach Joms professionally via email at: jomon13051983@gmail.com." },
+            { keywords: ["hi", "hello"], response: "Hello! I am Joms's AI assistant. Ready to explore some deals?" }
         ];
 
         function sendLocalMessage() {
@@ -168,7 +124,7 @@
             if (!userText) return;
             messages.innerHTML += `<div class="flex justify-end mb-2"><div class="bg-blue-600 p-2 rounded-lg max-w-[85%]">${input.value}</div></div>`;
             input.value = "";
-            let botReply = "Please ask about 'services', 'skills', or 'contact'.";
+            let botReply = "Please ask about 'services', 'Smart Deals', or 'contact'.";
             for (let item of qaDatabase) {
                 if (item.keywords.some(key => userText.includes(key))) { botReply = item.response; break; }
             }
@@ -179,8 +135,8 @@
         }
 
         const translations = {
-            'en': { 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast' },
-            'ml': { 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്' }
+            'en': { 'hero-title': 'Welcome', 'hero-desc': 'Data Solutions Specialist & AI/ML Enthusiast', 'box-deals-title': 'Smart Deals' },
+            'ml': { 'hero-title': 'സ്വാഗതം', 'hero-desc': 'ഡാറ്റാ വിദഗ്ധനും AI പഠിതാവുമാണ്', 'box-deals-title': 'സ്മാർട്ട് ഡീൽസ്' }
         };
 
         function changeLang(lang) {
