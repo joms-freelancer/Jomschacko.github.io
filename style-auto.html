@@ -3,38 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Auto Motion | Mobile Optimized</title>
+    <title>Auto Motion | Fix Lag</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         .progress-bar {
-            height: 3px;
+            height: 4px;
             background: #f59e0b;
             width: 0%;
             transition: width 8s linear;
         }
-        .slide-fade {
-            animation: fadeEffect 1.5s ease-in-out;
+        /* ഫോട്ടോകൾ മാറുമ്പോൾ സ്മൂത്ത് ആകാൻ */
+        .slide-hidden { opacity: 0; }
+        .slide-visible { 
+            opacity: 1; 
+            animation: kenBurns 9s ease-in-out infinite alternate;
         }
-        @keyframes fadeEffect {
-            from { opacity: 0; transform: scale(1.05); }
-            to { opacity: 1; transform: scale(1); }
+        
+        /* സിനിമാറ്റിക് സൂം ഇഫക്റ്റ് */
+        @keyframes kenBurns {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
         }
+
         .glass-panel {
             backdrop-filter: blur(20px);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        /* മൊബൈലിൽ ഫോട്ടോകൾക്ക് കൂടുതൽ ഉയരം നൽകാൻ */
-        @media (max-width: 768px) {
-            .main-container {
-                aspect-ratio: 3/4; /* മൊബൈലിൽ നീളത്തിലുള്ള ലുക്ക് */
-            }
-        }
-        @media (min-width: 769px) {
-            .main-container {
-                aspect-ratio: 16/9; /* കമ്പ്യൂട്ടറിൽ വീതിയുള്ള ലുക്ക് */
-            }
-        }
+        @media (max-width: 768px) { .main-container { aspect-ratio: 3/4; } }
+        @media (min-width: 769px) { .main-container { aspect-ratio: 16/9; } }
     </style>
 </head>
 <body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
@@ -43,26 +40,22 @@
         <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase">← Back</a>
     </div>
 
-    <div class="text-center mb-8">
-        <h1 class="text-2xl font-black text-white uppercase">Auto Motion</h1>
-        <p class="text-slate-500 text-[10px] uppercase tracking-widest">Cinema Style Experience</p>
-    </div>
+    <div class="main-container relative w-full max-w-4xl rounded-[2rem] overflow-hidden shadow-2xl glass-panel bg-black">
+        <div id="progress" class="progress-bar absolute top-0 left-0 z-30"></div>
 
-    <div class="main-container relative w-full max-w-4xl rounded-[2rem] overflow-hidden shadow-2xl glass-panel">
-        
-        <div id="progress" class="progress-bar absolute top-0 left-0 z-20"></div>
-
-        <div class="w-full h-full bg-black">
-            <img id="main-slide" src="images/one.jpg" class="w-full h-full object-cover slide-fade" alt="Auto Slide">
+        <div class="w-full h-full relative overflow-hidden">
+            <img id="img1" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 slide-visible">
+            <img id="img2" class="absolute inset-0 w-full h-full object-cover transition-opacity duration-1000 slide-hidden">
             
-            <div class="absolute bottom-6 left-6 right-6 flex justify-between items-end bg-gradient-to-t from-black/80 to-transparent p-4 rounded-xl">
+            <div class="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-black/80 to-transparent z-10"></div>
+            
+            <div class="absolute bottom-8 left-8 right-8 flex justify-between items-end z-20">
                 <div>
                     <p id="slide-count" class="text-amber-500 font-mono text-sm font-bold">01 / 08</p>
-                    <h3 class="text-lg font-bold">Featured Memory</h3>
+                    <h3 class="text-xl font-bold tracking-tight">Cinema Motion</h3>
                 </div>
-                
                 <button onclick="togglePlay()" class="bg-white/10 p-4 rounded-full backdrop-blur-md active:scale-90 transition">
-                    <span id="play-icon" class="text-xl leading-none">⏸</span>
+                    <span id="play-icon" class="text-xl">⏸</span>
                 </button>
             </div>
         </div>
@@ -77,60 +70,56 @@
         let currentIndex = 0;
         let isPlaying = true;
         let slideTimer;
-        const SLIDE_DURATION = 8000;
+        let activeImg = document.getElementById('img1');
+        let nextImg = document.getElementById('img2');
 
-        const mainSlide = document.getElementById('main-slide');
-        const slideCount = document.getElementById('slide-count');
-        const progressBar = document.getElementById('progress');
-        const playIcon = document.getElementById('play-icon');
-
-        function startSlideshow() {
+        function updateSlide() {
             if (!isPlaying) return;
-            
-            progressBar.style.transition = 'none';
-            progressBar.style.width = '0%';
+
+            // സ്ലൈഡ് കൗണ്ട് അപ്‌ഡേറ്റ്
+            document.getElementById('slide-count').innerText = `${(currentIndex + 1).toString().padStart(2, '0')} / 08`;
+
+            // Progress bar reset
+            const pb = document.getElementById('progress');
+            pb.style.transition = 'none';
+            pb.style.width = '0%';
             
             setTimeout(() => {
-                if (!isPlaying) return;
-                progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
-                progressBar.style.width = '100%';
+                pb.style.transition = 'width 8000ms linear';
+                pb.style.width = '100%';
             }, 50);
 
-            slideTimer = setTimeout(() => {
-                nextSlide();
-            }, SLIDE_DURATION);
-        }
-
-        function nextSlide() {
-            currentIndex = (currentIndex + 1) % images.length;
-            updateDisplay();
-            startSlideshow();
-        }
-
-        function updateDisplay() {
-            mainSlide.src = images[currentIndex];
-            slideCount.innerText = `${(currentIndex + 1).toString().padStart(2, '0')} / 08`;
+            // Cross-fade animation
+            nextImg.src = images[currentIndex];
             
-            mainSlide.classList.remove('slide-fade');
-            void mainSlide.offsetWidth; 
-            mainSlide.classList.add('slide-fade');
+            nextImg.onload = () => {
+                activeImg.classList.replace('slide-visible', 'slide-hidden');
+                nextImg.classList.replace('slide-hidden', 'slide-visible');
+
+                // Swap roles
+                let temp = activeImg;
+                activeImg = nextImg;
+                nextImg = temp;
+
+                currentIndex = (currentIndex + 1) % images.length;
+                slideTimer = setTimeout(updateSlide, 8000);
+            };
         }
 
         function togglePlay() {
             isPlaying = !isPlaying;
-            if (isPlaying) {
-                playIcon.innerText = '⏸';
-                startSlideshow();
-            } else {
-                playIcon.innerText = '▶';
+            document.getElementById('play-icon').innerText = isPlaying ? '⏸' : '▶';
+            if (isPlaying) updateSlide();
+            else {
                 clearTimeout(slideTimer);
-                progressBar.style.transition = 'none';
-                progressBar.style.width = '0%';
+                document.getElementById('progress').style.transition = 'none';
+                document.getElementById('progress').style.width = '0%';
             }
         }
 
-        // Initialize
-        startSlideshow();
+        // Initialize first slide
+        activeImg.src = images[0];
+        updateSlide();
     </script>
 </body>
 </html>
