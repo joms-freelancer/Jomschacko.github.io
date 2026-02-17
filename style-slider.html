@@ -2,109 +2,84 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Classic Slider | Mobile Optimized</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Classic Slider | Joms</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
+        body { touch-action: pan-y; } /* സ്ലൈഡറിൽ ടച്ച് ചെയ്യുമ്പോൾ പേജ് അനാവശ്യമായി നീങ്ങുന്നത് തടയാൻ */
         .glass-bg {
             backdrop-filter: blur(20px);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .slide { display: none; }
-        .active-slide { display: block; animation: fadeIn 0.5s ease-in-out; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.98); }
-            to { opacity: 1; transform: scale(1); }
-        }
-
-        /* മൊബൈലിൽ ഇമേജ് കൃത്യമായി വരാൻ */
-        .slider-img {
+        .slide-container {
+            display: none;
             width: 100%;
             height: 100%;
-            object-fit: cover;
         }
-
-        /* ബട്ടണുകൾ മൊബൈലിൽ ചെറുതാക്കാൻ */
-        @media (max-width: 640px) {
-            .nav-btn {
-                padding: 0.5rem 1rem !important;
-                font-size: 0.75rem !important;
-            }
+        .active-slide { 
+            display: block; 
+            animation: fadeIn 0.4s ease-in-out; 
+        }
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-center p-4">
+<body class="bg-slate-950 text-white min-h-screen flex flex-col items-center justify-between p-4 md:p-8">
 
-    <div class="mb-6 text-center">
-        <h1 class="text-2xl md:text-3xl font-black tracking-tighter text-amber-500 uppercase">Interactive Slider</h1>
-        <p class="text-slate-400 text-xs md:text-sm">Swipe or use buttons to navigate</p>
-    </div>
+    <div class="w-full max-w-4xl flex justify-between items-center py-4">
+        <a href="online-album.html" class="text-amber-500 text-xs font-bold tracking-widest uppercase">← Back</a>
+        <h1 class="text-lg font-black tracking-tighter text-white uppercase">Classic Slider</h1>
+        <div class="w-8"></div> </div>
 
-    <div class="relative w-full max-w-4xl glass-bg p-2 md:p-4 rounded-[1.5rem] md:rounded-[2.5rem] shadow-2xl" id="slider-area">
-        
-        <div class="overflow-hidden rounded-[1rem] md:rounded-[2rem] aspect-[4/3] md:aspect-video bg-black">
-            <img src="images/one.jpg" class="slide active-slide slider-img" alt="Photo 1">
-            <img src="images/two.jpg" class="slide slider-img" alt="Photo 2">
-            <img src="images/three.jpg" class="slide slider-img" alt="Photo 3">
-            <img src="images/four.jpg" class="slide slider-img" alt="Photo 4">
-            <img src="images/five.jpg" class="slide slider-img" alt="Photo 5">
-            <img src="images/six.jpg" class="slide slider-img" alt="Photo 6">
-            <img src="images/seven.jpg" class="slide slider-img" alt="Photo 7">
-            <img src="images/eight.jpg" class="slide slider-img" alt="Photo 8">
-        </div>
-
-        <div class="flex justify-between items-center mt-4 md:mt-6 px-2 pb-2">
-            <button onclick="changeSlide(-1)" class="nav-btn bg-white/10 hover:bg-amber-500 hover:text-black transition px-6 py-2 rounded-full font-bold text-xs md:text-sm tracking-widest uppercase">
-                ← Prev
-            </button>
+    <div class="w-full max-w-4xl flex-grow flex flex-col justify-center">
+        <div class="relative glass-bg rounded-[2rem] overflow-hidden shadow-2xl" id="touch-zone">
             
-            <span id="slide-number" class="text-slate-500 font-mono text-sm">1 / 8</span>
+            <div class="aspect-[4/5] md:aspect-video w-full bg-black flex items-center justify-center">
+                <div class="slide-container active-slide"><img src="images/one.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/two.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/three.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/four.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/five.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/six.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/seven.jpg" class="w-full h-full object-cover"></div>
+                <div class="slide-container"><img src="images/eight.jpg" class="w-full h-full object-cover"></div>
+            </div>
 
-            <button onclick="changeSlide(1)" class="nav-btn bg-white/10 hover:bg-amber-500 hover:text-black transition px-6 py-2 rounded-full font-bold text-xs md:text-sm tracking-widest uppercase">
-                Next →
-            </button>
+            <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full text-xs font-mono">
+                <span id="slide-num">1</span> / 8
+            </div>
         </div>
     </div>
 
-    <a href="online-album.html" class="mt-8 text-slate-500 hover:text-white transition text-[10px] font-bold tracking-widest uppercase">
-        Back to Styles
-    </a>
+    <div class="w-full max-w-4xl py-8 flex justify-center gap-4">
+        <button onclick="move(-1)" class="flex-1 max-w-[120px] bg-white/10 active:bg-amber-500 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all">Prev</button>
+        <button onclick="move(1)" class="flex-1 max-w-[120px] bg-white/10 active:bg-amber-500 py-4 rounded-2xl font-bold text-xs uppercase tracking-widest transition-all">Next</button>
+    </div>
 
     <script>
-        let currentSlide = 0;
-        const slides = document.querySelectorAll('.slide');
-        const slideNumberText = document.getElementById('slide-number');
+        let index = 0;
+        const items = document.querySelectorAll('.slide-container');
+        const indicator = document.getElementById('slide-num');
 
-        function changeSlide(direction) {
-            slides[currentSlide].classList.remove('active-slide');
-            currentSlide = (currentSlide + direction + slides.length) % slides.length;
-            slides[currentSlide].classList.add('active-slide');
-            slideNumberText.innerText = `${currentSlide + 1} / ${slides.length}`;
+        function move(step) {
+            items[index].classList.remove('active-slide');
+            index = (index + step + items.length) % items.length;
+            items[index].classList.add('active-slide');
+            indicator.innerText = index + 1;
         }
 
-        // --- മൊബൈൽ ടച്ച് സപ്പോർട്ട് (Touch Swiping) ---
+        // Simple Mobile Swipe
         let startX = 0;
-        const sliderArea = document.getElementById('slider-area');
+        const zone = document.getElementById('touch-zone');
 
-        sliderArea.addEventListener('touchstart', e => {
-            startX = e.touches[0].clientX;
-        }, {passive: true});
-
-        sliderArea.addEventListener('touchend', e => {
-            let endX = e.changedTouches[0].clientX;
-            let diff = startX - endX;
-
-            if (Math.abs(diff) > 50) { // 50px എങ്കിലും നീക്കിയാൽ മാത്രം സ്ലൈഡ് മാറും
-                if (diff > 0) {
-                    changeSlide(1); // ഇടത്തോട്ട് നീക്കുമ്പോൾ Next
-                } else {
-                    changeSlide(-1); // വലത്തോട്ട് നീക്കുമ്പോൾ Prev
-                }
-            }
-        }, {passive: true});
+        zone.addEventListener('touchstart', e => startX = e.touches[0].clientX);
+        zone.addEventListener('touchend', e => {
+            let diff = startX - e.changedTouches[0].clientX;
+            if (Math.abs(diff) > 40) move(diff > 0 ? 1 : -1);
+        });
     </script>
-
 </body>
 </html>
