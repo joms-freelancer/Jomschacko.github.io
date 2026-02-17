@@ -12,11 +12,33 @@
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         .grid-item {
-            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: zoom-in;
         }
         .grid-item:hover {
             transform: scale(1.02);
-            z-index: 10;
+        }
+        /* Fullscreen Overlay Style */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #overlay img {
+            max-width: 90%;
+            max-height: 80%;
+            border-radius: 1rem;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s ease-out;
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.8); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
         }
     </style>
 </head>
@@ -29,72 +51,63 @@
             </a>
             <div class="text-right">
                 <h1 class="text-2xl font-black tracking-tighter text-amber-500 uppercase">Modern Grid</h1>
-                <p class="text-slate-500 text-xs">Style 2: All-in-one View</p>
+                <p class="text-slate-500 text-xs italic">Click any image to expand</p>
             </div>
         </div>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/one.jpg')">
                 <img src="images/one.jpg" class="w-full h-full object-cover" alt="Memory 1">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 01</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/two.jpg')">
                 <img src="images/two.jpg" class="w-full h-full object-cover" alt="Memory 2">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 02</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/three.jpg')">
                 <img src="images/three.jpg" class="w-full h-full object-cover" alt="Memory 3">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 03</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/four.jpg')">
                 <img src="images/four.jpg" class="w-full h-full object-cover" alt="Memory 4">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 04</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/five.jpg')">
                 <img src="images/five.jpg" class="w-full h-full object-cover" alt="Memory 5">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 05</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/six.jpg')">
                 <img src="images/six.jpg" class="w-full h-full object-cover" alt="Memory 6">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 06</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/seven.jpg')">
                 <img src="images/seven.jpg" class="w-full h-full object-cover" alt="Memory 7">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 07</p>
-                </div>
             </div>
-
-            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg">
+            <div class="grid-item relative aspect-square overflow-hidden rounded-2xl glass-bg" onclick="openImage('images/eight.jpg')">
                 <img src="images/eight.jpg" class="w-full h-full object-cover" alt="Memory 8">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 flex items-end p-6">
-                    <p class="text-sm font-medium">Visual Story 08</p>
-                </div>
             </div>
-        </div>
-
-        <div class="mt-16 text-center text-slate-600 text-[10px] uppercase tracking-[0.2em]">
-            &copy; 2026 Joms Studio
         </div>
     </div>
+
+    <div id="overlay">
+        <button onclick="closeImage()" class="absolute top-10 right-10 text-white hover:text-amber-500 transition text-5xl font-light">&times;</button>
+        <img id="fullImage" src="" alt="Full View">
+    </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const fullImg = document.getElementById('fullImage');
+
+        function openImage(src) {
+            fullImg.src = src;
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden'; // Scroll തടയാൻ
+        }
+
+        function closeImage() {
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto'; // Scroll തിരികെ കൊണ്ടുവരാൻ
+        }
+
+        // Overlay-യുടെ വെളിയിൽ ക്ലിക്ക് ചെയ്താലും Close ആകാൻ
+        overlay.onclick = function(e) {
+            if (e.target === overlay) closeImage();
+        }
+    </script>
 
 </body>
 </html>
