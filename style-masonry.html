@@ -18,6 +18,7 @@
             break-inside: avoid;
             margin-bottom: 1.5rem;
             transition: all 0.4s ease;
+            cursor: zoom-in;
         }
         .masonry-item:hover {
             transform: translateY(-5px);
@@ -28,9 +29,32 @@
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+
+        /* Lightbox Overlay */
+        #overlay {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            backdrop-filter: blur(12px);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        #overlay img {
+            max-width: 90%;
+            max-height: 85%;
+            border-radius: 1rem;
+            box-shadow: 0 0 50px rgba(0,0,0,0.5);
+            animation: zoomIn 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        @keyframes zoomIn {
+            from { transform: scale(0.85); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen p-6 md:p-12 lg:p-20">
+<body class="bg-slate-950 text-white min-h-screen p-6 md:p-12">
 
     <div class="max-w-7xl mx-auto">
         <div class="flex justify-between items-end mb-16">
@@ -40,45 +64,61 @@
                 </a>
                 <h1 class="text-5xl font-black tracking-tighter text-white uppercase">Masonry Art</h1>
             </div>
-            <p class="text-slate-500 italic hidden md:block">Style 4: Creative Collage</p>
+            <p class="text-slate-500 italic hidden md:block">Click to expand memories</p>
         </div>
 
         <div class="masonry-container">
-            
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/one.jpg" class="w-full h-auto object-cover" alt="Image 1">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/one.jpg')">
+                <img src="images/one.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/two.jpg" class="w-full h-auto object-cover" alt="Image 2">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/two.jpg')">
+                <img src="images/two.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/three.jpg" class="w-full h-auto object-cover" alt="Image 3">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/three.jpg')">
+                <img src="images/three.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/four.jpg" class="w-full h-auto object-cover" alt="Image 4">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/four.jpg')">
+                <img src="images/four.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/five.jpg" class="w-full h-auto object-cover" alt="Image 5">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/five.jpg')">
+                <img src="images/five.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/six.jpg" class="w-full h-auto object-cover" alt="Image 6">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/six.jpg')">
+                <img src="images/six.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/seven.jpg" class="w-full h-auto object-cover" alt="Image 7">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/seven.jpg')">
+                <img src="images/seven.jpg" class="w-full h-auto object-cover">
             </div>
-
-            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
-                <img src="images/eight.jpg" class="w-full h-auto object-cover" alt="Image 8">
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card" onclick="openImage('images/eight.jpg')">
+                <img src="images/eight.jpg" class="w-full h-auto object-cover">
             </div>
-
         </div>
     </div>
+
+    <div id="overlay">
+        <button onclick="closeImage()" class="absolute top-10 right-10 text-white hover:text-amber-500 transition text-5xl font-light">&times;</button>
+        <img id="fullImage" src="" alt="Full View">
+    </div>
+
+    <script>
+        const overlay = document.getElementById('overlay');
+        const fullImg = document.getElementById('fullImage');
+
+        function openImage(src) {
+            fullImg.src = src;
+            overlay.style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImage() {
+            overlay.style.display = 'none';
+            document.body.style.overflow = 'auto';
+        }
+
+        overlay.onclick = function(e) {
+            if (e.target === overlay) closeImage();
+        }
+    </script>
 
 </body>
 </html>
