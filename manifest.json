@@ -9,30 +9,28 @@
   "icons": [
     {
       "src": "icon-192.png",
-      "sizes": "192x192",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "1024x1024",
+      "type": "image/png"
     },
     {
       "src": "icon-512.png",
-      "sizes": "512x512",
-      "type": "image/png",
-      "purpose": "any maskable"
+      "sizes": "1024x1024",
+      "type": "image/png"
     }
   ],
   "screenshots": [
     {
       "src": "screenshot.png",
-      "sizes": "1280x720",
+      "sizes": "1280x800",
       "type": "image/png",
       "form_factor": "wide",
-      "label": "Desktop View of Joms Portfolio"
+      "label": "Desktop View"
     },
     {
       "src": "screenshot.png",
-      "sizes": "1280x720",
+      "sizes": "1280x800",
       "type": "image/png",
-      "label": "Mobile View of Joms Portfolio"
+      "label": "Mobile View"
     }
   ]
 }
