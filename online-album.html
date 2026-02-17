@@ -10,47 +10,73 @@
             backdrop-filter: blur(12px);
             background: rgba(255, 255, 255, 0.03);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.4s ease;
+            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
         }
         .style-card:hover {
             border-color: #f59e0b;
-            transform: translateY(-8px);
+            transform: translateY(-10px);
             background: rgba(245, 158, 11, 0.08);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white font-sans min-h-screen p-6 md:p-12">
+<body class="bg-slate-950 text-white font-sans min-h-screen p-6 md:p-12 lg:p-20">
     <div class="max-w-6xl mx-auto">
         
         <div class="mb-10">
-            <a class="text-amber-400 hover:text-white transition flex items-center gap-2 text-sm font-bold tracking-wide uppercase" href="services.html"><span>←</span> Back to Services</a>
+            <a class="text-amber-400 hover:text-white transition flex items-center gap-2 text-sm font-bold tracking-wide uppercase" href="services.html">
+                <span>←</span> Back to Services
+            </a>
         </div>
 
-        <div class="text-center mb-16">
-            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent uppercase">Choose Your Style</h1>
-            <p class="text-slate-400">Select how you want to experience the album</p>
+        <div class="text-center mb-20">
+            <h1 class="text-5xl md:text-6xl font-black mb-6 tracking-tighter bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent uppercase">Choose Your Style</h1>
+            <p class="text-slate-400 text-lg">Pick a unique way to experience your digital memories</p>
         </div>
 
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             
             <a href="style-slider.html" class="style-card p-10 rounded-[2.5rem] block group">
-                <div class="text-4xl mb-6">🎞️</div>
+                <div class="text-5xl mb-6">🎞️</div>
                 <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">Classic Slider</h3>
-                <p class="text-sm text-slate-500">Interactive navigation with Next/Previous buttons.</p>
+                <p class="text-sm text-slate-500 leading-relaxed">Simple and elegant navigation with Previous & Next controls.</p>
+                <div class="mt-6 text-[10px] font-black text-amber-500 uppercase tracking-widest">Active Style</div>
             </a>
 
-            <div class="style-card p-10 rounded-[2.5rem] opacity-50 cursor-not-allowed">
-                <div class="text-4xl mb-6">📱</div>
-                <h3 class="text-2xl font-bold mb-3">Modern Grid</h3>
-                <p class="text-sm text-slate-500">View all photos at once in a clean layout.</p>
-                <span class="text-[10px] text-amber-500 font-bold uppercase tracking-widest">Coming Soon</span>
-            </div>
+            <a href="style-grid.html" class="style-card p-10 rounded-[2.5rem] block group">
+                <div class="text-5xl mb-6">📱</div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">Modern Grid</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">A clean, high-performance grid layout for a quick overview.</p>
+                <div class="mt-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">Setup Pending</div>
+            </a>
 
-            <div class="style-card p-10 rounded-[2.5rem] opacity-50 cursor-not-allowed">
-                <div class="text-4xl mb-6">🎡</div>
-                <h3 class="text-2xl font-bold mb-3">3D Carousel</h3>
-                <p class="text-sm text-slate-500">Experience a cinematic rotating gallery.</p>
-            </div>
+            <a href="style-carousel.html" class="style-card p-10 rounded-[2.5rem] block group">
+                <div class="text-5xl mb-6">🎡</div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">3D Carousel</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Experience your photos in a cinematic rotating 3D space.</p>
+                <div class="mt-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">Setup Pending</div>
+            </a>
+
+            <a href="style-masonry.html" class="style-card p-10 rounded-[2.5rem] block group">
+                <div class="text-5xl mb-6">🎨</div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">Masonry Art</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">An artistic Pinterest-style layout with varied image sizes.</p>
+                <div class="mt-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">Setup Pending</div>
+            </a>
+
+            <a href="style-zoom.html" class="style-card p-10 rounded-[2.5rem] block group">
+                <div class="text-5xl mb-6">🔍</div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">Zoom Explorer</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Full-screen immersion with deep zoom and pan effects.</p>
+                <div class="mt-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">Setup Pending</div>
+            </a>
+
+            <a href="style-auto.html" class="style-card p-10 rounded-[2.5rem] block group">
+                <div class="text-5xl mb-6">⚡</div>
+                <h3 class="text-2xl font-bold mb-3 group-hover:text-amber-400">Auto Motion</h3>
+                <p class="text-sm text-slate-500 leading-relaxed">Sit back and relax while the photos transition automatically.</p>
+                <div class="mt-6 text-[10px] font-black text-slate-600 uppercase tracking-widest">Setup Pending</div>
+            </a>
 
         </div>
     </div>
