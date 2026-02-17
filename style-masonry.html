@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Masonry Art | Joms Album</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .masonry-container {
+            column-count: 1;
+            column-gap: 1.5rem;
+        }
+        @media (min-width: 640px) { .masonry-container { column-count: 2; } }
+        @media (min-width: 1024px) { .masonry-container { column-count: 3; } }
+        @media (min-width: 1280px) { .masonry-container { column-count: 4; } }
+
+        .masonry-item {
+            break-inside: avoid;
+            margin-bottom: 1.5rem;
+            transition: all 0.4s ease;
+        }
+        .masonry-item:hover {
+            transform: translateY(-5px);
+            filter: brightness(1.1);
+        }
+        .glass-card {
+            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-white min-h-screen p-6 md:p-12 lg:p-20">
+
+    <div class="max-w-7xl mx-auto">
+        <div class="flex justify-between items-end mb-16">
+            <div>
+                <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-4 block">
+                    ← Back to Styles
+                </a>
+                <h1 class="text-5xl font-black tracking-tighter text-white uppercase">Masonry Art</h1>
+            </div>
+            <p class="text-slate-500 italic hidden md:block">Style 4: Creative Collage</p>
+        </div>
+
+        <div class="masonry-container">
+            
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/one.jpg" class="w-full h-auto object-cover" alt="Image 1">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/two.jpg" class="w-full h-auto object-cover" alt="Image 2">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/three.jpg" class="w-full h-auto object-cover" alt="Image 3">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/four.jpg" class="w-full h-auto object-cover" alt="Image 4">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/five.jpg" class="w-full h-auto object-cover" alt="Image 5">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/six.jpg" class="w-full h-auto object-cover" alt="Image 6">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/seven.jpg" class="w-full h-auto object-cover" alt="Image 7">
+            </div>
+
+            <div class="masonry-item rounded-3xl overflow-hidden glass-card">
+                <img src="images/eight.jpg" class="w-full h-auto object-cover" alt="Image 8">
+            </div>
+
+        </div>
+    </div>
+
+</body>
+</html>
