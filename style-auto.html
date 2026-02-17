@@ -10,17 +10,18 @@
             height: 4px;
             background: #f59e0b;
             width: 0%;
-            transition: width 5s linear; /* 5 സെക്കന്റ് കൊണ്ട് ഫുൾ ആകും */
+            /* സമയം 8 സെക്കൻഡ് ആക്കി */
+            transition: width 8s linear; 
         }
         .slide-fade {
-            animation: fadeEffect 1.5s ease-in-out;
+            animation: fadeEffect 2s ease-in-out;
         }
         @keyframes fadeEffect {
-            from { opacity: 0.4; filter: blur(10px); }
-            to { opacity: 1; filter: blur(0); }
+            from { opacity: 0; filter: blur(15px); transform: scale(1.05); }
+            to { opacity: 1; filter: blur(0); transform: scale(1); }
         }
         .glass-panel {
-            backdrop-filter: blur(15px);
+            backdrop-filter: blur(20px);
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
@@ -28,29 +29,28 @@
 </head>
 <body class="bg-slate-950 text-white min-h-screen flex items-center justify-center p-6">
 
-    <div class="fixed top-10 left-0 right-0 text-center z-10">
+    <div class="fixed top-10 text-center z-10 w-full">
         <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-4 inline-block hover:underline">
             ← Back to Styles
         </a>
         <h1 class="text-4xl font-black tracking-tighter text-white uppercase">Auto Motion</h1>
-        <p class="text-slate-500 text-sm">Style 5: Relax and Watch</p>
+        <p class="text-slate-500 text-sm italic">Slow & Cinematic Transitions</p>
     </div>
 
     <div class="relative w-full max-w-5xl rounded-[3rem] overflow-hidden shadow-2xl glass-panel">
-        
         <div id="progress" class="progress-bar"></div>
 
-        <div class="aspect-video relative overflow-hidden">
+        <div class="aspect-video relative overflow-hidden bg-black">
             <img id="main-slide" src="images/one.jpg" class="w-full h-full object-cover slide-fade" alt="Auto Slide">
             
-            <div class="absolute bottom-10 left-10">
+            <div class="absolute bottom-10 left-10 bg-black/20 p-4 rounded-xl backdrop-blur-md">
                 <p id="slide-count" class="text-amber-500 font-mono text-lg font-bold">01 / 08</p>
-                <h3 class="text-2xl font-bold tracking-tight">Capturing Moments</h3>
+                <h3 class="text-xl font-medium tracking-tight text-slate-200">Featured Memory</h3>
             </div>
         </div>
 
         <div class="absolute bottom-8 right-10 flex gap-4">
-            <button onclick="togglePlay()" id="play-btn" class="bg-white/10 hover:bg-amber-500 hover:text-black p-4 rounded-full transition">
+            <button onclick="togglePlay()" id="play-btn" class="bg-white/10 hover:bg-amber-500 hover:text-black p-5 rounded-full transition-all duration-300">
                 <span id="play-icon" class="text-xl">⏸</span>
             </button>
         </div>
@@ -65,7 +65,7 @@
         let currentIndex = 0;
         let isPlaying = true;
         let slideTimer;
-        let progressTimer;
+        const SLIDE_DURATION = 8000; // 8 സെക്കൻഡ്
 
         const mainSlide = document.getElementById('main-slide');
         const slideCount = document.getElementById('slide-count');
@@ -75,18 +75,17 @@
         function startSlideshow() {
             if (!isPlaying) return;
             
-            // Progress bar reset and start
             progressBar.style.transition = 'none';
             progressBar.style.width = '0%';
             
             setTimeout(() => {
-                progressBar.style.transition = 'width 5s linear';
+                progressBar.style.transition = `width ${SLIDE_DURATION}ms linear`;
                 progressBar.style.width = '100%';
             }, 50);
 
             slideTimer = setTimeout(() => {
                 nextSlide();
-            }, 5000); // 5 സെക്കന്റിൽ അടുത്ത ഫോട്ടോ വരും
+            }, SLIDE_DURATION);
         }
 
         function nextSlide() {
@@ -99,9 +98,8 @@
             mainSlide.src = images[currentIndex];
             slideCount.innerText = `${(currentIndex + 1).toString().padStart(2, '0')} / 08`;
             
-            // Animation റീസ്റ്റാർട്ട് ചെയ്യാൻ
             mainSlide.classList.remove('slide-fade');
-            void mainSlide.offsetWidth; // Trigger reflow
+            void mainSlide.offsetWidth; 
             mainSlide.classList.add('slide-fade');
         }
 
@@ -118,9 +116,7 @@
             }
         }
 
-        // തുടക്കത്തിൽ സ്ലൈഡ് ഷോ സ്റ്റാർട്ട് ചെയ്യാൻ
         startSlideshow();
     </script>
-
 </body>
 </html>
