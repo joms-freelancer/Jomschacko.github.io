@@ -1,1 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Online Album | Joms Portfolio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+           .glass-card { 
+               backdrop-filter: blur(12px); 
+               background: rgba(255, 255, 255, 0.03); 
+               border: 1px solid rgba(255, 255, 255, 0.1);
+               transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+           }
+           .photo-card:hover {
+               border-color: #f59e0b; /* Amber color on hover */
+               transform: translateY(-5px);
+           }
+    </style>
+</head>
+<body class="bg-slate-950 text-white font-sans min-h-screen p-6 md:p-12">
+    <div class="max-w-7xl mx-auto">
+        
+        <div class="mb-10">
+            <a class="text-amber-400 hover:text-white transition flex items-center gap-2 text-sm font-bold tracking-wide" href="services.html">
+                <span>←</span> BACK TO SERVICES
+            </a>
+        </div>
 
+        <div class="text-center mb-16">
+            <h1 class="text-5xl font-black mb-4 tracking-tighter bg-gradient-to-r from-amber-400 to-yellow-500 bg-clip-text text-transparent uppercase">
+                Online Album
+            </h1>
+            <p class="text-slate-400 text-lg italic">A collection of digital memories and visual stories</p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/one.jpg" alt="Memory 1" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/two.jpg" alt="Memory 2" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/three.jpg" alt="Memory 3" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/four.jpg" alt="Memory 4" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/five.jpg" alt="Memory 5" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/six.jpg" alt="Memory 6" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/seven.jpg" alt="Memory 7" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+            <div class="glass-card photo-card overflow-hidden rounded-[2rem]">
+                <img src="images/eight.jpg" alt="Memory 8" class="w-full h-64 object-cover transition duration-500 hover:scale-110">
+            </div>
+
+        </div>
+
+        <div class="mt-20 text-center border-t border-white/5 pt-10">
+            <p class="text-slate-500 text-sm">© 2026 Joms | Built with Passion</p>
+        </div>
+
+    </div>
+</body>
+</html>
