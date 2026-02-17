@@ -1,6 +1,7 @@
 {
   "name": "Joms Portfolio & Smart Deals",
   "short_name": "Joms",
+  "description": "Data Solutions Specialist & AI/ML Enthusiast",
   "start_url": "index.html",
   "display": "standalone",
   "background_color": "#0f172a",
@@ -9,12 +10,29 @@
     {
       "src": "icon-192.png",
       "sizes": "192x192",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
     },
     {
       "src": "icon-512.png",
       "sizes": "512x512",
-      "type": "image/png"
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "form_factor": "wide",
+      "label": "Desktop View of Joms Portfolio"
+    },
+    {
+      "src": "screenshot.png",
+      "sizes": "1280x720",
+      "type": "image/png",
+      "label": "Mobile View of Joms Portfolio"
     }
   ]
 }
