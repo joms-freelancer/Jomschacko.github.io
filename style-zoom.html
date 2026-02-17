@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Zoom Explorer | Joms Album</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
@@ -10,10 +10,11 @@
             position: relative;
             overflow: hidden;
             cursor: crosshair;
-            border-radius: 2rem;
+            border-radius: 1.5rem;
+            touch-action: none;
         }
         .zoom-image {
-            transition: transform 0.1s ease-out;
+            transition: transform 0.15s ease-out;
             transform-origin: center center;
         }
         .glass-panel {
@@ -21,59 +22,79 @@
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
+        /* Thumbnail Scrollbar ശരിയാക്കാൻ */
+        .thumb-scroll {
+            display: flex;
+            overflow-x: auto;
+            gap: 12px;
+            padding-bottom: 10px;
+            scrollbar-width: none; /* Firefox */
+        }
+        .thumb-scroll::-webkit-scrollbar { display: none; } /* Chrome/Safari */
+        
+        .thumb-item {
+            flex: 0 0 80px; /* ഓരോ തമ്പ്നെയ്‌ലിനും ഒരേ വീതി */
+            height: 60px;
+            border-radius: 10px;
+            object-fit: cover;
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
         .thumb-active {
-            border-color: #f59e0b !important;
-            transform: scale(1.1);
+            border-color: #f59e0b;
+            transform: scale(1.05);
         }
     </style>
 </head>
-<body class="bg-slate-950 text-white min-h-screen p-6 md:p-12 flex flex-col items-center">
+<body class="bg-slate-950 text-white min-h-screen p-4 md:p-12 flex flex-col items-center">
 
-    <div class="text-center mb-10">
-        <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase mb-4 inline-block hover:underline">
-            ← Back to Styles
-        </a>
-        <h1 class="text-4xl font-black tracking-tighter text-white uppercase">Zoom Explorer</h1>
-        <p class="text-slate-500 text-sm">Style 6: Hover to Explore Details</p>
+    <div class="w-full max-w-4xl flex justify-between items-center mb-8">
+        <a href="online-album.html" class="text-amber-500 font-bold text-xs tracking-widest uppercase">← Back</a>
+        <h1 class="text-xl font-black text-white uppercase tracking-tighter">Zoom Explorer</h1>
+        <div class="w-8"></div>
     </div>
 
     <div class="w-full max-w-4xl">
-        <div class="zoom-container aspect-video glass-panel shadow-2xl" id="viewer" onmousemove="zoom(event)" onmouseleave="resetZoom()">
+        <div class="zoom-container aspect-[4/5] md:aspect-video glass-panel shadow-2xl" id="viewer">
             <img id="featured" src="images/one.jpg" class="zoom-image w-full h-full object-cover" alt="Zoom View">
         </div>
 
-        <div class="grid grid-cols-4 md:grid-cols-8 gap-3 mt-8">
-            <img src="images/one.jpg" onclick="changeImage(this)" class="thumb-active h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/two.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/three.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/four.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/five.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/six.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/seven.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
-            <img src="images/eight.jpg" onclick="changeImage(this)" class="h-16 w-full object-cover rounded-lg border-2 border-transparent cursor-pointer transition-all duration-300">
+        <div class="mt-8">
+            <p class="text-[10px] text-slate-500 uppercase tracking-[0.2em] mb-3 text-center">Scroll to view more</p>
+            <div class="thumb-scroll" id="thumb-bar">
+                <img src="images/one.jpg" onclick="changeImage(this)" class="thumb-item thumb-active cursor-pointer">
+                <img src="images/two.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                <img src="images/three.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                <img src="images/four.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                <img src="images/five.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                <img src="images/six.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                <img src="images/seven.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                <img src="images/eight.jpg" onclick="changeImage(this)" class="thumb-item cursor-pointer">
+                </div>
         </div>
-    </div>
-
-    <div class="mt-12 text-slate-600 text-[10px] uppercase tracking-widest">
-        Move your mouse over the image to zoom
     </div>
 
     <script>
         const featured = document.getElementById('featured');
         const viewer = document.getElementById('viewer');
 
-        function zoom(e) {
-            const x = e.clientX - viewer.offsetLeft;
-            const y = e.clientY - viewer.offsetTop;
+        // Mouse Zoom (Computer)
+        viewer.addEventListener('mousemove', (e) => handleZoom(e.clientX, e.clientY));
+        viewer.addEventListener('mouseleave', resetZoom);
 
-            const mX = viewer.offsetWidth;
-            const mY = viewer.offsetHeight;
+        // Touch Zoom (Mobile)
+        viewer.addEventListener('touchmove', (e) => {
+            handleZoom(e.touches[0].clientX, e.touches[0].clientY);
+        });
+        viewer.addEventListener('touchend', resetZoom);
 
-            const newValueX = (x / mX) * 100;
-            const newValueY = (y / mY) * 100;
+        function handleZoom(clientX, clientY) {
+            const rect = viewer.getBoundingClientRect();
+            const x = ((clientX - rect.left) / viewer.offsetWidth) * 100;
+            const y = ((clientY - rect.top) / viewer.offsetHeight) * 100;
 
-            featured.style.transformOrigin = `${newValueX}% ${newValueY}%`;
-            featured.style.transform = "scale(2.5)"; // 2.5 മടങ്ങ് വലുതാക്കി കാണിക്കും
+            featured.style.transformOrigin = `${x}% ${y}%`;
+            featured.style.transform = "scale(2.5)";
         }
 
         function resetZoom() {
@@ -82,14 +103,12 @@
         }
 
         function changeImage(element) {
-            // മാറ്റങ്ങൾ വരുത്താൻ
             featured.src = element.src;
-            
-            // തംബ്നെയിൽ ബോർഡർ മാറ്റാൻ
-            document.querySelectorAll('.thumb-active').forEach(el => el.classList.remove('thumb-active'));
+            document.querySelectorAll('.thumb-item').forEach(el => el.classList.remove('thumb-active'));
             element.classList.add('thumb-active');
-            
             resetZoom();
+            // തമ്പ്നെയ്ൽ ക്ലിക്ക് ചെയ്യുമ്പോൾ അത് സെന്ററിലേക്ക് വരാൻ
+            element.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
         }
     </script>
 
